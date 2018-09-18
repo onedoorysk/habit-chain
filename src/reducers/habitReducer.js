@@ -4,33 +4,34 @@ import v4 from 'uuid/v4'
 const initialList = [
   {
     id: v4(),
-    habitName: 'aaa',
-    description: 'hogehogehogehoge',
+    habitName: '筋トレ',
+    description: '腕立て１００回、腹筋１００回',
     completed: false
   },
   {
     id: v4(),
-    habitName: 'bbb',
-    description: 'hogehogehogehoge',
+    habitName: 'ランニング',
+    description: '３km走る',
     completed: false
   },
   {
     id: v4(),
-    habitName: 'ccc',
-    description: 'hogehogehogehoge',
+    habitName: '英語学習',
+    description: '１日５ページ',
     completed: false
   }
 ]
 
-export default (state = initialList, action) => {
-  switch(action.type) {
+export default (state = initialList, {type, payload}) => {
+  switch(type) {
     case TYPE.ADD_HABIT:
-      return [...state, {id: v4(), habitName: action.value}]
+      const {habitName, description} = payload
+      return [...state, {id: v4(), habitName, description, completed: false}]
     case TYPE.DELETE_HABIT:
-      return state.filter(habit => habit.id !== action.id)
+      return state.filter(habit => habit.id !== payload.id)
     case TYPE.CHECK_HABIT:
       return state.map(habit => {
-        if (habit.id !== action.id) return {...habit}
+        if (habit.id !== payload.id) return {...habit}
         return {...habit, completed: !habit.completed}
       })
     default:

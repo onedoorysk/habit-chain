@@ -11,14 +11,14 @@ const App = () => (
     <p className="long-width">Change your window size to less than 768px.</p>
     <div className="container" >
       <h1>-HABIT-x-CHAIN-</h1>
-      <HabitForm />
       <Router>
         <div>
+          <Route exact path="/" component={HabitForm} />
           <Route exact path="/" component={HabitList} />
           <Route path="/detail/:id" component={HabitDetail} />
+          <Route exact path="/" component={DisplayRecord} />
         </div>
       </Router>
-      <DisplayRecord />
     </div>
   </div>
 )

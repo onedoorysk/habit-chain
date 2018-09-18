@@ -1,7 +1,8 @@
 import TYPE from './_actionType'
 
-export const changeHabitTextAction = value => ({type: TYPE.CHANGE_HABIT_TEXT, value})
-export const addHabitAction = value => ({type: TYPE.ADD_HABIT, value})
-export const deleteHabitAction = id => ({type: TYPE.DELETE_HABIT, id})
-export const checkHabitAction = id => ({type: TYPE.CHECK_HABIT, id})
+export const typeHabitNameAction = value => ({type: TYPE.TYPE_HABIT_NAME, payload: {value}})
+export const typeHabitDescriptionAction = value => ({type: TYPE.TYPE_HABIT_DESCRIPTION, payload: {value}})
+export const addHabitAction = (habitName, description) => ({type: TYPE.ADD_HABIT, payload: {habitName, description}})
+export const deleteHabitAction = id => ({type: TYPE.DELETE_HABIT, payload: {id}})
+export const checkHabitAction = id => ({type: TYPE.CHECK_HABIT, payload: {id}})
 export const dayCountAction = {type: TYPE.DAY_COUNT}

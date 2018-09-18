@@ -1,22 +1,47 @@
 import React from 'react'
 import store from '../store'
-import {addHabitAction, changeHabitTextAction} from '../actions'
+import {addHabitAction, typeHabitNameAction, typeHabitDescriptionAction} from '../actions'
 import '../App.css'
 
 export default () => {
-  const currentHabitTextValue = store.getState().form
-  let input = null
+  const {habitName, description} = store.getState().form
+  let nameInput = null
+  let descriptionInput = null
+
   return (
     <div>
-      <div>ADD HABIT</div>
-      <input type="text" ref={node => input = node} onChange={e => store.dispatch(changeHabitTextAction(e.currentTarget.value))} />
+      <div>
+        <div>HABIT NAME</div>
+        <input
+          type="text"
+          ref={node => nameInput = node}
+          onChange={e => store.dispatch(typeHabitNameAction(e.currentTarget.value))}
+        />
+      </div>
+      <div>
+        <div style={{"marginTop": "20px"}}>DESCRIPTION</div>
+        <textarea
+          name="description"
+          id="description"
+          cols="30"
+          rows="5"
+          ref={node => descriptionInput = node}
+          onChange={e => store.dispatch(typeHabitDescriptionAction(e.currentTarget.value))}
+        />
+      </div>
       <button
         onClick={() => {
-          store.dispatch(addHabitAction(currentHabitTextValue))
-          input.value = null
-          store.dispatch(changeHabitTextAction(''))
+          if (nameInput.value.length === 0) {
+            alert('Please type text')
+            return
+          }
+          store.dispatch(addHabitAction(habitName, description))
+          nameInput.value = null
+          descriptionInput.value = null
+          store.dispatch(typeHabitNameAction(''))
+          store.dispatch(typeHabitDescriptionAction(''))
         }}
-      >OK
+      >+
       </button>
     </div>
   )
