@@ -1,24 +1,30 @@
 import React from 'react'
 import store from '../store'
-import '../App.css'
 import {Link} from 'react-router-dom'
 import {checkHabitAction, dayCountAction} from '../actions'
 
 export default () => {
   const habitList = store.getState().habit
+  const currentFilter = store.getState().filter
   return (
     <div>
-      <ul className="habit">
+      <ul>
         {
-          habitList.map(({id, habitName, completed}) => {
+          habitList.filter(habit => {
+            switch (currentFilter) {
+              case 'not yet':
+                return !habit.completed
+              case 'done':
+                return habit.completed
+              case 'all':
+                return habit
+              default:
+                return habit
+            }
+          }).map(({id, habitName, completed}) => {
             return (
-              <li
-                className="habit__list"
-                key={id}
-              >
-                <Link
-                  to={`/detail/${id}`}
-                >
+              <li key={id}>
+                <Link to={`/detail/${id}`}>
                   {habitName}
                 </Link>
                 <input

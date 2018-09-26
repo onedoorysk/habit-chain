@@ -6,3 +6,4 @@ export const addHabitAction = (habitName, description) => ({type: TYPE.ADD_HABIT
 export const deleteHabitAction = id => ({type: TYPE.DELETE_HABIT, payload: {id}})
 export const checkHabitAction = id => ({type: TYPE.CHECK_HABIT, payload: {id}})
 export const dayCountAction = {type: TYPE.DAY_COUNT}
+export const filterListAction = filterType => ({type: TYPE.FILTER_LIST, payload: {filterType}})
