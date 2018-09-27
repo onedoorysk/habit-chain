@@ -1,33 +1,30 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import store from '../store'
-import { filterListAction } from '../actions'
+import FilterTab from './FilterTab'
 
 const styles = {
   root: {
-    margin: '0 0 15px 0',
-    maxWidth: '100%',
+    width: '100%',
     height: '42px',
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
-    backgroundColor: '#f5f5f5'
-  },
-  tab: {
-    height: '100%',
-    padding: '13px 20px 0 20px',
-    color: '#a4a2a2',
+    backgroundColor: '#f5f5f5',
+    position: 'fixed',
+    top: '56px',
+    left: '0',
+    zIndex: '888'
   }
 }
 
 const Filter = ({classes}) => {
-  const {root, tab} = classes
+  const {root} = classes
   return (
     <div className={root}>
-      <div className={tab} onClick={() => store.dispatch(filterListAction('all'))} >ALL</div>
-      <div className={tab} onClick={() => store.dispatch(filterListAction('not yet'))}>NOT YET</div>
-      <div className={tab} onClick={() => store.dispatch(filterListAction('done'))}>DONE</div>
+      <FilterTab tabName={'all'} />
+      <FilterTab tabName={'not yet'} />
+      <FilterTab tabName={'done'} />
     </div>
   )
 }

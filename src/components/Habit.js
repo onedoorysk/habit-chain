@@ -25,11 +25,12 @@ const style = {
     color: '#444444',
     position: 'absolute',
     top: '15px',
-    left: '15px'
+    left: '15px',
+    fontWeight: 'bold'
   },
   desc: {
     position: 'absolute',
-    top: '66px',
+    top: '50px',
     left: '0px',
     fontSize: '12px',
     margin: '0 15px 0 15px'

@@ -9,7 +9,7 @@ const styles = {
     justifyContent: 'space-around',
     alignItems: 'flex-start',
     flexWrap: 'wrap',
-    margin: '0 auto'
+    margin: '113px auto 0 auto'
   }
 }
 

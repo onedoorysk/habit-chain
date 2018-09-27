@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 const styles = {
   root: {
-    maxWidth: '100%',
+    width: '100%',
     margin: '0 auto',
     height: '56px',
     backgroundColor: '#1C75BC',
@@ -12,7 +12,9 @@ const styles = {
     alignItems: 'center',
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
     zIndex: '999',
-    position: 'relative'
+    position: 'fixed',
+    top: '0',
+    left: '0'
   },
   title: {
     color: '#E5E5E5',
