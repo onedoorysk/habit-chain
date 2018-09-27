@@ -10,7 +10,9 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)'
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
+    zIndex: '999',
+    position: 'relative'
   },
   title: {
     color: '#E5E5E5',

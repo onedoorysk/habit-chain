@@ -11,20 +11,21 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
-    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)'
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
+    backgroundColor: '#f5f5f5'
   },
   tab: {
     height: '100%',
     padding: '13px 20px 0 20px',
-    color: '#A4A2A2',
+    color: '#a4a2a2',
   }
 }
 
-const Filter = props => {
-  const {root, tab} = props.classes
+const Filter = ({classes}) => {
+  const {root, tab} = classes
   return (
     <div className={root}>
-      <div className={tab} style={{ borderBottom: '2px solid #5CC0EF' }} onClick={() => store.dispatch(filterListAction('all'))} >ALL</div>
+      <div className={tab} onClick={() => store.dispatch(filterListAction('all'))} >ALL</div>
       <div className={tab} onClick={() => store.dispatch(filterListAction('not yet'))}>NOT YET</div>
       <div className={tab} onClick={() => store.dispatch(filterListAction('done'))}>DONE</div>
     </div>

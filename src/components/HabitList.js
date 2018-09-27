@@ -1,14 +1,25 @@
 import React from 'react'
 import store from '../store'
-import {Link} from 'react-router-dom'
-import {checkHabitAction, dayCountAction} from '../actions'
+import Habit from './Habit'
+import { withStyles } from '@material-ui/core/styles'
 
-export default () => {
+const styles = {
+  root: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'flex-start',
+    flexWrap: 'wrap',
+    margin: '0 auto'
+  }
+}
+
+const habitList = ({classes}) => {
+  const {root} = classes
   const habitList = store.getState().habit
   const currentFilter = store.getState().filter
   return (
     <div>
-      <ul>
+      <ul className={root}>
         {
           habitList.filter(habit => {
             switch (currentFilter) {
@@ -21,28 +32,15 @@ export default () => {
               default:
                 return habit
             }
-          }).map(({id, habitName, completed}) => {
+          }).map(habit => {
             return (
-              <li key={id}>
-                <Link to={`/detail/${id}`}>
-                  {habitName}
-                </Link>
-                <input
-                  type="checkbox"
-                  checked={completed ? 'checked' : ''}
-                  onChange={() => store.dispatch(checkHabitAction(id))}
-                />
-              </li>
+              <Habit key={habit.id} habit={habit} />
             )
           })
         }
       </ul>
-      <button
-        onClick={() => store.dispatch(dayCountAction)}
-        disabled={habitList.filter(habit => !habit.completed).length > 0 ? 'disabled' : '' }
-      >
-        COMPLETE TODAY'S TASK!!
-      </button>
     </div>
   )
 }
+
+export default withStyles(styles)(habitList)
