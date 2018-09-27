@@ -1,7 +1,7 @@
 import React from 'react'
 import store from '../store'
 import {Link} from 'react-router-dom'
-import {checkHabitAction} from '../actions'
+import {doneHabitAction} from '../actions'
 import { withStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 
@@ -62,7 +62,7 @@ const style = {
 
 const Habit = ({habit, classes}) => {
   const {root, link, title, desc, doneButton, chain, chainCount} = classes
-  const {id, habitName, description} = habit
+  const {id, habitName, completed, description} = habit
   return (
     <li className={root}>
       <Link
@@ -82,7 +82,8 @@ const Habit = ({habit, classes}) => {
       </div>
       <Button
         className={doneButton}
-        onClick={() => store.dispatch(checkHabitAction(id))}
+        onClick={() => store.dispatch(doneHabitAction(id))}
+        disabled={completed}
       >
         DONE
       </Button>

@@ -29,7 +29,7 @@ export default (state = initialList, {type, payload}) => {
       return [...state, {id: v4(), habitName, description, completed: false}]
     case TYPE.DELETE_HABIT:
       return state.filter(habit => habit.id !== payload.id)
-    case TYPE.CHECK_HABIT:
+    case TYPE.DONE_HABIT:
       return state.map(habit => {
         if (habit.id !== payload.id) return {...habit}
         return {...habit, completed: !habit.completed}
