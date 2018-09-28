@@ -25,7 +25,7 @@ const styles = {
     textAlign: 'center',
     position: 'absolute',
     top: '100px',
-    left: '38px'
+    left: '9%'
   },
   modalTitle: {
     color: '#444444',
@@ -56,20 +56,26 @@ const styles = {
   }
 }
 
+const resetForm = () => {
+  store.dispatch(typeHabitNameAction(''))
+  store.dispatch(typeHabitDescriptionAction(''))
+}
+
 const AddHabit = ({classes}) => {
   // styles
   const {root, modalWindow, modalTitle, textStyle, createButton, cancelButton} = classes
   const isOpenModal = store.getState().modal
   const {habitName, description} = store.getState().form
-  let nameInput = null
-  let descriptionInput = null
 
   return (
     <div>
       <div
         className={root}
         style={{'display': isOpenModal ? 'block' : 'none'}}
-        onClick={() => store.dispatch(openModalAction)}
+        onClick={() => {
+          store.dispatch(openModalAction)
+          resetForm()
+        }}
       >
         <div
           className={modalWindow}
@@ -83,7 +89,7 @@ const AddHabit = ({classes}) => {
             rowsMax="1"
             margin="normal"
             required
-            ref={node => nameInput = node}
+            value={habitName}
             onChange={e => store.dispatch(typeHabitNameAction(e.currentTarget.value))}
           />
           <TextField
@@ -93,7 +99,7 @@ const AddHabit = ({classes}) => {
             rows="1"
             rowsMax="6"
             margin="normal"
-            ref={node => descriptionInput = node}
+            value={description}
             onChange={e => store.dispatch(typeHabitDescriptionAction(e.currentTarget.value))}
           />
           <Button
@@ -106,6 +112,7 @@ const AddHabit = ({classes}) => {
             onClick={() => {
               store.dispatch(addHabitAction(habitName, description))
               store.dispatch(openModalAction)
+              resetForm()
             }}
           >
             CREATE
