@@ -11,13 +11,18 @@ const styles = {
     justifyContent: 'space-around',
     alignItems: 'flex-start',
     flexWrap: 'wrap',
-    margin: '113px auto 0 auto'
+    margin: '113px 0 0 0'
+  },
+  blank: {
+    width: '165px',
+    height: '165px'
   }
 }
 
 const habitList = ({classes}) => {
-  const {root} = classes
+  const {root, blank} = classes
   const habitList = store.getState().habit
+
   const currentFilter = store.getState().filter
   return (
     <div>
@@ -40,6 +45,7 @@ const habitList = ({classes}) => {
             )
           })
         }
+        {habitList.length % 2 != 0 ? <div className={blank}></div> : null}
       </ul>
       <AddHabit />
     </div>
