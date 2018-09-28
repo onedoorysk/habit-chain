@@ -20,24 +20,26 @@ const style = {
     height: '165px',
     display: 'block',
     textDecoration: 'none',
+    color: '#444444'
   },
   title: {
     color: '#444444',
     position: 'absolute',
     top: '15px',
-    left: '15px',
-    fontWeight: 'bold'
+    left: '10px',
+    fontWeight: 'bold',
+    fontSize: '11px'
   },
   desc: {
     position: 'absolute',
     top: '50px',
     left: '0px',
     fontSize: '12px',
-    margin: '0 15px 0 15px'
+    margin: '0 10px 0 10px'
   },
   doneButton: {
     position: 'absolute',
-    bottom: '20px',
+    bottom: '15px',
     left: '38px',
     width: '90px',
     backgroundColor: '#1C75BC',
@@ -57,7 +59,8 @@ const style = {
     padding: '1px 0 0 0'
   },
   chainCount: {
-    fontSize: '20px'
+    fontSize: '20px',
+    fontWeight: 'bold',
   }
 }
 
@@ -70,17 +73,17 @@ const Habit = ({habit, classes}) => {
         to={`/detail/${id}`}
         className={link}
       >
+        <div className={title}>
+          {habitName}
+        </div>
+        <div className={desc}>
+          {description}
+        </div>
+        <div className={chain}>
+          <div className={chainCount}>1</div>
+          <div>chain</div>
+        </div>
       </Link>
-      <div className={title}>
-        {habitName}
-      </div>
-      <div className={desc}>
-        {description}
-      </div>
-      <div className={chain}>
-        <div className={chainCount}>1</div>
-        <div>chain</div>
-      </div>
       <Button
         className={doneButton}
         onClick={() => store.dispatch(doneHabitAction(id))}

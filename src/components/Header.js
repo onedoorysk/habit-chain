@@ -1,5 +1,6 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
+import {Link} from 'react-router-dom'
 
 const styles = {
   root: {
@@ -11,20 +12,29 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
-    zIndex: '999',
+    zIndex: '900',
     position: 'fixed',
     top: '0',
-    left: '0'
+    left: '0',
   },
   title: {
     color: '#E5E5E5',
-    fontSize: '24px'
+    fontSize: '24px',
+  },
+  link: {
+    textDecoration: 'none'
   }
 }
-const Header = (props) => {
+const Header = ({classes}) => {
+  const {root, title, link} = classes
   return (
-    <header className={props.classes.root}>
-      <div className={props.classes.title}>HABIT CHAIN</div>
+    <header className={root}>
+      <Link
+        to={'/'}
+        className={link}
+      >
+        <div className={title}>HABIT CHAIN</div>
+      </Link>
     </header>
   )
 }

@@ -7,3 +7,4 @@ export const deleteHabitAction = id => ({type: TYPE.DELETE_HABIT, payload: {id}}
 export const doneHabitAction = id => ({type: TYPE.DONE_HABIT, payload: {id}})
 export const dayCountAction = {type: TYPE.DAY_COUNT}
 export const filterListAction = filterType => ({type: TYPE.FILTER_LIST, payload: {filterType}})
+export const openModalAction = {type: TYPE.OPEN_HABIT_MODAL}

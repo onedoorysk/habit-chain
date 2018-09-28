@@ -2,6 +2,8 @@ import React from 'react'
 import store from '../store'
 import Habit from './Habit'
 import { withStyles } from '@material-ui/core/styles'
+import AddHabit from './AddHabit'
+
 
 const styles = {
   root: {
@@ -39,6 +41,7 @@ const habitList = ({classes}) => {
           })
         }
       </ul>
+      <AddHabit />
     </div>
   )
 }
