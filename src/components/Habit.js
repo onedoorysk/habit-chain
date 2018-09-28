@@ -2,7 +2,7 @@ import React from 'react'
 import store from '../store'
 import {Link} from 'react-router-dom'
 import {doneHabitAction} from '../actions'
-import { withStyles } from '@material-ui/core/styles'
+import {withStyles} from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 
 const style = {

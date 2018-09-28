@@ -3,6 +3,7 @@ import HabitList from './components/HabitList'
 import HabitDetail from './components/HabitDetail'
 import Header from './components/Header'
 import HabitFilter from './components/HabitFilter'
+import RemainingTimer from './components/RemainingTimer'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 const App = () => (
@@ -17,6 +18,7 @@ const App = () => (
           <Route path="/detail/:id" component={HabitDetail} />
         </div>
       </Router>
+      <RemainingTimer />
     </div>
   </div>
 )

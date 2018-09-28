@@ -25,7 +25,7 @@ const styles = {
     textAlign: 'center',
     position: 'absolute',
     top: '100px',
-    left: '30px'
+    left: '38px'
   },
   modalTitle: {
     color: '#444444',
