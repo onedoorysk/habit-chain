@@ -4,14 +4,13 @@ import Habit from './Habit'
 import { withStyles } from '@material-ui/core/styles'
 import AddHabit from './AddHabit'
 
-
 const styles = {
   root: {
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'flex-start',
     flexWrap: 'wrap',
-    margin: '113px 0 0 0'
+    margin: '113px 0 30px 0',
   },
   blank: {
     width: '165px',
@@ -22,7 +21,6 @@ const styles = {
 const habitList = ({classes}) => {
   const {root, blank} = classes
   const habitList = store.getState().habit
-
   const currentFilter = store.getState().filter
   return (
     <div>
@@ -45,7 +43,8 @@ const habitList = ({classes}) => {
             )
           })
         }
-        {habitList.length % 2 != 0 ? <div className={blank}></div> : null}
+        {/* habitが奇数の時にレイアウトを整えるため空の要素を作る */}
+        {habitList.length % 2 !== 0 ? <div className={blank}></div> : null}
       </ul>
       <AddHabit />
     </div>

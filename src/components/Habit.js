@@ -5,7 +5,7 @@ import {doneHabitAction} from '../actions'
 import {withStyles} from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 
-const style = {
+const styles = {
   root: {
     width: '165px',
     height: '165px',
@@ -95,4 +95,4 @@ const Habit = ({habit, classes}) => {
   )
 }
 
-export default withStyles(style)(Habit)
+export default withStyles(styles)(Habit)

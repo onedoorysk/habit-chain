@@ -1,29 +1,146 @@
 import React from 'react'
 import store from '../store'
-import {Link} from 'react-router-dom'
 import {deleteHabitAction} from '../actions'
 import {doneHabitAction} from '../actions'
+import {withStyles} from '@material-ui/core/styles'
+import DeleteIcon from '@material-ui/icons/Delete'
+import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft'
+import Edit from '@material-ui/icons/Edit'
+import Album from '@material-ui/icons/Album'
 
-export default (props) => {
+const styles = {
+  root: {
+    margin: '65px 15px 30px 15px',
+  },
+  habitContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  habitNameContainer: {
+    display: 'flex'
+  },
+  habitNameStyle: {
+    fontSize: '20px',
+    color: '#444444'
+  },
+  deleteIcon: {
+    color: '#B5B5B5',
+    cursor: 'pointer',
+    hover: '#000000',
+    margin: '3px 0 0 0',
+  },
+  chainTag: {
+    width: '60px',
+    height: '25px',
+    backgroundColor: '#F9A638',
+    borderRadius: '5%',
+    color: '#444444',
+    textAlign: 'center',
+    margin: '2px 0 0 10px',
+    padding: '2px 0 0 0',
+    fontSize: '12px'
+  },
+  chainCount: {
+    fontSize: '20px'
+  },
+  splitBorder: {
+    border: "1px solid #D8D8D8",
+    margin: '0 0 3px 0'
+  },
+  descriptionContainer: {
+    display: 'flex',
+    margin: '7px 0 10px 0'
+  },
+  descriptionTitleIcon: {
+    width: '16px',
+    height: '16px',
+    margin: '3.5px 0 0 0',
+    color: '#444444'
+  },
+  descriptionTitle: {
+    padding: '0 0 0 5px',
+    color: '#444444',
+    fontSize: '16px',
+  },
+  editIcon: {
+    width: '14px',
+    height: '14px',
+    margin: '5px 0 0 5px',
+    color: '#B5B5B5',
+    cursor: 'pointer',
+  },
+  descriptionStyle: {
+    fontSize: '12px',
+    color: '#444444',
+    margin: '0 20px 20px 20px'
+  },
+  recordContainer: {
+    display: 'flex',
+    margin: '7px 0 10px 0'
+  },
+  recordIcon: {
+    width: '16px',
+    height: '16px',
+    margin: '3.5px 0 0 0',
+    color: '#444444'
+  }
+}
+
+const HabitDetail = ({match, classes}) => {
+  const {
+    root,
+    habitContainer,
+    habitNameStyle,
+    deleteIcon,
+    chainTag,
+    habitNameContainer,
+    chainCount,
+    splitBorder,
+    descriptionContainer,
+    descriptionTitle,
+    descriptionTitleIcon,
+    editIcon,
+    descriptionStyle,
+    recordContainer,
+    recordIcon
+  } = classes
   const habitList = store.getState().habit
   let targetHabit = {}
   habitList.forEach(habit => {
-    if (habit.id === props.match.params.id) {
+    if (habit.id === match.params.id) {
       targetHabit = habit
     }
   })
   const {id, habitName, description, completed} = targetHabit
   return (
-    <div>
-      <div>
-        <h2>{habitName}</h2>
-        <p>{description}</p>
-        <input type="checkbox" checked={completed ? 'checked' : ''} onChange={() => store.dispatch(doneHabitAction(id))}/>
-        <button onClick={() => store.dispatch(deleteHabitAction(targetHabit.id))}>×</button>
+    <div className={root}>
+      <div className={habitContainer}>
+        <div className={habitNameContainer}>
+          <div className={habitNameStyle}>{habitName}</div>
+          <div className={chainTag}>
+            <span className={chainCount}>1</span>chain
+          </div>
+        </div>
+        <div>
+          <DeleteIcon className={deleteIcon}/>
+        </div>
       </div>
-      <div>
-        <Link to='/'>Back</Link>
+      <div className={splitBorder}></div>
+      <div className={splitBorder}></div>
+      <div className={descriptionContainer}>
+        <FormatAlignLeft className={descriptionTitleIcon}/>
+        <div className={descriptionTitle}>詳細</div>
+        <Edit className={editIcon} />
       </div>
+      <p className={descriptionStyle}>{description}</p>
+      <div className={splitBorder}></div>
+      <div className={recordContainer}>
+        <Album className={recordIcon}/>
+        <div className={descriptionTitle}>記録</div>
+      </div>
+
     </div>
   )
 }
+
+export default withStyles(styles)(HabitDetail)

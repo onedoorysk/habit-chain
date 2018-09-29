@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button'
 
 const styles = {
   root: {
-    position: 'absolute',
+    position: 'fixed',
     top: '0',
     left: '0',
     zIndex: '999',
