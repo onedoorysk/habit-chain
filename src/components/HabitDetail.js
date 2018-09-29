@@ -7,6 +7,7 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft'
 import Edit from '@material-ui/icons/Edit'
 import Album from '@material-ui/icons/Album'
+import Calendar from './Calendar'
 
 const styles = {
   root: {
@@ -138,7 +139,7 @@ const HabitDetail = ({match, classes}) => {
         <Album className={recordIcon}/>
         <div className={descriptionTitle}>記録</div>
       </div>
-
+      <Calendar />
     </div>
   )
 }
