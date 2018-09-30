@@ -9,7 +9,6 @@ const getCalendarData = (year, month) => {
   let weekData = [] // 週ごとの日付データ群
   let weekdayCount = weekday
   for (let i = 0; i < lastDay; i++) {
-    if (i === lastDay) console.log(lastDay)
     weekData.push({
       day: i + 1,
       weekday: weekdayCount
@@ -35,7 +34,6 @@ const getCalendarData = (year, month) => {
   }
   // 最終週の終わりが土曜日以外であれば空のオブジェクトを追加
   const lastWeekDays = calendarData[calendarData.length - 1].length
-  console.log(lastWeekDays)
   if (lastWeekDays < 7) {
     for (let i = 0; i < 7 - lastWeekDays; i++) {
       calendarData[calendarData.length - 1].push({})

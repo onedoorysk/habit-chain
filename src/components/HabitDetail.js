@@ -1,13 +1,14 @@
 import React from 'react'
 import store from '../store'
 import {deleteHabitAction} from '../actions'
-import {doneHabitAction} from '../actions'
+import {openModalAction} from '../actions'
 import {withStyles} from '@material-ui/core/styles'
 import DeleteIcon from '@material-ui/icons/Delete'
 import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft'
 import Edit from '@material-ui/icons/Edit'
 import Album from '@material-ui/icons/Album'
 import Calendar from './Calendar'
+import DeleteHabit from './DeleteHabit'
 
 const styles = {
   root: {
@@ -22,7 +23,8 @@ const styles = {
   },
   habitNameStyle: {
     fontSize: '20px',
-    color: '#444444'
+    color: '#444444',
+    fontWeight: 'bold'
   },
   deleteIcon: {
     color: '#B5B5B5',
@@ -112,7 +114,7 @@ const HabitDetail = ({match, classes}) => {
       targetHabit = habit
     }
   })
-  const {id, habitName, description, completed} = targetHabit
+  const {id, habitName, description} = targetHabit
   return (
     <div className={root}>
       <div className={habitContainer}>
@@ -123,7 +125,10 @@ const HabitDetail = ({match, classes}) => {
           </div>
         </div>
         <div>
-          <DeleteIcon className={deleteIcon}/>
+          <DeleteIcon
+            className={deleteIcon}
+            onClick={() => store.dispatch(openModalAction)}
+          />
         </div>
       </div>
       <div className={splitBorder}></div>
@@ -140,6 +145,7 @@ const HabitDetail = ({match, classes}) => {
         <div className={descriptionTitle}>記録</div>
       </div>
       <Calendar />
+      <DeleteHabit habitName={habitName} id={id} />
     </div>
   )
 }
