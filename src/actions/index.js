@@ -9,3 +9,4 @@ export const dayCountAction = {type: TYPE.DAY_COUNT}
 export const filterListAction = filterType => ({type: TYPE.FILTER_LIST, payload: {filterType}})
 export const openModalAction = {type: TYPE.OPEN_MODAL}
 export const changeCalendarAction = (changeValue) => ({type: TYPE.CHANGE_CALENDAR, payload: {changeValue}})
+export const countTimerAction = ({type: TYPE.COUNT_TIMER})

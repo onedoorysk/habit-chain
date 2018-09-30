@@ -4,6 +4,7 @@ import habitReducer from './habitReducer'
 import filterReducer from './filterReducer'
 import modalReducer from './modalReducer'
 import calendarReducer from './calendarReducer'
+import timerReducer from './timerReducer'
 
 export default combineReducers(
   {
@@ -11,6 +12,7 @@ export default combineReducers(
     form: formReducer,
     filter: filterReducer,
     modal: modalReducer,
-    calendar: calendarReducer
+    calendar: calendarReducer,
+    timer: timerReducer
   }
 )

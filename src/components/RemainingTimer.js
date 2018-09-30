@@ -1,5 +1,7 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { withStyles } from '@material-ui/core/styles'
+import store from '../store'
+import {countTimerAction} from '../actions/index'
 
 const styles = {
   root: {
@@ -25,14 +27,43 @@ const styles = {
   }
 }
 
-const Timer = ({classes}) => {
-  const {root, tag, timer} = classes
-  return (
-    <div className={root}>
-      <div className={tag}>残り時間</div>
-      <div className={timer}>11:22:33</div>
-    </div>
-  )
+class Timer extends Component {
+
+  constructor(props) {
+    super(props)
+    this.styles = props.classes
+    this.timer = store.getState().timer
+    store.dispatch(countTimerAction)
+  }
+
+  componentDidMount() {
+    this.countTimer = setInterval(
+      () => store.dispatch(countTimerAction),
+      1000
+    )
+  }
+
+  componentWillUpdate() {
+    if (this.timer.stopTimer) {
+      clearInterval(this.countTimer)
+    }
+  }
+
+  render() {
+    return (
+      <div className={this.styles.root}>
+        <div className={this.styles.tag}>残り時間</div>
+        <div className={this.styles.timer}>
+          {this.timer.countHH < 10 ?
+            `0${this.timer.countHH}:` : `${this.timer.countHH}:`}
+          {this.timer.countMM < 10 ?
+            `0${this.timer.countMM}:` : `${this.timer.countMM}:`}
+          {this.timer.countSS < 10 ?
+            `0${this.timer.countSS}` : this.timer.countSS}
+        </div>
+      </div>
+    )
+  }
 }
 
 export default withStyles(styles)(Timer)
