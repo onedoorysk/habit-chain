@@ -18,8 +18,8 @@ const styles = {
     left: '0',
   },
   title: {
-    color: '#E5E5E5',
     fontSize: '24px',
+    color: '#FFFFFF'
   },
   link: {
     textDecoration: 'none'

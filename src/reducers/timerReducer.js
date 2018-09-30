@@ -15,7 +15,7 @@ export default (state = initialState, {type, payload}) => {
     case TYPE.COUNT_TIMER:
       let {hh, mm, ss, countHH, countMM, countSS} = state
       if (!countHH && !countMM && !countSS) {
-        state.countHH = hh - new Date().getHours()
+        state.countHH = hh - new Date().getHours() - 1
         state.countMM = mm - new Date().getMinutes() - 1
         state.countSS = ss - new Date().getSeconds()
       } else {

@@ -59,8 +59,7 @@ const Calendar = ({classes}) => {
       dayContainer,
       weekContainer,
       dayStyle
-    }
-  = classes
+    } = classes
 
   const {year, month, calendarData} = store.getState().calendar
 
@@ -73,7 +72,8 @@ const Calendar = ({classes}) => {
             onClick={() => store.dispatch(changeCalendarAction('prev'))}
           />
         </div>
-        <div className={yearAndMonth}>{year}/{month}</div>
+        <div className={yearAndMonth}>
+          {year}/{month < 10 ? `0${month}` : month}</div>
         <div>
           <ChevronRight
             className={nextIcon}

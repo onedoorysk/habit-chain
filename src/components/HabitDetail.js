@@ -38,16 +38,17 @@ const styles = {
     backgroundColor: '#F9A638',
     borderRadius: '5%',
     color: '#444444',
-    textAlign: 'center',
-    margin: '2px 0 0 10px',
-    padding: '2px 0 0 0',
-    fontSize: '12px'
+    fontSize: '12px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: '3px 0 0 5px'
   },
   chainCount: {
-    fontSize: '20px'
+    fontSize: '24px'
   },
   splitBorder: {
-    border: "1px solid #D8D8D8",
+    borderBottom: "1px solid #D8D8D8",
     margin: '0 0 3px 0'
   },
   descriptionContainer: {
@@ -57,7 +58,7 @@ const styles = {
   descriptionTitleIcon: {
     width: '16px',
     height: '16px',
-    margin: '3.5px 0 0 0',
+    margin: '2.5px 0 0 0',
     color: '#444444'
   },
   descriptionTitle: {

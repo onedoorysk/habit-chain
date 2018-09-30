@@ -22,29 +22,30 @@ const habitList = ({classes}) => {
   const {root, blank} = classes
   const habitList = store.getState().habit
   const currentFilter = store.getState().filter
+  const filteringHabitList = habitList.filter(habit => {
+    switch (currentFilter) {
+      case 'not yet':
+        return !habit.completed
+      case 'done':
+        return habit.completed
+      case 'all':
+        return habit
+      default:
+        return habit
+    }
+  })
   return (
     <div>
       <ul className={root}>
         {
-          habitList.filter(habit => {
-            switch (currentFilter) {
-              case 'not yet':
-                return !habit.completed
-              case 'done':
-                return habit.completed
-              case 'all':
-                return habit
-              default:
-                return habit
-            }
-          }).map(habit => {
+          filteringHabitList.map(habit => {
             return (
               <Habit key={habit.id} habit={habit} />
             )
           })
         }
         {/* habitが奇数の時にレイアウトを整えるため空の要素を作る */}
-        {habitList.length % 2 !== 0 ? <div className={blank}></div> : null}
+        {filteringHabitList.length % 2 !== 0 ? <div className={blank}></div> : null}
       </ul>
       <AddHabit />
     </div>

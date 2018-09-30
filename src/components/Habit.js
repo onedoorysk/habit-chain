@@ -47,19 +47,20 @@ const styles = {
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
   },
   chain: {
-    width: '40px',
-    height: '40px',
+    width: '44px',
+    height: '44px',
     backgroundColor: '#F9A638',
     position: 'absolute',
     top: '0',
     right: '0',
     borderRadius: '0 5% 0 0 / 0 5% 0 0',
     fontSize: '12px',
-    textAlign: 'center',
-    padding: '1px 0 0 0'
+    display: 'flex',
+    flexFlow: 'column',
+    alignItems: 'center',
   },
   chainCount: {
-    fontSize: '20px',
+    fontSize: '24px',
     fontWeight: 'bold',
   }
 }
