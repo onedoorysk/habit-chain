@@ -51,14 +51,20 @@ const styles = {
     backgroundColor: '#1C75BC',
     color: '#FFFFFF',
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
-    margin: '0 0 0 30px'
+    margin: '0 0 0 30px',
+    '&:hover': {
+      backgroundColor: '#4BA0E3'
+    }
   },
   cancelButton: {
     width: '90px',
     backgroundColor: '#EB3029',
     color: '#FFFFFF',
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
-    margin: '0 30px 0 0'
+    margin: '0 30px 0 0',
+    '&:hover': {
+      backgroundColor: '#F26963'
+    }
   }
 }
 

@@ -1,6 +1,5 @@
 import React from 'react'
 import store from '../store'
-import {deleteHabitAction} from '../actions'
 import {openModalAction} from '../actions'
 import {withStyles} from '@material-ui/core/styles'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -29,8 +28,11 @@ const styles = {
   deleteIcon: {
     color: '#B5B5B5',
     cursor: 'pointer',
-    hover: '#000000',
     margin: '3px 0 0 0',
+    '&:hover': {
+      color: '#d5d5d5'
+    },
+    transition: 'color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms'
   },
   chainTag: {
     width: '60px',

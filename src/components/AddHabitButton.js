@@ -11,7 +11,10 @@ const styles = {
     color: '#FFFFFF',
     position: 'fixed',
     bottom: '45px',
-    right: '15px'
+    right: '15px',
+    '&:hover': {
+      backgroundColor: '#9EDAF6'
+    }
   }
 }
 

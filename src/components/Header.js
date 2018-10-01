@@ -12,7 +12,7 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
-    zIndex: '900',
+    zIndex: '950',
     position: 'fixed',
     top: '0',
     left: '0',

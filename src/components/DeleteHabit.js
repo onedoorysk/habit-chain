@@ -79,12 +79,18 @@ const styles = {
     backgroundColor: '#1C75BC',
     color: '#FFFFFF',
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
+    '&:hover': {
+      backgroundColor: '#4BA0E3'
+    }
   },
   deleteButton: {
     width: '90px',
     backgroundColor: '#EB3029',
     color: '#FFFFFF',
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
+    '&:hover': {
+      backgroundColor: '#F26963'
+    }
   },
 }
 
