@@ -43,12 +43,6 @@ class Timer extends Component {
     )
   }
 
-  componentWillUpdate() {
-    if (this.timer.stopTimer) {
-      clearInterval(this.countTimer)
-    }
-  }
-
   render() {
     return (
       <div className={this.styles.root}>
