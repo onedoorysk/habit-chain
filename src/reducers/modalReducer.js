@@ -1,9 +1,10 @@
 import TYPE from '../actions/_actionType'
 
-export default (state = false, action) => {
-  switch (action.type) {
+export default (state = '', {type, payload}) => {
+  switch (type) {
     case TYPE.OPEN_MODAL:
-      return !state
+      state = payload.modalName
+      return state
     default:
       return state
   }

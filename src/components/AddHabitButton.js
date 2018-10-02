@@ -24,7 +24,7 @@ const AddHabitButton = ({classes}) => {
       variant="fab"
       aria-label="Add"
       className={classes.button}
-      onClick={() => store.dispatch(openModalAction)}
+      onClick={() => store.dispatch(openModalAction('addHabit'))}
     >
       <AddIcon />
     </Button>

@@ -24,7 +24,6 @@ const Tab = ({tabName, classes}) => {
   return (
     <div
       className={root}
-      onMouseOver={() => console.log('focus')}
       onClick={() => store.dispatch(filterListAction(tabName))}
       style={currentFilter === tabName ? currentFilterStyle : {} }
     >

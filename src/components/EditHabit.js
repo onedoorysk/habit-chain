@@ -3,7 +3,7 @@ import AddHabitButton from './AddHabitButton'
 import { withStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import store from '../store'
-import {openModalAction, addHabitAction, typeHabitNameAction, typeHabitDescriptionAction} from '../actions'
+import {openModalAction, editHabitAction, typeHabitNameAction, typeHabitDescriptionAction} from '../actions'
 import Button from '@material-ui/core/Button'
 
 const styles = {
@@ -49,14 +49,14 @@ const styles = {
   buttonContainer: {
     display: 'flex',
     justifyContent: 'space-between',
-    margin: '30px 0 50px 30px',
-    width: '210px'
+    margin: '30px 0 50px 0'
   },
   createButton: {
     width: '90px',
     backgroundColor: '#1C75BC',
     color: '#FFFFFF',
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
+    margin: '0 0 0 30px',
     '&:hover': {
       backgroundColor: '#4BA0E3'
     }
@@ -66,6 +66,7 @@ const styles = {
     backgroundColor: '#EB3029',
     color: '#FFFFFF',
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
+    margin: '0 30px 0 0',
     '&:hover': {
       backgroundColor: '#F26963'
     }
@@ -77,7 +78,7 @@ const resetForm = () => {
   store.dispatch(typeHabitDescriptionAction(''))
 }
 
-const AddHabit = ({classes}) => {
+const EditHabit = ({classes, habit}) => {
   const {
     root,
     modalWindow,
@@ -89,34 +90,23 @@ const AddHabit = ({classes}) => {
     textContainer
   } = classes
   const isOpenModal = store.getState().modal
-  const {habitName, description} = store.getState().form
-
+  const {id, habitName, description} = habit
+  const formDescription = store.getState().form.description
   return (
     <div>
       <div
         className={root}
-        style={{'display': isOpenModal === 'addHabit' ? 'flex' : 'none'}}
+        style={{'display': isOpenModal === 'editModal' ? 'flex' : 'none'}}
         onClick={() => {
           store.dispatch(openModalAction(''))
-          resetForm()
         }}
       >
         <div
           className={modalWindow}
           onClick={e => e.stopPropagation()}
         >
-          <div className={modalTitle}>NEW HABIT</div>
+          <div className={modalTitle}>EDIT HABIT</div>
           <div className={textContainer}>
-            <TextField
-              className={textStyle}
-              label="name"
-              rows="1"
-              rowsMax="1"
-              margin="normal"
-              required
-              value={habitName}
-              onChange={e => store.dispatch(typeHabitNameAction(e.currentTarget.value))}
-            />
             <TextField
               className={textStyle}
               label="detail"
@@ -124,7 +114,7 @@ const AddHabit = ({classes}) => {
               rows="1"
               rowsMax="6"
               margin="normal"
-              value={description}
+              defaultValue={description}
               onChange={e => store.dispatch(typeHabitDescriptionAction(e.currentTarget.value))}
             />
           </div>
@@ -137,17 +127,18 @@ const AddHabit = ({classes}) => {
                 description.length > 50 ? true : false
               }
               onClick={() => {
-                store.dispatch(addHabitAction(habitName, description))
+                store.dispatch(editHabitAction(id, formDescription))
                 store.dispatch(openModalAction(''))
                 resetForm()
               }}
             >
-              CREATE
+              SAVE
             </Button>
             <Button
               className={cancelButton}
               onClick={() => {
                 store.dispatch(openModalAction(''))
+                resetForm()
               }}
             >
               CANCEL
@@ -160,4 +151,4 @@ const AddHabit = ({classes}) => {
   )
 }
 
-export default withStyles(styles)(AddHabit)
+export default withStyles(styles)(EditHabit)

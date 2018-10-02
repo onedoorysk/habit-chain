@@ -5,6 +5,7 @@ import ChevronRight from '@material-ui/icons/ChevronRight'
 import store from '../store'
 import {changeCalendarAction} from '../actions'
 import Weekday from './Weekday'
+import v4 from 'uuid/v4'
 
 const styles = {
   root: {
@@ -84,17 +85,19 @@ const Calendar = ({classes}) => {
       <Weekday />
       <div className={dayContainer}>
         {
-          calendarData.map(calendar => {
+          calendarData.map((calendar)  => {
             return (
-              <div className={weekContainer}>
+              <ul className={weekContainer}>
                 {
-                  calendar.map(data => {
+                  calendar.map((data) => {
                     return (
-                      <div className={dayStyle}>{data.day}</div>
+                      <li className={dayStyle}>
+                        {data.day}
+                      </li>
                     )
                   })
                 }
-              </div>
+              </ul>
             )
           })
         }

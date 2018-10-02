@@ -8,6 +8,7 @@ import Edit from '@material-ui/icons/Edit'
 import Album from '@material-ui/icons/Album'
 import Calendar from './Calendar'
 import DeleteHabit from './DeleteHabit'
+import EditHabit from './EditHabit'
 
 const styles = {
   root: {
@@ -60,7 +61,7 @@ const styles = {
   descriptionTitleIcon: {
     width: '16px',
     height: '16px',
-    margin: '2.5px 0 0 0',
+    margin: '2px 0 0 0',
     color: '#444444'
   },
   descriptionTitle: {
@@ -71,9 +72,13 @@ const styles = {
   editIcon: {
     width: '14px',
     height: '14px',
-    margin: '5px 0 0 5px',
+    margin: '2px 0 0 5px',
     color: '#B5B5B5',
     cursor: 'pointer',
+    '&:hover': {
+      color: '#d5d5d5'
+    },
+    transition: 'color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms'
   },
   descriptionStyle: {
     fontSize: '12px',
@@ -87,12 +92,13 @@ const styles = {
   recordIcon: {
     width: '16px',
     height: '16px',
-    margin: '3.5px 0 0 0',
+    margin: '2.5px 0 0 0',
     color: '#444444'
   }
 }
 
 const HabitDetail = ({match, classes}) => {
+  // style
   const {
     root,
     habitContainer,
@@ -110,6 +116,7 @@ const HabitDetail = ({match, classes}) => {
     recordContainer,
     recordIcon
   } = classes
+
   const habitList = store.getState().habit
   let targetHabit = {}
   habitList.forEach(habit => {
@@ -130,7 +137,7 @@ const HabitDetail = ({match, classes}) => {
         <div>
           <DeleteIcon
             className={deleteIcon}
-            onClick={() => store.dispatch(openModalAction)}
+            onClick={() => store.dispatch(openModalAction('deleteHabit'))}
           />
         </div>
       </div>
@@ -138,17 +145,21 @@ const HabitDetail = ({match, classes}) => {
       <div className={splitBorder}></div>
       <div className={descriptionContainer}>
         <FormatAlignLeft className={descriptionTitleIcon}/>
-        <div className={descriptionTitle}>Detail</div>
-        <Edit className={editIcon} />
+        <div className={descriptionTitle}>DETAIL</div>
+        <Edit
+          className={editIcon}
+          onClick={() => store.dispatch(openModalAction('editModal'))}
+        />
       </div>
       <p className={descriptionStyle}>{description}</p>
       <div className={splitBorder}></div>
       <div className={recordContainer}>
         <Album className={recordIcon}/>
-        <div className={descriptionTitle}>Record</div>
+        <div className={descriptionTitle}>RECORD</div>
       </div>
       <Calendar />
-      <DeleteHabit habitName={habitName} id={id} />
+        <DeleteHabit habit={targetHabit} />
+        <EditHabit habit={targetHabit} />
     </div>
   )
 }

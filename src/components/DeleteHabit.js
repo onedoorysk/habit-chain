@@ -15,6 +15,8 @@ const styles = {
     width: '100%',
     height: '100%',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   modalWindow: {
     backgroundColor: '#ffffff',
@@ -23,7 +25,6 @@ const styles = {
     textAlign: 'center',
     position: 'absolute',
     top: '150px',
-    margin: '0 30px 0 30px',
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -72,7 +73,7 @@ const styles = {
   buttonContainer: {
     display: 'flex',
     justifyContent: 'space-between',
-    margin: '30px 45px 50px 45px',
+    margin: '30px auto 50px auto',
     width: '210px'
   },
   cancelButton: {
@@ -95,7 +96,7 @@ const styles = {
   },
 }
 
-const AddHabit = ({classes, habitName, id, history}) => {
+const AddHabit = ({classes, habit, history}) => {
   const {
     root,
     modalWindow,
@@ -112,14 +113,14 @@ const AddHabit = ({classes, habitName, id, history}) => {
     buttonContainer
   } = classes
   const isOpenModal = store.getState().modal
-
+  const {id, habitName} = habit
   return (
     <div>
       <div
         className={root}
-        style={{'display': isOpenModal ? 'flex' : 'none'}}
+        style={{'display': isOpenModal === 'deleteHabit' ? 'flex' : 'none'}}
         onClick={() => {
-          store.dispatch(openModalAction)
+          store.dispatch(openModalAction(''))
         }}
       >
         <div
@@ -144,7 +145,7 @@ const AddHabit = ({classes, habitName, id, history}) => {
               className={deleteButton}
               onClick={() => {
                 store.dispatch(deleteHabitAction(id))
-                store.dispatch(openModalAction)
+                store.dispatch(openModalAction(''))
                 history.push('/')
               }}
             >
@@ -153,7 +154,7 @@ const AddHabit = ({classes, habitName, id, history}) => {
             <Button
               className={cancelButton}
               onClick={() => {
-                store.dispatch(openModalAction)
+                store.dispatch(openModalAction(''))
               }}
             >
               CANCEL

@@ -5,19 +5,19 @@ const getCalendarData = (year, month) => {
   const lastDay = new Date(year, (firstDate.getMonth() + 1), 0).getDate()
   const weekday = firstDate.getDay()
 
-  let calendarData = [] // 月の日付データ群
-  let weekData = [] // 週ごとの日付データ群
+  let calendarData = [] // months data-list
+  let weekData = [] // weeks data-list
   let weekdayCount = weekday
   for (let i = 0; i < lastDay; i++) {
     weekData.push({
       day: i + 1,
       weekday: weekdayCount
     })
-    // 土曜日(6)または月の最終日の場合に月の日付データ群に追加
+    // If weekdayCount is 6(Saturday) or last day of the month, add weekData to calendarData
     if (weekdayCount >= 6 || i + 1 === lastDay) {
       calendarData.push(weekData)
     }
-    // 土曜日(6)であれば日曜日(0)にし、週ごとのデータを削除
+    // If weekdayCount is 6(Saturday), it changes 0(Sunday) and delete weekData
     if (weekdayCount >= 6) {
       weekdayCount = 0;
       weekData = []
@@ -25,14 +25,14 @@ const getCalendarData = (year, month) => {
       weekdayCount++;
     }
   }
-  // １週目の開始が日曜以外であれば空のオブジェクトを追加
+  // If the first day of week 1 is except Sunday, add blank object to calendarData
   const firstWeekWeekday = calendarData[0][0].weekday
   if (firstWeekWeekday > 0) {
     for (let i = 0; i < firstWeekWeekday; i++) {
       calendarData[0].splice(0, 0, {})
     }
   }
-  // 最終週の終わりが土曜日以外であれば空のオブジェクトを追加
+  // If the last day of the last week is except Saturday, add blank object to calendarData
   const lastWeekDays = calendarData[calendarData.length - 1].length
   if (lastWeekDays < 7) {
     for (let i = 0; i < 7 - lastWeekDays; i++) {

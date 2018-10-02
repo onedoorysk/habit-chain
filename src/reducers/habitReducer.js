@@ -1,7 +1,16 @@
 import TYPE from '../actions/_actionType'
 import v4 from 'uuid/v4'
 
-export default (state = [], {type, payload}) => {
+const initialState = [
+  {
+    id: '001',
+    habitName: '英語',
+    description: '３ページ',
+    completed: false
+  }
+]
+
+export default (state = initialState, {type, payload}) => {
   switch(type) {
     case TYPE.ADD_HABIT:
       const {habitName, description} = payload
@@ -12,6 +21,11 @@ export default (state = [], {type, payload}) => {
       return state.map(habit => {
         if (habit.id !== payload.id) return {...habit}
         return {...habit, completed: !habit.completed}
+      })
+    case TYPE.EDIT_HABIT:
+      return state.map(habit => {
+        if (habit.id !== payload.id) return habit
+        return {...habit, description: payload.description}
       })
     default:
       return state
