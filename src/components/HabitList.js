@@ -44,7 +44,7 @@ const habitList = ({classes}) => {
             )
           })
         }
-        {/* habitが奇数の時にレイアウトを整えるため空の要素を作る */}
+        {/* If habitList's length is odd, make a blank element to adjust the layout*/}
         {filteringHabitList.length % 2 !== 0 ? <div className={blank}></div> : null}
       </ul>
       <AddHabit />

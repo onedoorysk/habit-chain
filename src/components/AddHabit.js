@@ -27,7 +27,7 @@ const styles = {
     borderRadius: '2%',
     textAlign: 'center',
     margin: 'auto',
-    width: '80%',
+    width: '300px',
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -49,7 +49,7 @@ const styles = {
   buttonContainer: {
     display: 'flex',
     justifyContent: 'space-between',
-    margin: '30px 0 50px 30px',
+    margin: '30px auto 50px auto',
     width: '210px'
   },
   createButton: {

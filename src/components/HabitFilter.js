@@ -1,6 +1,7 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import FilterTab from './FilterTab'
+import store from '../store'
 
 const styles = {
   root: {
@@ -20,10 +21,11 @@ const styles = {
 
 const Filter = ({classes}) => {
   const {root} = classes
+  const habitListSize = store.getState().habit.filter(h => !h.completed).length
   return (
     <div className={root}>
       <FilterTab tabName={'all'} />
-      <FilterTab tabName={'not yet'} />
+      <FilterTab tabName={'not yet'} count={habitListSize}/>
       <FilterTab tabName={'done'} />
     </div>
   )

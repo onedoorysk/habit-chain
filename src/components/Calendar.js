@@ -5,7 +5,6 @@ import ChevronRight from '@material-ui/icons/ChevronRight'
 import store from '../store'
 import {changeCalendarAction} from '../actions'
 import Weekday from './Weekday'
-import v4 from 'uuid/v4'
 
 const styles = {
   root: {

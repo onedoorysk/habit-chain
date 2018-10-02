@@ -5,11 +5,29 @@ import { withStyles } from '@material-ui/core/styles'
 
 const styles = {
   root: {
-    width: '100px',
+    minWidth: '100px',
     height: '100%',
     padding: '13px 10px 0 10px',
-    color: '#a4a2a2',
+    color: '#A4A2A2',
     textAlign: 'center'
+  },
+  label: {
+    position: 'relative',
+    cursor: 'pointer'
+  },
+  notYetCount: {
+    width: '20px',
+    height: '20px',
+    color: '#FFFFFF',
+    backgroundColor: '#5CC0EF',
+    borderRadius: '50%',
+    position: 'absolute',
+    top: '-8px',
+    right: '-16px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: '14px'
   }
 }
 
@@ -18,16 +36,16 @@ const currentFilterStyle = {
   color: '#5CC0EF'
 }
 
-const Tab = ({tabName, classes}) => {
+const Tab = ({tabName, classes, count}) => {
   const currentFilter = store.getState().filter
-  const {root} = classes
+  const {root, notYetCount, label} = classes
   return (
     <div
       className={root}
       onClick={() => store.dispatch(filterListAction(tabName))}
       style={currentFilter === tabName ? currentFilterStyle : {} }
     >
-      {tabName.toUpperCase()}
+      <div className={label}>{tabName.toUpperCase()}{count ? <span class={notYetCount}>{count}</span> : null}</div>
     </div>
   )
 }

@@ -27,7 +27,7 @@ const styles = {
     borderRadius: '2%',
     textAlign: 'center',
     margin: 'auto',
-    width: '80%',
+    width: '300px',
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -49,14 +49,14 @@ const styles = {
   buttonContainer: {
     display: 'flex',
     justifyContent: 'space-between',
-    margin: '30px 0 50px 0'
+    margin: '30px auto 50px auto',
+    width: '210px'
   },
   createButton: {
     width: '90px',
     backgroundColor: '#1C75BC',
     color: '#FFFFFF',
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
-    margin: '0 0 0 30px',
     '&:hover': {
       backgroundColor: '#4BA0E3'
     }
@@ -66,7 +66,6 @@ const styles = {
     backgroundColor: '#EB3029',
     color: '#FFFFFF',
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
-    margin: '0 30px 0 0',
     '&:hover': {
       backgroundColor: '#F26963'
     }

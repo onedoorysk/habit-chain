@@ -124,7 +124,7 @@ const HabitDetail = ({match, classes}) => {
       targetHabit = habit
     }
   })
-  const {id, habitName, description} = targetHabit
+  const {habitName, description} = targetHabit
   return (
     <div className={root}>
       <div className={habitContainer}>
@@ -158,8 +158,8 @@ const HabitDetail = ({match, classes}) => {
         <div className={descriptionTitle}>RECORD</div>
       </div>
       <Calendar />
-        <DeleteHabit habit={targetHabit} />
-        <EditHabit habit={targetHabit} />
+      <DeleteHabit habit={targetHabit} />
+      <EditHabit habit={targetHabit} />
     </div>
   )
 }
