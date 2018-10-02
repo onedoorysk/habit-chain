@@ -145,7 +145,6 @@ const EditHabit = ({classes, habit}) => {
           </div>
         </div>
       </div>
-      <AddHabitButton />
     </div>
   )
 }
