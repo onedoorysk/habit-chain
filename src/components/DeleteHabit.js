@@ -72,7 +72,8 @@ const styles = {
   buttonContainer: {
     display: 'flex',
     justifyContent: 'space-between',
-    margin: '30px 45px 50px 45px'
+    margin: '30px 45px 50px 45px',
+    width: '210px'
   },
   cancelButton: {
     width: '90px',
@@ -127,12 +128,12 @@ const AddHabit = ({classes, habitName, id, history}) => {
         >
           <div className={modalContents}>
             <div className={modalMessage}>
-              <span className={habitNameStyle}>{habitName}</span>
-              を削除してもよろしいですか？
+              <span className={habitNameStyle}>{`${habitName} `}</span>
+              <span>will be deleted</span>
             </div>
             <div className={warningContainer}>
               <Warning className={warningIcon} />
-              <span className={warningText}>現在の記録を失います。</span>
+              <span className={warningText}>You will lose your current record</span>
             </div>
             <div className={chainTag}>
               <span className={chainCount}>1</span>chain

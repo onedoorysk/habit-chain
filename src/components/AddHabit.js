@@ -15,6 +15,11 @@ const styles = {
     width: '100%',
     height: '100%',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    transition: 'display 1s ease-in-out',
+    display: 'none'
+  },
+  block: {
+    display: 'none'
   },
   modalWindow: {
     backgroundColor: '#ffffff',
@@ -105,7 +110,7 @@ const AddHabit = ({classes}) => {
           <div className={textContainer}>
             <TextField
               className={textStyle}
-              label="名前"
+              label="name"
               rows="1"
               rowsMax="1"
               margin="normal"
@@ -115,7 +120,7 @@ const AddHabit = ({classes}) => {
             />
             <TextField
               className={textStyle}
-              label="詳細"
+              label="detail"
               multiline
               rows="1"
               rowsMax="6"

@@ -11,4 +11,4 @@ export const openModalAction = {type: TYPE.OPEN_MODAL}
 export const changeCalendarAction = (changeValue) => ({type: TYPE.CHANGE_CALENDAR, payload: {changeValue}})
 export const countTimerAction = ({type: TYPE.COUNT_TIMER})
 export const settingTimerAction = (hour, minute) => ({type: TYPE.SET_TIMER, payload: {hour, minute}})
-export const initialSetAction = (completedSetting1, completedSetting2) => ({type: TYPE.INITIAL_SET, payload: {completedSetting1, completedSetting2}})
+export const initialSetAction = (completedSetting1, completedSetting2, completedSetting3) => ({type: TYPE.INITIAL_SET, payload: {completedSetting1, completedSetting2, completedSetting3}})

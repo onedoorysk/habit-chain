@@ -18,7 +18,7 @@ const styles = {
   tag: {
     color: '#E5E5E5',
     margin: '0 0 0 15px',
-    fontSize: '10px'
+    fontSize: '12px'
   },
   timer: {
     color: '#E5E5E5',
@@ -46,7 +46,12 @@ class Timer extends Component {
   render() {
     return (
       <div className={this.styles.root}>
-        <div className={this.styles.tag}>残り時間</div>
+        <div className={this.styles.tag}>
+          <span>By </span>
+          {this.timer.inputHH < 10 ?
+            `0${this.timer.inputHH}:` : `${this.timer.inputHH}:`}
+          {this.timer.inputMM < 10 ?
+            `0${this.timer.inputMM}` : this.timer.inputMM}</div>
         <div className={this.styles.timer}>
           {this.timer.countHH < 10 ?
             `0${this.timer.countHH}:` : `${this.timer.countHH}:`}

@@ -138,14 +138,14 @@ const HabitDetail = ({match, classes}) => {
       <div className={splitBorder}></div>
       <div className={descriptionContainer}>
         <FormatAlignLeft className={descriptionTitleIcon}/>
-        <div className={descriptionTitle}>詳細</div>
+        <div className={descriptionTitle}>Detail</div>
         <Edit className={editIcon} />
       </div>
       <p className={descriptionStyle}>{description}</p>
       <div className={splitBorder}></div>
       <div className={recordContainer}>
         <Album className={recordIcon}/>
-        <div className={descriptionTitle}>記録</div>
+        <div className={descriptionTitle}>Record</div>
       </div>
       <Calendar />
       <DeleteHabit habitName={habitName} id={id} />

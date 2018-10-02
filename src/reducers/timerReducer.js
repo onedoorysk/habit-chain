@@ -1,8 +1,8 @@
 import TYPE from '../actions/_actionType'
 
 const initialState = {
-  inputHH: '',
-  inputMM: '',
+  inputHH: '24',
+  inputMM: '0',
   countHH: '',
   countMM: '',
   countSS: ''

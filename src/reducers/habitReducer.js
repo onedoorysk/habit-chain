@@ -1,28 +1,7 @@
 import TYPE from '../actions/_actionType'
 import v4 from 'uuid/v4'
 
-const initialList = [
-  {
-    id: v4(),
-    habitName: '筋トレ',
-    description: '腕立て１００回、腹筋１００回',
-    completed: false
-  },
-  {
-    id: v4(),
-    habitName: 'ランニング',
-    description: '３km走る',
-    completed: false
-  },
-  {
-    id: v4(),
-    habitName: '英語学習',
-    description: '１日５ページ',
-    completed: false
-  }
-]
-
-export default (state = initialList, {type, payload}) => {
+export default (state = [], {type, payload}) => {
   switch(type) {
     case TYPE.ADD_HABIT:
       const {habitName, description} = payload
