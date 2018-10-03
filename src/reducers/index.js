@@ -5,6 +5,7 @@ import filterReducer from './filterReducer'
 import modalReducer from './modalReducer'
 import calendarReducer from './calendarReducer'
 import timerReducer from './timerReducer'
+import recordReducer from './recordReducer'
 
 export default combineReducers(
   {
@@ -14,5 +15,6 @@ export default combineReducers(
     modal: modalReducer,
     calendar: calendarReducer,
     timer: timerReducer,
+    record: recordReducer
   }
 )

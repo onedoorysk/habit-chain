@@ -47,7 +47,7 @@ const styles = {
     alignItems: 'center',
     margin: '3px 0 0 5px'
   },
-  chainCount: {
+  chainCountStyle: {
     fontSize: '24px'
   },
   splitBorder: {
@@ -106,7 +106,7 @@ const HabitDetail = ({match, classes}) => {
     deleteIcon,
     chainTag,
     habitNameContainer,
-    chainCount,
+    chainCountStyle,
     splitBorder,
     descriptionContainer,
     descriptionTitle,
@@ -124,14 +124,14 @@ const HabitDetail = ({match, classes}) => {
       targetHabit = habit
     }
   })
-  const {habitName, description} = targetHabit
+  const {id, habitName, description, chainCount} = targetHabit
   return (
     <div className={root}>
       <div className={habitContainer}>
         <div className={habitNameContainer}>
           <div className={habitNameStyle}>{habitName}</div>
           <div className={chainTag}>
-            <span className={chainCount}>1</span>chain
+            <span className={chainCountStyle}>{chainCount}</span>chain
           </div>
         </div>
         <div>
@@ -157,7 +157,7 @@ const HabitDetail = ({match, classes}) => {
         <Album className={recordIcon}/>
         <div className={descriptionTitle}>RECORD</div>
       </div>
-      <Calendar />
+      <Calendar id={id}/>
       <DeleteHabit habit={targetHabit} />
       <EditHabit habit={targetHabit} />
     </div>

@@ -8,20 +8,23 @@ const styles = {
     margin: '10px 19px 0 19px',
     color: '#444444',
     fontSize: '10px'
+  },
+  adjustWeekdayStyle: {
+    margin: '0 1px 0 0'
   }
 }
 
 const Weekday = ({classes}) => {
-  const {root} = classes
+  const {root, adjustWeekdayStyle} = classes
   return (
     <div className={root}>
       <div>S</div>
       <div>M</div>
       <div>T</div>
       <div>W</div>
-      <div>T</div>
-      <div>F</div>
-      <div>S</div>
+      <div className={adjustWeekdayStyle}>T</div>
+      <div className={adjustWeekdayStyle}>F</div>
+      <div className={adjustWeekdayStyle}>S</div>
     </div>
   )
 }

@@ -45,10 +45,11 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     fontSize: '12px',
+    position: 'relative'
   }
 }
 
-const Calendar = ({classes}) => {
+const Calendar = ({classes, id}) => {
   const
     {
       root,
@@ -62,7 +63,13 @@ const Calendar = ({classes}) => {
     } = classes
 
   const {year, month, calendarData} = store.getState().calendar
-
+  let recordDataOnlyDay = []
+  store.getState().record.forEach(record => {
+    if (record.id === id && record.year === year && record.month === month) {
+      recordDataOnlyDay.push(record.day)
+    }
+  })
+  console.log(recordDataOnlyDay)
   return (
     <div className={root}>
       <div className={dateChangeContainer}>
@@ -90,8 +97,34 @@ const Calendar = ({classes}) => {
                 {
                   calendar.map((data) => {
                     return (
-                      <li className={dayStyle}>
+                      <li
+                        className={dayStyle}
+                        style={
+                          recordDataOnlyDay.indexOf(data.day) >= 0
+                            ? { backgroundColor: '#F9A638',
+                                borderRadius: '10px'
+                              }
+                            : {}
+                        }
+                      >
                         {data.day}
+                        <span
+                            // style={
+                            // recordDataOnlyDay.indexOf(data.day) >= 0
+                            // && recordDataOnlyDay.indexOf(data.day + 1) >= 0
+                            // ? {
+                            //     width: '200%',
+                            //     height: '1px',
+                            //     backgroundColor: '#F9A638',
+                            //     position: 'absolute',
+                            //     left: '100%',
+                            //     display: 'inline-block',
+                            //     zIndex: '-1'
+                            //   }
+                            // : {}
+                          // }
+                        >
+                          </span>
                       </li>
                     )
                   })

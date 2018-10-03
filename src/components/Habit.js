@@ -1,7 +1,7 @@
 import React from 'react'
 import store from '../store'
 import {Link} from 'react-router-dom'
-import {doneHabitAction} from '../actions'
+import {doneHabitAction, registRecordAction} from '../actions'
 import {withStyles} from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 
@@ -70,7 +70,14 @@ const styles = {
 
 const Habit = ({habit, classes}) => {
   const {root, link, title, desc, doneButton, chain, chainCountStyle} = classes
-  const {id, habitName, completed, description, chainCount} = habit
+  const {id, habitName, description, chainCount} = habit
+  // Pop today's record data. If it exists, it changes done-button disable
+  const recordList = store.getState().record.filter(record => {
+    if (record.id === id
+      && record.year === new Date().getFullYear()
+      && record.month === new Date().getMonth() + 1) return record
+      return
+  })
   return (
     <li className={root}>
       <Link
@@ -90,8 +97,11 @@ const Habit = ({habit, classes}) => {
       </Link>
       <Button
         className={doneButton}
-        onClick={() => store.dispatch(doneHabitAction(id))}
-        disabled={completed}
+        onClick={() => {
+          store.dispatch(doneHabitAction(id))
+          store.dispatch(registRecordAction(id))
+        }}
+        disabled={recordList.length > 0 ? true : false}
       >
         DONE
       </Button>

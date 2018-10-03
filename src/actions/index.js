@@ -12,3 +12,4 @@ export const openModalAction = (modalName) => ({type: TYPE.OPEN_MODAL, payload: 
 export const changeCalendarAction = (changeValue) => ({type: TYPE.CHANGE_CALENDAR, payload: {changeValue}})
 export const countTimerAction = ({type: TYPE.COUNT_TIMER})
 export const settingTimerAction = (hour, minute) => ({type: TYPE.SET_TIMER, payload: {hour, minute}})
+export const registRecordAction = (id) => ({type: TYPE.REGIST_RECORD, payload: {id}})

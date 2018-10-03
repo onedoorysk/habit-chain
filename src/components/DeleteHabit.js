@@ -53,7 +53,7 @@ const styles = {
     padding: '2px 0 0 0',
     fontSize: '12px'
   },
-  chainCount: {
+  chainCountStyle: {
     fontSize: '20px'
   },
   warningContainer: {
@@ -96,7 +96,7 @@ const styles = {
   },
 }
 
-const AddHabit = ({classes, habit, history}) => {
+const DeleteHabit = ({classes, habit, history}) => {
   const {
     root,
     modalWindow,
@@ -105,7 +105,7 @@ const AddHabit = ({classes, habit, history}) => {
     deleteButton,
     cancelButton,
     chainTag,
-    chainCount,
+    chainCountStyle,
     warningIcon,
     warningText,
     warningContainer,
@@ -113,7 +113,7 @@ const AddHabit = ({classes, habit, history}) => {
     buttonContainer
   } = classes
   const isOpenModal = store.getState().modal
-  const {id, habitName} = habit
+  const {id, habitName, chainCount} = habit
   return (
     <div>
       <div
@@ -137,7 +137,7 @@ const AddHabit = ({classes, habit, history}) => {
               <span className={warningText}>You will lose your current record</span>
             </div>
             <div className={chainTag}>
-              <span className={chainCount}>1</span>chain
+              <span className={chainCountStyle}>{chainCount}</span>chain
             </div>
           </div>
           <div className={buttonContainer}>
@@ -166,4 +166,4 @@ const AddHabit = ({classes, habit, history}) => {
   )
 }
 
-export default withRouter(withStyles(styles)(AddHabit))
+export default withRouter(withStyles(styles)(DeleteHabit))

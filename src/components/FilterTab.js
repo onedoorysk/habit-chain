@@ -45,7 +45,7 @@ const Tab = ({tabName, classes, count}) => {
       onClick={() => store.dispatch(filterListAction(tabName))}
       style={currentFilter === tabName ? currentFilterStyle : {} }
     >
-      <div className={label}>{tabName.toUpperCase()}{count ? <span class={notYetCount}>{count}</span> : null}</div>
+      <div className={label}>{tabName.toUpperCase()}{count ? <span className={notYetCount}>{count}</span> : null}</div>
     </div>
   )
 }
