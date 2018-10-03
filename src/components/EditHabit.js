@@ -1,5 +1,4 @@
 import React from 'react'
-import AddHabitButton from './AddHabitButton'
 import { withStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import store from '../store'

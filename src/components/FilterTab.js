@@ -9,11 +9,11 @@ const styles = {
     height: '100%',
     padding: '13px 10px 0 10px',
     color: '#A4A2A2',
-    textAlign: 'center'
+    textAlign: 'center',
+    cursor: 'pointer'
   },
   label: {
     position: 'relative',
-    cursor: 'pointer'
   },
   notYetCount: {
     width: '20px',

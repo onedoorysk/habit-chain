@@ -6,7 +6,8 @@ const initialState = [
     id: '001',
     habitName: '英語',
     description: '３ページ',
-    completed: false
+    completed: false,
+    chainCount: 1
   }
 ]
 
@@ -20,7 +21,7 @@ export default (state = initialState, {type, payload}) => {
     case TYPE.DONE_HABIT:
       return state.map(habit => {
         if (habit.id !== payload.id) return {...habit}
-        return {...habit, completed: !habit.completed}
+        return {...habit, completed: !habit.completed, chainCount: habit.chainCount += 1}
       })
     case TYPE.EDIT_HABIT:
       return state.map(habit => {

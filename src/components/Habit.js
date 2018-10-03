@@ -62,15 +62,15 @@ const styles = {
     flexFlow: 'column',
     alignItems: 'center',
   },
-  chainCount: {
+  chainCountStyle: {
     fontSize: '24px',
     fontWeight: 'bold',
   }
 }
 
 const Habit = ({habit, classes}) => {
-  const {root, link, title, desc, doneButton, chain, chainCount} = classes
-  const {id, habitName, completed, description} = habit
+  const {root, link, title, desc, doneButton, chain, chainCountStyle} = classes
+  const {id, habitName, completed, description, chainCount} = habit
   return (
     <li className={root}>
       <Link
@@ -84,7 +84,7 @@ const Habit = ({habit, classes}) => {
           {description}
         </div>
         <div className={chain}>
-          <div className={chainCount}>1</div>
+          <div className={chainCountStyle}>{chainCount}</div>
           <div>chain</div>
         </div>
       </Link>

@@ -9,7 +9,7 @@ import Weekday from './Weekday'
 const styles = {
   root: {
     position: 'relative',
-    top: '-25px'
+    top: '-15px'
   },
   dateChangeContainer: {
     display: 'flex',
