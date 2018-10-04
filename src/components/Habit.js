@@ -7,40 +7,35 @@ import Button from '@material-ui/core/Button'
 
 const styles = {
   root: {
-    width: '165px',
-    height: '165px',
+    width: '375px',
+    height: '140px',
     boxShadow: '0 1px 4px rgba(0, 0, 0, 0.5)',
-    borderRadius: '5%',
+    borderRadius: '5px',
     margin: '0 0 15px 0',
     listStyle: 'none',
     position: 'relative'
   },
   link: {
-    width: '165px',
-    height: '165px',
+    width: '100%',
+    height: '100%',
     display: 'block',
     textDecoration: 'none',
     color: '#444444'
   },
   title: {
     color: '#444444',
-    position: 'absolute',
-    top: '15px',
-    left: '10px',
+    margin: '10px 0 0 15px',
     fontWeight: 'bold',
-    fontSize: '11px'
+    fontSize: '20px'
   },
   desc: {
-    position: 'absolute',
-    top: '50px',
-    left: '0px',
-    fontSize: '12px',
-    margin: '0 10px 0 10px'
+    margin: '10px 0 0 15px',
+    fontSize: '14px',
   },
   doneButton: {
     position: 'absolute',
-    bottom: '15px',
-    left: '38px',
+    bottom: '10px',
+    right: '15px',
     width: '90px',
     backgroundColor: '#1C75BC',
     color: '#FFFFFF',
@@ -62,14 +57,32 @@ const styles = {
     flexFlow: 'column',
     alignItems: 'center',
   },
+  chainTag: {
+    position: 'absolute',
+    top: '0',
+    right: '0',
+    height: '25%',
+    width: '25%',
+    backgroundColor: '#F9A638',
+    borderRadius: '0 5px 0 0',
+    color: '#444444',
+    fontSize: '12px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   chainCountStyle: {
     fontSize: '24px',
     fontWeight: 'bold',
+  },
+  chainTextStyle: {
+    display: 'inline-block',
+    margin: '8px 0 0 3px'
   }
 }
 
 const Habit = ({habit, classes}) => {
-  const {root, link, title, desc, doneButton, chain, chainCountStyle} = classes
+  const {root, link, title, desc, doneButton, chainTextStyle, chainCountStyle, chainTag} = classes
   const {id, habitName, description, chainCount} = habit
   // Pop today's record data. If it exists, it changes done-button disable
   const recordList = store.getState().record.filter(record => {
@@ -90,10 +103,10 @@ const Habit = ({habit, classes}) => {
         <div className={desc}>
           {description}
         </div>
-        <div className={chain}>
-          <div className={chainCountStyle}>{chainCount}</div>
-          <div>chain</div>
-        </div>
+        <div className={chainTag}>
+            <span className={chainCountStyle}>{chainCount}</span>
+            <span className={chainTextStyle}>chain</span>
+          </div>
       </Link>
       <Button
         className={doneButton}

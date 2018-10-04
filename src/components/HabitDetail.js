@@ -22,7 +22,7 @@ const styles = {
     display: 'flex'
   },
   habitNameStyle: {
-    fontSize: '20px',
+    fontSize: '24px',
     color: '#444444',
     fontWeight: 'bold'
   },
@@ -38,13 +38,13 @@ const styles = {
   chainTag: {
     height: '25px',
     backgroundColor: '#F9A638',
-    borderRadius: '5%',
+    borderRadius: '5px',
     color: '#444444',
     fontSize: '12px',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: '3px 0 0 10px',
+    margin: '5px 0 0 10px',
     padding: '5px'
   },
   chainCountStyle: {
@@ -61,7 +61,6 @@ const styles = {
   descriptionTitleIcon: {
     width: '16px',
     height: '16px',
-    margin: '2px 0 0 0',
     color: '#444444'
   },
   descriptionTitle: {
@@ -92,7 +91,6 @@ const styles = {
   recordIcon: {
     width: '16px',
     height: '16px',
-    margin: '2.5px 0 0 0',
     color: '#444444'
   },
   chainTextStyle: {
@@ -108,7 +106,7 @@ const HabitDetail = ({match, classes}) => {
     habitContainer,
     habitNameStyle,
     deleteIcon,
-    chainTag,
+    chainTextStyle,
     habitNameContainer,
     chainCountStyle,
     splitBorder,
@@ -119,7 +117,7 @@ const HabitDetail = ({match, classes}) => {
     descriptionStyle,
     recordContainer,
     recordIcon,
-    chainTextStyle
+    chainTag
   } = classes
 
   const habitList = store.getState().habit

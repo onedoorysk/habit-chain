@@ -101,7 +101,6 @@ const Calendar = ({classes, id}) => {
       recordDataOnlyDay.push(record.day)
     }
   })
-  console.log(recordDataOnlyDay)
   return (
     <div className={root}>
       <div className={dateChangeContainer}>
