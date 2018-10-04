@@ -39,13 +39,42 @@ const styles = {
     borderBottom: '1px solid #D8D8D8'
   },
   dayStyle: {
-    width: '40px',
+    width: '10vw',
     height: '40px',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     fontSize: '12px',
-    position: 'relative'
+    position: 'relative',
+    zIndex: '1'
+  },
+  chainStyle: {
+    border: '7px solid #F9A638',
+    width: '9vw',
+    height: '35px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: '10%',
+    zIndex: '10'
+  },
+  chainLeft: {
+    width: '8.5vw',
+    height: '7px',
+    backgroundColor: '#F9A638',
+    position: 'absolute',
+    left: '8vw',
+    display: 'inline-block',
+    borderRadius: '25%'
+  },
+  chainRight: {
+    width: '8.5vw',
+    height: '7px',
+    backgroundColor: '#F9A638',
+    position: 'absolute',
+    right: '8vw',
+    display: 'inline-block',
+    borderRadius: '25%'
   }
 }
 
@@ -59,7 +88,10 @@ const Calendar = ({classes, id}) => {
       yearAndMonth,
       dayContainer,
       weekContainer,
-      dayStyle
+      dayStyle,
+      chainStyle,
+      chainLeft,
+      chainRight
     } = classes
 
   const {year, month, calendarData} = store.getState().calendar
@@ -97,34 +129,25 @@ const Calendar = ({classes, id}) => {
                 {
                   calendar.map((data) => {
                     return (
-                      <li
-                        className={dayStyle}
-                        style={
+                      <li className={dayStyle}>
+                        <div className={
+                            recordDataOnlyDay.indexOf(data.day) >= 0
+                              ? chainStyle
+                              : null}>
+                          {data.day}
+                        </div>
+                        {
                           recordDataOnlyDay.indexOf(data.day) >= 0
-                            ? { backgroundColor: '#F9A638',
-                                borderRadius: '10px'
-                              }
-                            : {}
+                          && recordDataOnlyDay.indexOf(data.day + 1) >= 0
+                          ? <span className={chainLeft}></span>
+                          : null
                         }
-                      >
-                        {data.day}
-                        <span
-                            // style={
-                            // recordDataOnlyDay.indexOf(data.day) >= 0
-                            // && recordDataOnlyDay.indexOf(data.day + 1) >= 0
-                            // ? {
-                            //     width: '200%',
-                            //     height: '1px',
-                            //     backgroundColor: '#F9A638',
-                            //     position: 'absolute',
-                            //     left: '100%',
-                            //     display: 'inline-block',
-                            //     zIndex: '-1'
-                            //   }
-                            // : {}
-                          // }
-                        >
-                          </span>
+                        {
+                          recordDataOnlyDay.indexOf(data.day) >= 0
+                          && recordDataOnlyDay.indexOf(data.day - 1) >= 0
+                          ? <span className={chainRight}></span>
+                          : null
+                        }
                       </li>
                     )
                   })

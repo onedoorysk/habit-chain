@@ -47,11 +47,8 @@ class Timer extends Component {
     return (
       <div className={this.styles.root}>
         <div className={this.styles.tag}>
-          <span>By </span>
-          {this.timer.inputHH < 10 ?
-            `0${this.timer.inputHH}:` : `${this.timer.inputHH}:`}
-          {this.timer.inputMM < 10 ?
-            `0${this.timer.inputMM}` : this.timer.inputMM}</div>
+          <span>Today's remaining time</span>
+        </div>
         <div className={this.styles.timer}>
           {this.timer.countHH < 10 ?
             `0${this.timer.countHH}:` : `${this.timer.countHH}:`}

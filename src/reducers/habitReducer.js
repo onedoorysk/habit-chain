@@ -7,7 +7,7 @@ const initialState = [
     habitName: '英語',
     description: '３ページ',
     completed: false,
-    chainCount: 1
+    chainCount: 0
   }
 ]
 
