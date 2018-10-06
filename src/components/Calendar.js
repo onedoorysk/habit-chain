@@ -17,14 +17,18 @@ const styles = {
   },
   prevIcon: {
     color: '#B5B5B5',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    width: '30px',
+    height: '30px'
   },
   nextIcon: {
     color: '#B5B5B5',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    width: '30px',
+    height: '30px'
   },
   yearAndMonth: {
-    margin : '2px 0 0 0',
+    margin : '6px 0 0 0',
     color: '#444444',
   },
   dayContainer: {
@@ -81,8 +85,7 @@ const styles = {
 
 const Calendar = ({classes, id}) => {
   const
-    {
-      root,
+    { root,
       dateChangeContainer,
       prevIcon,
       nextIcon,

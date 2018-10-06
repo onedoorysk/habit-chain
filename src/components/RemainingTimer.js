@@ -1,46 +1,17 @@
 import React, {Component} from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import '../App.css'
 
-const styles = {
-  root: {
-    backgroundColor: '#000000',
-    width: '100%',
-    height: '35px',
-    borderRadius: '5% 5% 0 0 / 5% 5% 0 0',
-    position: 'fixed',
-    bottom: '0',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-  tag: {
-    color: '#E5E5E5',
-    margin: '0 0 0 15px',
-    fontSize: '12px'
-  },
-  timer: {
-    color: '#E5E5E5',
-    margin: '0 15px 0 0',
-    fontSize: '18px'
-  }
-}
-
-class Timer extends Component {
+export default class Timer extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      countHH: '',
-      countMM: '',
-      countSS: ''
+      countHH: '', countMM: '', countSS: ''
     }
-    this.styles = props.classes
   }
 
   settingTimer() {
-    let countHH = ''
-    let countMM = ''
-    let countSS = ''
+    let countHH = '', countMM = '', countSS = ''
     const timeLagHH = 24 - new Date().getHours()
     const timeLagMM = 60 - new Date().getMinutes()
     const timeLagSS = 60 - new Date().getSeconds()
@@ -92,22 +63,23 @@ class Timer extends Component {
   componentDidMount() {
     setInterval(
       () => {
-        let countHH = ''
-        let countMM = ''
-        let countSS = ''
+        const isFinishedToday = this.state.countHH === 0 && this.state.countMM === 0 && this.state.countSS === 0
+        const isPassedHour = this.state.countHH > 0 && this.state.countMM === 0 && this.state.countSS === 0
+        const isPassedMinute = this.state.countMM > 0 && this.state.countSS === 0
+        let countHH = '', countMM = '', countSS = ''
         // If today has finished, count-time will be reset
-        if (this.state.countHH === 0 && this.state.countMM === 0 && this.state.countSS === 0) {
+        if (isFinishedToday) {
           this.settingTimer()
           return
         }
         // When 1 hours have passed, count-timer will be calculated
-        if (this.state.countHH > 0 && this.state.countMM === 0 && this.state.countSS === 0) {
+        if (isPassedHour) {
           countHH = this.state.countHH - 1
           countMM = 59
           countSS = 59
           this.setState({countHH, countMM, countSS})
           return
-        } else if (this.state.countMM > 0 && this.state.countSS === 0) {
+        } else if (isPassedMinute) {
         // When 1 minutes have passed, count-timer will be calculated
           countMM = this.state.countMM - 1
           countSS = 59
@@ -123,11 +95,11 @@ class Timer extends Component {
   render() {
     const {countHH, countMM, countSS} = this.state
     return (
-      <div className={this.styles.root}>
-        <div className={this.styles.tag}>
+      <div className="timer-block">
+        <div className="timer-block__text">
           <span>Today's remaining time</span>
         </div>
-        <div className={this.styles.timer}>
+        <div className="timer-block__timer">
           {countHH < 10 ?
             `0${countHH}:` : `${countHH}:`}
           {countMM < 10 ?
@@ -139,5 +111,3 @@ class Timer extends Component {
     )
   }
 }
-
-export default withStyles(styles)(Timer)

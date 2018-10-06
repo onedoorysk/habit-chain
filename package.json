@@ -6,6 +6,7 @@
     "@material-ui/core": "^3.1.1",
     "@material-ui/icons": "^3.0.1",
     "next": "^6.1.2",
+    "normalize.css": "^8.0.0",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-router-dom": "^4.3.1",
@@ -13,12 +14,14 @@
     "redux": "^4.0.0",
     "uuid": "^3.3.2"
   },
+  "devDependencies": {
+    "node-sass": "^4.9.3"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "sass": "node-sass ./style/style.scss ./src/App.css"
-  },
-  "devDependencies": {}
+    "sass": "node-sass ./src/style/style.scss ./src/App.css -w --output-style compressed"
+  }
 }

@@ -1,24 +1,11 @@
 import React from 'react'
 import store from '../store'
 import Habit from './Habit'
-import { withStyles } from '@material-ui/core/styles'
 import AddHabit from './AddHabit'
 
-const styles = {
-  root: {
-    margin: '113px auto 0 auto',
-    width: '100%',
-    display: 'flex',
-    flexFlow: 'column',
-    alignItems: 'center'
-  }
-}
-
-const habitList = ({classes}) => {
-  const {root} = classes
-  const habitList = store.getState().habit
+export default () => {
   const currentFilter = store.getState().filter
-  const filteringHabitList = habitList.filter(habit => {
+  const filterHabitList = store.getState().habit.filter(habit => {
     switch (currentFilter) {
       case 'not yet':
         return !habit.completed
@@ -32,18 +19,10 @@ const habitList = ({classes}) => {
   })
   return (
     <div>
-      <ul className={root}>
-        {
-          filteringHabitList.map(habit => {
-            return (
-              <Habit key={habit.id} habit={habit} />
-            )
-          })
-        }
+      <ul className="habit-list">
+        {filterHabitList.map(habit => <Habit key={habit.id} habit={habit} />)}
       </ul>
       <AddHabit />
     </div>
   )
 }
-
-export default withStyles(styles)(habitList)

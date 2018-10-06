@@ -8,6 +8,13 @@ const initialState = [
     description: 'ここに詳細が入りますここに詳細が入りますここに詳細が入りますここに詳細が入りますここに詳細が入ります',
     completed: false,
     chainCount: 0
+  },
+  {
+    id: '002',
+    habitName: '毎日ランニングをする',
+    description: 'ここに詳細が入りますここに詳細が入りますここに詳細が入りますここに詳細が入りますここに詳細が入ります',
+    completed: false,
+    chainCount: 0
   }
 ]
 
