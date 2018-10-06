@@ -5,19 +5,31 @@ const initialState = [
     id: '001',
     year: 2018,
     month: 10,
-    day: 3
+    day: 6
   },
   {
     id: '001',
     year: 2018,
     month: 10,
-    day: 4
+    day: 7
+  },
+  {
+    id: '001',
+    year: 2018,
+    month: 10,
+    day: 8
   },
   {
     id: '001',
     year: 2018,
     month: 9,
     day: 21
+  },
+  {
+    id: '001',
+    year: 2018,
+    month: 9,
+    day: 23
   }
 ]
 

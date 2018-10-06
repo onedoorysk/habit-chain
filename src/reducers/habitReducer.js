@@ -4,8 +4,8 @@ import v4 from 'uuid/v4'
 const initialState = [
   {
     id: '001',
-    habitName: '英語',
-    description: '３ページ',
+    habitName: '毎日ランニングをする',
+    description: 'ここに詳細が入りますここに詳細が入りますここに詳細が入りますここに詳細が入りますここに詳細が入ります',
     completed: false,
     chainCount: 0
   }

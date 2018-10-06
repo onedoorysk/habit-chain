@@ -35,7 +35,6 @@ const styles = {
     height: '40px',
     display: 'flex',
     justifyContent: 'space-between',
-    margin: '0 3px 0 3px',
     borderBottom: '1px solid #D8D8D8'
   },
   dayStyle: {

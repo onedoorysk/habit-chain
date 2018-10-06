@@ -34,14 +34,15 @@ const styles = {
     margin: '40px 40px 0 40px',
     display: 'flex',
     flexFlow: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+    width: '270px'
   },
   habitNameStyle: {
     fontSize: '24px',
     fontWeight: 'bold'
   },
   modalMessage: {
-    textAlign: 'left'
+    textAlign: 'center'
   },
   chainTag: {
     width: '60px',

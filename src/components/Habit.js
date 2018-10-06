@@ -24,13 +24,13 @@ const styles = {
   },
   title: {
     color: '#444444',
-    margin: '10px 0 0 15px',
+    margin: '5px 10px 0 15px',
     fontWeight: 'bold',
     fontSize: '20px'
   },
   desc: {
-    margin: '10px 0 0 15px',
-    fontSize: '14px',
+    margin: '10px 15px 0 15px',
+    fontSize: '12px',
   },
   doneButton: {
     position: 'absolute',
@@ -86,10 +86,9 @@ const Habit = ({habit, classes}) => {
   const {id, habitName, description, chainCount} = habit
   // Pop today's record data. If it exists, it changes done-button disable
   const recordList = store.getState().record.filter(record => {
-    if (record.id === id
+    return (record.id === id
       && record.year === new Date().getFullYear()
-      && record.month === new Date().getMonth() + 1) return record
-      return
+      && record.month === new Date().getMonth() + 1)
   })
   return (
     <li className={root}>
