@@ -6,20 +6,16 @@ import AddHabit from './AddHabit'
 
 const styles = {
   root: {
+    margin: '113px auto 0 auto',
+    width: '100%',
     display: 'flex',
-    justifyContent: 'space-around',
-    alignItems: 'flex-start',
-    flexWrap: 'wrap',
-    margin: '113px 0 30px 0',
-  },
-  blank: {
-    width: '165px',
-    height: '165px'
+    flexFlow: 'column',
+    alignItems: 'center'
   }
 }
 
 const habitList = ({classes}) => {
-  const {root, blank} = classes
+  const {root} = classes
   const habitList = store.getState().habit
   const currentFilter = store.getState().filter
   const filteringHabitList = habitList.filter(habit => {
@@ -44,8 +40,6 @@ const habitList = ({classes}) => {
             )
           })
         }
-        {/* If habitList's length is odd, make a blank element to adjust the layout*/}
-        {filteringHabitList.length % 2 !== 0 ? <div className={blank}></div> : null}
       </ul>
       <AddHabit />
     </div>

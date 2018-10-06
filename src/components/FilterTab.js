@@ -7,7 +7,7 @@ const styles = {
   root: {
     minWidth: '100px',
     height: '100%',
-    padding: '13px 10px 0 10px',
+    padding: '14px 10px 0 10px',
     color: '#A4A2A2',
     textAlign: 'center',
     cursor: 'pointer'

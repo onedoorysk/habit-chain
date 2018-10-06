@@ -45,7 +45,6 @@ const styles = {
     alignItems: 'center',
     fontSize: '12px',
     position: 'relative',
-    zIndex: '1'
   },
   chainStyle: {
     border: '7px solid #F9A638',
@@ -55,26 +54,29 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: '10%',
-    zIndex: '10'
   },
   chainLeft: {
-    width: '8.5vw',
-    height: '7px',
+    width: '9vw',
+    height: '8px',
     backgroundColor: '#F9A638',
     position: 'absolute',
-    left: '8vw',
+    left: '7.4vw',
     display: 'inline-block',
-    borderRadius: '25%'
+    borderRadius: '5px',
+    border: '1px solid #FFFFFF',
+    zIndex: '10',
+    textAlign: ' '
   },
-  chainRight: {
-    width: '8.5vw',
-    height: '7px',
-    backgroundColor: '#F9A638',
-    position: 'absolute',
-    right: '8vw',
-    display: 'inline-block',
-    borderRadius: '25%'
-  }
+  // chainRight: {
+  //   width: '8vw',
+  //   height: '7px',
+  //   backgroundColor: '#F9A638',
+  //   position: 'absolute',
+  //   right: '7.5vw',
+  //   display: 'inline-block',
+  //   borderRadius: '5px',
+  //   border: '1px solid #FFFFFF'
+  // }
 }
 
 const Calendar = ({classes, id}) => {
@@ -129,9 +131,11 @@ const Calendar = ({classes, id}) => {
                     return (
                       <li className={dayStyle}>
                         <div className={
-                            recordDataOnlyDay.indexOf(data.day) >= 0
-                              ? chainStyle
-                              : null}>
+                          recordDataOnlyDay.indexOf(data.day) >= 0
+                            ? chainStyle
+                            : null
+                          }
+                        >
                           {data.day}
                         </div>
                         {

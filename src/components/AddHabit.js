@@ -3,7 +3,7 @@ import AddHabitButton from './AddHabitButton'
 import { withStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import store from '../store'
-import {openModalAction, addHabitAction, typeHabitNameAction, typeHabitDescriptionAction} from '../actions'
+import {openModalAction, addHabitAction, typeHabitNameAction, typeHabitDescriptionAction, checkNameCharCountAction, checkDescriptionCharCountAction, resetFormAction} from '../actions'
 import Button from '@material-ui/core/Button'
 
 const styles = {
@@ -37,7 +37,7 @@ const styles = {
     fontSize: '20px',
     padding: '25px 0 0 0'
   },
-  textContainer: {
+  textContents: {
     display: 'flex',
     flexFlow: 'column',
     justifyContent: 'center',
@@ -69,12 +69,18 @@ const styles = {
     '&:hover': {
       backgroundColor: '#F26963'
     }
+  },
+  textContainer: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  charCountStyle: {
+    fontSize: '14px',
+    color: '#B5B5B5',
+    margin: '25px 0 0 10px',
+    textAlign: 'center',
+    width: '10px'
   }
-}
-
-const resetForm = () => {
-  store.dispatch(typeHabitNameAction(''))
-  store.dispatch(typeHabitDescriptionAction(''))
 }
 
 const AddHabit = ({classes}) => {
@@ -86,11 +92,12 @@ const AddHabit = ({classes}) => {
     createButton,
     cancelButton,
     buttonContainer,
-    textContainer
+    textContents,
+    textContainer,
+    charCountStyle
   } = classes
   const isOpenModal = store.getState().modal
-  const {habitName, description} = store.getState().form
-
+  const {habitName, description, nameCharCount, descriptionCharCount} = store.getState().form
   return (
     <div>
       <div
@@ -98,7 +105,7 @@ const AddHabit = ({classes}) => {
         style={{'display': isOpenModal === 'addHabit' ? 'flex' : 'none'}}
         onClick={() => {
           store.dispatch(openModalAction(''))
-          resetForm()
+          store.dispatch(resetFormAction)
         }}
       >
         <div
@@ -106,27 +113,57 @@ const AddHabit = ({classes}) => {
           onClick={e => e.stopPropagation()}
         >
           <div className={modalTitle}>NEW HABIT</div>
-          <div className={textContainer}>
-            <TextField
-              className={textStyle}
-              label="name"
-              rows="1"
-              rowsMax="1"
-              margin="normal"
-              required
-              value={habitName}
-              onChange={e => store.dispatch(typeHabitNameAction(e.currentTarget.value))}
-            />
-            <TextField
-              className={textStyle}
-              label="detail"
-              multiline
-              rows="1"
-              rowsMax="6"
-              margin="normal"
-              value={description}
-              onChange={e => store.dispatch(typeHabitDescriptionAction(e.currentTarget.value))}
-            />
+          <div className={textContents}>
+            <div class={textContainer}>
+              <TextField
+                className={textStyle}
+                label="name"
+                rows="1"
+                rowsMax="1"
+                margin="normal"
+                required
+                value={habitName}
+                onChange={e => {
+                  store.dispatch(typeHabitNameAction(e.currentTarget.value))
+                  store.dispatch(checkNameCharCountAction)
+                }}
+              />
+              <div
+                className={charCountStyle}
+                style={
+                  nameCharCount < 4
+                    ? (nameCharCount < 1 ? {color: '#E0245E'} : {color: '#FFAD1F'})
+                    : {}
+                  }
+              >
+                {nameCharCount}
+              </div>
+            </div>
+            <div class={textContainer}>
+              <TextField
+                className={textStyle}
+                label="detail"
+                multiline
+                rows="1"
+                rowsMax="6"
+                margin="normal"
+                value={description}
+                onChange={e => {
+                  store.dispatch(typeHabitDescriptionAction(e.currentTarget.value))
+                  store.dispatch(checkDescriptionCharCountAction)
+                }}
+              />
+              <div
+                className={charCountStyle}
+                style={
+                  descriptionCharCount < 11
+                    ? (descriptionCharCount < 1 ? {color: '#E0245E'} : {color: '#FFAD1F'})
+                    : {}
+                  }
+              >
+                {descriptionCharCount}
+              </div>
+            </div>
           </div>
           <div className={buttonContainer}>
             <Button
@@ -139,7 +176,7 @@ const AddHabit = ({classes}) => {
               onClick={() => {
                 store.dispatch(addHabitAction(habitName, description))
                 store.dispatch(openModalAction(''))
-                resetForm()
+                store.dispatch(resetFormAction)
               }}
             >
               CREATE
@@ -148,6 +185,7 @@ const AddHabit = ({classes}) => {
               className={cancelButton}
               onClick={() => {
                 store.dispatch(openModalAction(''))
+                store.dispatch(resetFormAction)
               }}
             >
               CANCEL

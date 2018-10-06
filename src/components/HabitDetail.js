@@ -17,6 +17,7 @@ const styles = {
   habitContainer: {
     display: 'flex',
     justifyContent: 'space-between',
+    padding: '5px 0 5px 0'
   },
   habitNameContainer: {
     display: 'flex'
@@ -27,6 +28,8 @@ const styles = {
     fontWeight: 'bold'
   },
   deleteIcon: {
+    width: '30px',
+    height: '30px',
     color: '#B5B5B5',
     cursor: 'pointer',
     margin: '3px 0 0 0',
@@ -56,7 +59,7 @@ const styles = {
   },
   descriptionContainer: {
     display: 'flex',
-    margin: '7px 0 10px 0'
+    margin: '10px 0 5px 0'
   },
   descriptionTitleIcon: {
     width: '16px',
@@ -69,9 +72,10 @@ const styles = {
     fontSize: '16px',
   },
   editIcon: {
-    width: '14px',
-    height: '14px',
-    margin: '2px 0 0 5px',
+    width: '20px',
+    height: '20px',
+    padding: '0 0 4px 0',
+    margin: '0 0 0 5px',
     color: '#B5B5B5',
     cursor: 'pointer',
     '&:hover': {
@@ -86,7 +90,7 @@ const styles = {
   },
   recordContainer: {
     display: 'flex',
-    margin: '7px 0 10px 0'
+    margin: '10px 0 10px 0'
   },
   recordIcon: {
     width: '16px',

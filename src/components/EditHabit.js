@@ -2,7 +2,7 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import store from '../store'
-import {openModalAction, editHabitAction, typeHabitNameAction, typeHabitDescriptionAction} from '../actions'
+import {openModalAction, editHabitAction, typeHabitDescriptionAction, checkDescriptionCharCountAction, resetFormAction} from '../actions'
 import Button from '@material-ui/core/Button'
 
 const styles = {
@@ -38,9 +38,8 @@ const styles = {
   },
   textContainer: {
     display: 'flex',
-    flexFlow: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   textStyle: {
     width: '223px'
@@ -68,12 +67,14 @@ const styles = {
     '&:hover': {
       backgroundColor: '#F26963'
     }
+  },
+  charCountStyle: {
+    fontSize: '14px',
+    color: '#B5B5B5',
+    margin: '25px 0 0 10px',
+    textAlign: 'center',
+    width: '10px'
   }
-}
-
-const resetForm = () => {
-  store.dispatch(typeHabitNameAction(''))
-  store.dispatch(typeHabitDescriptionAction(''))
 }
 
 const EditHabit = ({classes, habit}) => {
@@ -85,11 +86,13 @@ const EditHabit = ({classes, habit}) => {
     createButton,
     cancelButton,
     buttonContainer,
-    textContainer
+    textContainer,
+    charCountStyle
   } = classes
   const isOpenModal = store.getState().modal
   const {id, habitName, description} = habit
   const formDescription = store.getState().form.description
+  const { descriptionCharCount} = store.getState().form
   return (
     <div>
       <div
@@ -97,6 +100,7 @@ const EditHabit = ({classes, habit}) => {
         style={{'display': isOpenModal === 'editModal' ? 'flex' : 'none'}}
         onClick={() => {
           store.dispatch(openModalAction(''))
+          store.dispatch(resetFormAction)
         }}
       >
         <div
@@ -113,21 +117,32 @@ const EditHabit = ({classes, habit}) => {
               rowsMax="6"
               margin="normal"
               defaultValue={description}
-              onChange={e => store.dispatch(typeHabitDescriptionAction(e.currentTarget.value))}
+              onChange={e => {
+                store.dispatch(typeHabitDescriptionAction(e.currentTarget.value))
+                store.dispatch(checkDescriptionCharCountAction)
+              }}
             />
+            <div
+              className={charCountStyle}
+              style={
+                descriptionCharCount < 11
+                  ? (descriptionCharCount < 1 ? {color: '#E0245E'} : {color: '#FFAD1F'})
+                  : {}
+                }
+            >
+              {descriptionCharCount}
+            </div>
           </div>
           <div className={buttonContainer}>
             <Button
               className={createButton}
               disabled={
-                habitName.length === 0 ||
-                habitName.length > 10 ||
-                description.length > 50 ? true : false
+                formDescription.length > 50 ? true : false
               }
               onClick={() => {
                 store.dispatch(editHabitAction(id, formDescription))
                 store.dispatch(openModalAction(''))
-                resetForm()
+                store.dispatch(resetFormAction)
               }}
             >
               SAVE
@@ -136,7 +151,7 @@ const EditHabit = ({classes, habit}) => {
               className={cancelButton}
               onClick={() => {
                 store.dispatch(openModalAction(''))
-                resetForm()
+                store.dispatch(resetFormAction)
               }}
             >
               CANCEL

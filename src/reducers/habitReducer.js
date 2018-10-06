@@ -15,7 +15,7 @@ export default (state = initialState, {type, payload}) => {
   switch(type) {
     case TYPE.ADD_HABIT:
       const {habitName, description} = payload
-      return [...state, {id: v4(), habitName, description, completed: false}]
+      return [...state, {id: v4(), habitName, description, completed: false, chainCount: 0}]
     case TYPE.DELETE_HABIT:
       return state.filter(habit => habit.id !== payload.id)
     case TYPE.DONE_HABIT:
