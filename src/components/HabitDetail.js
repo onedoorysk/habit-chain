@@ -1,6 +1,6 @@
 import React from 'react'
 import store from '../store'
-import {openModalAction} from '../actions'
+import {openAndCloseModalAction} from '../actions'
 import {withStyles} from '@material-ui/core/styles'
 import DeleteIcon from '@material-ui/icons/Delete'
 import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft'
@@ -145,7 +145,7 @@ const HabitDetail = ({match, classes}) => {
         <div>
           <DeleteIcon
             className={deleteIcon}
-            onClick={() => store.dispatch(openModalAction('deleteHabit'))}
+            onClick={() => store.dispatch(openAndCloseModalAction('deleteHabit'))}
           />
         </div>
       </div>
@@ -156,7 +156,7 @@ const HabitDetail = ({match, classes}) => {
         <div className={descriptionTitle}>DETAIL</div>
         <Edit
           className={editIcon}
-          onClick={() => store.dispatch(openModalAction('editModal'))}
+          onClick={() => store.dispatch(openAndCloseModalAction('editModal'))}
         />
       </div>
       <p className={descriptionStyle}>{description}</p>

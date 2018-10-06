@@ -3,7 +3,7 @@ import AddHabitButton from './AddHabitButton'
 import { withStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import store from '../store'
-import {openModalAction, addHabitAction, typeHabitNameAction, typeHabitDescriptionAction, checkNameCharCountAction, checkDescriptionCharCountAction, resetFormAction} from '../actions'
+import {openAndCloseModalAction, addHabitAction, typeHabitNameAction, typeHabitDescriptionAction, checkNameCharCountAction, checkDescriptionCharCountAction, resetFormAction} from '../actions'
 import Button from '@material-ui/core/Button'
 
 const styles = {
@@ -104,7 +104,7 @@ const AddHabit = ({classes}) => {
         className={root}
         style={{'display': isOpenModal === 'addHabit' ? 'flex' : 'none'}}
         onClick={() => {
-          store.dispatch(openModalAction(''))
+          store.dispatch(openAndCloseModalAction(''))
           store.dispatch(resetFormAction)
         }}
       >
@@ -175,7 +175,7 @@ const AddHabit = ({classes}) => {
               }
               onClick={() => {
                 store.dispatch(addHabitAction(habitName, description))
-                store.dispatch(openModalAction(''))
+                store.dispatch(openAndCloseModalAction(''))
                 store.dispatch(resetFormAction)
               }}
             >
@@ -184,7 +184,7 @@ const AddHabit = ({classes}) => {
             <Button
               className={cancelButton}
               onClick={() => {
-                store.dispatch(openModalAction(''))
+                store.dispatch(openAndCloseModalAction(''))
                 store.dispatch(resetFormAction)
               }}
             >

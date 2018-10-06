@@ -1,7 +1,7 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import store from '../store'
-import {openModalAction, deleteHabitAction} from '../actions'
+import {openAndCloseModalAction, deleteHabitAction} from '../actions'
 import Button from '@material-ui/core/Button'
 import Warning from '@material-ui/icons/Warning'
 import { withRouter } from 'react-router'
@@ -121,7 +121,7 @@ const DeleteHabit = ({classes, habit, history}) => {
         className={root}
         style={{'display': isOpenModal === 'deleteHabit' ? 'flex' : 'none'}}
         onClick={() => {
-          store.dispatch(openModalAction(''))
+          store.dispatch(openAndCloseModalAction(''))
         }}
       >
         <div
@@ -146,7 +146,7 @@ const DeleteHabit = ({classes, habit, history}) => {
               className={deleteButton}
               onClick={() => {
                 store.dispatch(deleteHabitAction(id))
-                store.dispatch(openModalAction(''))
+                store.dispatch(openAndCloseModalAction(''))
                 history.push('/')
               }}
             >
@@ -155,7 +155,7 @@ const DeleteHabit = ({classes, habit, history}) => {
             <Button
               className={cancelButton}
               onClick={() => {
-                store.dispatch(openModalAction(''))
+                store.dispatch(openAndCloseModalAction(''))
               }}
             >
               CANCEL

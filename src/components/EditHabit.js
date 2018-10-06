@@ -2,7 +2,7 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import store from '../store'
-import {openModalAction, editHabitAction, typeHabitDescriptionAction, checkDescriptionCharCountAction, resetFormAction} from '../actions'
+import {openAndCloseModalAction, editHabitAction, typeHabitDescriptionAction, checkDescriptionCharCountAction, resetFormAction} from '../actions'
 import Button from '@material-ui/core/Button'
 
 const styles = {
@@ -90,7 +90,7 @@ const EditHabit = ({classes, habit}) => {
     charCountStyle
   } = classes
   const isOpenModal = store.getState().modal
-  const {id, habitName, description} = habit
+  const {id, description} = habit
   const formDescription = store.getState().form.description
   const { descriptionCharCount} = store.getState().form
   return (
@@ -99,7 +99,7 @@ const EditHabit = ({classes, habit}) => {
         className={root}
         style={{'display': isOpenModal === 'editModal' ? 'flex' : 'none'}}
         onClick={() => {
-          store.dispatch(openModalAction(''))
+          store.dispatch(openAndCloseModalAction(''))
           store.dispatch(resetFormAction)
         }}
       >
@@ -141,7 +141,7 @@ const EditHabit = ({classes, habit}) => {
               }
               onClick={() => {
                 store.dispatch(editHabitAction(id, formDescription))
-                store.dispatch(openModalAction(''))
+                store.dispatch(openAndCloseModalAction(''))
                 store.dispatch(resetFormAction)
               }}
             >
@@ -150,7 +150,7 @@ const EditHabit = ({classes, habit}) => {
             <Button
               className={cancelButton}
               onClick={() => {
-                store.dispatch(openModalAction(''))
+                store.dispatch(openAndCloseModalAction(''))
                 store.dispatch(resetFormAction)
               }}
             >

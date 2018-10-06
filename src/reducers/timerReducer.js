@@ -77,10 +77,6 @@ export default (state = initialState, {type, payload}) => {
       }
       state.countSS -= 1
       return state
-    case TYPE.SET_TIMER:
-      state.inputHH = payload.hour
-      state.inputMM = payload.minute
-      return state
     default:
       return state
   }
