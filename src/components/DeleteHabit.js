@@ -1,82 +1,13 @@
 import React from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import '../App.css'
+import {withStyles} from '@material-ui/core/styles'
 import store from '../store'
 import {openAndCloseModalAction, deleteHabitAction} from '../actions'
 import Button from '@material-ui/core/Button'
 import Warning from '@material-ui/icons/Warning'
-import { withRouter } from 'react-router'
+import {withRouter} from 'react-router'
 
 const styles = {
-  root: {
-    position: 'fixed',
-    top: '0',
-    left: '0',
-    zIndex: '999',
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  modalWindow: {
-    backgroundColor: '#ffffff',
-    border: '3px solid #1C75BC',
-    borderRadius: '2%',
-    textAlign: 'center',
-    position: 'absolute',
-    top: '150px',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  modalContents: {
-    color: '#444444',
-    fontSize: '20px',
-    margin: '40px 40px 0 40px',
-    display: 'flex',
-    flexFlow: 'column',
-    alignItems: 'center',
-    width: '270px'
-  },
-  habitNameStyle: {
-    fontSize: '24px',
-    fontWeight: 'bold'
-  },
-  modalMessage: {
-    textAlign: 'center'
-  },
-  chainTag: {
-    width: '60px',
-    height: '25px',
-    backgroundColor: '#F9A638',
-    borderRadius: '5%',
-    color: '#444444',
-    textAlign: 'center',
-    padding: '2px 0 0 0',
-    fontSize: '12px'
-  },
-  chainCountStyle: {
-    fontSize: '20px'
-  },
-  warningContainer: {
-    margin: '0 0 5px 0'
-  },
-  warningText: {
-    fontSize: '12px',
-    margin: '0 0 0 3px'
-  },
-  warningIcon: {
-    color: '#F9A638',
-    width: '18px',
-    height: '18px',
-    position: 'relative',
-    top: '3px'
-  },
-  buttonContainer: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    margin: '30px auto 50px auto',
-    width: '210px'
-  },
   cancelButton: {
     width: '90px',
     backgroundColor: '#1C75BC',
@@ -98,50 +29,45 @@ const styles = {
 }
 
 const DeleteHabit = ({classes, habit, history}) => {
-  const {
-    root,
-    modalWindow,
-    modalContents,
-    habitNameStyle,
-    deleteButton,
-    cancelButton,
-    chainTag,
-    chainCountStyle,
-    warningIcon,
-    warningText,
-    warningContainer,
-    modalMessage,
-    buttonContainer
-  } = classes
+  const {deleteButton, cancelButton} = classes
   const isOpenModal = store.getState().modal
   const {id, habitName, chainCount} = habit
   return (
     <div>
       <div
-        className={root}
+        className="modal"
         style={{'display': isOpenModal === 'deleteHabit' ? 'flex' : 'none'}}
         onClick={() => {
           store.dispatch(openAndCloseModalAction(''))
         }}
       >
         <div
-          className={modalWindow}
+          className="modal__window"
           onClick={e => e.stopPropagation()}
         >
-          <div className={modalContents}>
-            <div className={modalMessage}>
-              <span className={habitNameStyle}>{`${habitName} `}</span>
-              <span>will be deleted</span>
+          <div className="modal__window__contents">
+            <div className="delete-confirm">
+              <div className="delete-confirm__name">
+                {habitName}
+              </div>
+              <div className="delete-confirm__text">will be deleted</div>
             </div>
-            <div className={warningContainer}>
-              <Warning className={warningIcon} />
-              <span className={warningText}>You will lose your current record</span>
+            <div className="warning-block">
+              <Warning className="warning-block__icon" />
+              <div className="warning-block__text">
+                You will lose your current record
+              </div>
             </div>
-            <div className={chainTag}>
-              <span className={chainCountStyle}>{chainCount}</span>chain
+            <div className="chain-block">
+              <div className="chain-block__count">
+                {chainCount}
+              </div>
+              <div className="chain-block__text">
+                chain
+              </div>
             </div>
           </div>
-          <div className={buttonContainer}>
+          <div className="button-block">
             <Button
               className={deleteButton}
               onClick={() => {

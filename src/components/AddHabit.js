@@ -1,56 +1,15 @@
 import React from 'react'
-import AddHabitButton from './AddHabitButton'
-import { withStyles } from '@material-ui/core/styles'
+import '../App.css'
+import {withStyles} from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 import store from '../store'
 import {openAndCloseModalAction, addHabitAction, typeHabitNameAction, typeHabitDescriptionAction, checkNameCharCountAction, checkDescriptionCharCountAction, resetFormAction} from '../actions'
-import Button from '@material-ui/core/Button'
+import CharCount from './CharCount'
 
 const styles = {
-  root: {
-    position: 'fixed',
-    top: '0',
-    left: '0',
-    zIndex: '999',
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    transition: 'display 1s ease-in-out',
-    display: 'none'
-  },
-  block: {
-    display: 'none'
-  },
-  modalWindow: {
-    backgroundColor: '#ffffff',
-    border: '3px solid #1C75BC',
-    borderRadius: '2%',
-    textAlign: 'center',
-    margin: 'auto',
-    width: '300px',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  modalTitle: {
-    color: '#444444',
-    fontWeight: 'bold',
-    fontSize: '20px',
-    padding: '25px 0 0 0'
-  },
-  textContents: {
-    display: 'flex',
-    flexFlow: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
   textStyle: {
     width: '223px'
-  },
-  buttonContainer: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    margin: '30px auto 50px auto',
-    width: '210px'
   },
   createButton: {
     width: '90px',
@@ -70,51 +29,29 @@ const styles = {
       backgroundColor: '#F26963'
     }
   },
-  textContainer: {
-    display: 'flex',
-    alignItems: 'center'
-  },
-  charCountStyle: {
-    fontSize: '14px',
-    color: '#B5B5B5',
-    margin: '25px 0 0 10px',
-    textAlign: 'center',
-    width: '10px'
-  }
 }
 
 const AddHabit = ({classes}) => {
-  const {
-    root,
-    modalWindow,
-    modalTitle,
-    textStyle,
-    createButton,
-    cancelButton,
-    buttonContainer,
-    textContents,
-    textContainer,
-    charCountStyle
-  } = classes
+  const {textStyle, createButton, cancelButton} = classes
   const isOpenModal = store.getState().modal
   const {habitName, description, nameCharCount, descriptionCharCount} = store.getState().form
   return (
     <div>
       <div
-        className={root}
-        style={{'display': isOpenModal === 'addHabit' ? 'flex' : 'none'}}
+        className="modal"
+        style={{display : isOpenModal === 'addHabit' ? 'flex' : 'none'}}
         onClick={() => {
           store.dispatch(openAndCloseModalAction(''))
           store.dispatch(resetFormAction)
         }}
       >
         <div
-          className={modalWindow}
+          className="modal__window"
           onClick={e => e.stopPropagation()}
         >
-          <div className={modalTitle}>NEW HABIT</div>
-          <div className={textContents}>
-            <div class={textContainer}>
+          <div className="modal__window__title">NEW HABIT</div>
+          <div className="modal__window__contents">
+            <div className="textbox-block">
               <TextField
                 className={textStyle}
                 label="name"
@@ -128,20 +65,15 @@ const AddHabit = ({classes}) => {
                   store.dispatch(checkNameCharCountAction)
                 }}
               />
-              <div
-                className={charCountStyle}
-                style={
-                  nameCharCount < 4
-                    ? (nameCharCount < 1 ? {color: '#E0245E'} : {color: '#FFAD1F'})
-                    : {}
-                  }
-              >
-                {nameCharCount}
-              </div>
+              <CharCount
+                count={nameCharCount}
+                cautionCount={4}
+                warningCount={1}
+              />
             </div>
-            <div class={textContainer}>
+            <div class="textbox-block">
               <TextField
-                className={textStyle}
+                className="textbox-block__text"
                 label="detail"
                 multiline
                 rows="1"
@@ -153,19 +85,14 @@ const AddHabit = ({classes}) => {
                   store.dispatch(checkDescriptionCharCountAction)
                 }}
               />
-              <div
-                className={charCountStyle}
-                style={
-                  descriptionCharCount < 11
-                    ? (descriptionCharCount < 1 ? {color: '#E0245E'} : {color: '#FFAD1F'})
-                    : {}
-                  }
-              >
-                {descriptionCharCount}
-              </div>
+              <CharCount
+                count={descriptionCharCount}
+                cautionCount={11}
+                warningCount={1}
+              />
             </div>
           </div>
-          <div className={buttonContainer}>
+          <div className="button-block">
             <Button
               className={createButton}
               disabled={
@@ -193,7 +120,6 @@ const AddHabit = ({classes}) => {
           </div>
         </div>
       </div>
-      <AddHabitButton />
     </div>
   )
 }

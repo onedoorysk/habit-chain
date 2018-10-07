@@ -10,172 +10,372 @@ li {
 a {
   text-decoration: none;
 }
-
-@media (min-width: 769px) {
-  .pc {
+.pc {
+  display: none;
+  @media (min-width: 769px) {
     display: block;
   }
-  .sp {
+}
+.sp {
+  display: block;
+  @media (min-width: 769px) {
     display: none;
   }
 }
+// variable -- begin
+$mainColor: #1C75BC;
+$subColor: #5CC0EF;
+$insertColor: #F9A638;
+$textColor: #444444;
+$subTextColor: #E5E5E5;
+$shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+// variable -- end
 
-@media (max-width: 768px) {
-  .pc {
-    display: none;
-  }
-  .sp {
-    display: block;
-  }
-  // variable
-  $mainColor: #1C75BC;
-  $subColor: #5CC0EF;
-  $insertColor: #F9A638;
-  $textColor: #444444;
-  $subTextColor: #E5E5E5;
-  $shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
-  // parent styles
-  .flex-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .flex-column {
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-items: center;
-  }
+// parent styles --begin
+.flex-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-column {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+// parent styles -- end
 
-  .header {
-    @extend .flex-row;
-    width: 100%;
-    height: 56px;
-    background-color: $mainColor;
-    box-shadow: $shadow;
-    z-index: 950;
-    position: fixed;
-    top: 0;
-    &__link {
-      font-size: 24px;
-      color: #FFFFFF;
-    }
-  }
-  .filter {
-    @extend .flex-row;
-    width: 100%;
-    height: 42px;
-    justify-content: space-around;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
-    background-color: #F5F5F5;
-    position: fixed;
-    top: 56px;
-    left: 0;
-    z-index: 888;
-    &__tab {
-      width: 110px;
-      height: 100%;
-      padding: 15px 10px 0 10px;
-      color: #A4A2A2;
-      text-align: center;
-      cursor: pointer;
-      &--selected {
-        border-bottom: 2px solid $subColor;
-        color: $subColor;
-      }
-    }
-    &__name {
-      position: relative;
-    }
-  }
-  .habit-count {
-    @extend .flex-row;
-    width: 20px;
-    height: 20px;
+.split-border {
+  border-bottom: 1px solid #D8D8D8;
+  margin: 0 0 3px 0;
+}
+.header {
+  @extend .flex-row;
+  width: 100%;
+  height: 56px;
+  background-color: $mainColor;
+  box-shadow: $shadow;
+  z-index: 950;
+  position: fixed;
+  top: 0;
+  &__link {
+    font-size: 24px;
     color: #FFFFFF;
-    background-color: $subColor;
-    border-radius: 50%;
-    position: absolute;
-    top: -8px;
-    right: -16px;
-    font-size: 14px;
   }
-  .habit-list {
-    @extend .flex-column;
-    margin: 113px auto 0 auto;
-    width: 100%;
-  }
-  .habit-card {
-    width: 375px;
-    height: 140px;
-    box-shadow: $shadow;
-    border-radius: 5px;
-    margin: 0 0 15px 0;
-    position: relative;
-    &__link {
-      width: 100%;
-      height: 100%;
-      display: block;
-      color: $textColor
+}
+.filter {
+  @extend .flex-row;
+  width: 100%;
+  height: 42px;
+  justify-content: space-around;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  background-color: #F5F5F5;
+  position: fixed;
+  top: 56px;
+  left: 0;
+  z-index: 888;
+  &__tab {
+    width: 110px;
+    height: 100%;
+    padding: 15px 10px 0 10px;
+    color: #A4A2A2;
+    text-align: center;
+    cursor: pointer;
+    &--selected {
+      border-bottom: 2px solid $subColor;
+      color: $subColor;
     }
-    &__name {
-      margin: 5px 10px 0 15px;
+  }
+  &__name {
+    position: relative;
+  }
+}
+.habit-count {
+  @extend .flex-row;
+  width: 20px;
+  height: 20px;
+  color: #FFFFFF;
+  background-color: $subColor;
+  border-radius: 50%;
+  position: absolute;
+  top: -8px;
+  right: -16px;
+  font-size: 14px;
+}
+.habit-list {
+  @extend .flex-column;
+  margin: 113px auto 0 auto;
+  width: 100%;
+}
+.habit-card {
+  width: 375px;
+  height: 140px;
+  box-shadow: $shadow;
+  border-radius: 5px;
+  margin: 0 0 15px 0;
+  position: relative;
+  &__link {
+    width: 100%;
+    height: 100%;
+    display: block;
+    color: $textColor
+  }
+  &__name {
+    margin: 5px 10px 0 15px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  &__detail {
+    margin: 10px 15px 0 15px;
+    font-size: 12px;
+  }
+  // &__button {
+  //   position: absolute;
+  //   bottom: 10px;
+  //   right: 15px;
+  //   width: 90px;
+  //   background-color: $mainColor;
+  //   color: #FFFFFF;
+  //   box-shadow: $shadow;
+  //   :hover {
+  //     background-color: #4BA0E3;
+  //   }
+  // }
+}
+.chain-tag {
+  @extend .flex-row;
+  width: 94px;
+  height: 35px;
+  background-color: $insertColor;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 0 5px 0 0 / 0 5px 0 0;
+  &__count {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  &__text {
+    font-size: 12px;
+    margin: 8px 0 0 3px;
+  }
+}
+.timer-block {
+  @extend .flex-row;
+  justify-content: space-between;
+  background-color: #000000;
+  width: 100%;
+  height: 35px;
+  border-radius: 5px 5px 0 0 / 5px 5px 0 0;
+  position: fixed;
+  bottom: 0;
+  &__text {
+    color: $subTextColor;
+    margin: 0 0 0 15px;
+    font-size: 12px;
+  }
+  &__timer {
+    color: $subTextColor;
+    margin: 0 15px 0 0;
+    font-size: 18px;
+  }
+}
+.modal {
+  @extend .flex-row;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: display 1s ease-in-out;
+  &__window {
+    background-color: #ffffff;
+    border: 3px solid $mainColor;
+    border-radius: 5px;
+    width: 300px;
+    &__title {
+      color: $textColor;
       font-weight: bold;
       font-size: 20px;
+      padding: 25px 0 0 0;
+      text-align: center;
     }
-    &__detail {
-      margin: 10px 15px 0 15px;
-      font-size: 12px;
-    }
-    // &__button {
-    //   position: absolute;
-    //   bottom: 10px;
-    //   right: 15px;
-    //   width: 90px;
-    //   background-color: $mainColor;
-    //   color: #FFFFFF;
-    //   box-shadow: $shadow;
-    //   :hover {
-    //     background-color: #4BA0E3;
-    //   }
-    // }
-  }
-  .chain-tag {
-    @extend .flex-row;
-    width: 94px;
-    height: 35px;
-    background-color: $insertColor;
-    position: absolute;
-    top: 0;
-    right: 0;
-    border-radius: 0 5px 0 0 / 0 5px 0 0;
-    &__count {
-      font-size: 24px;
-      font-weight: bold;
-    }
-    &__text {
-      font-size: 12px;
-      margin: 8px 0 0 3px;
+    &__contents {
+      @extend .flex-column;
     }
   }
-  .timer-block {
+}
+.textbox-block {
+  @extend .flex-row;
+  &__text {
+    width: 223px;
+  }
+  &__char-count {
+    font-size: 14px;
+    color: #A4A2A2;
+    margin: 25px 0 0 10px;
+    text-align: center;
+    width: 10px;
+  }
+}
+.button-block {
+  @extend .flex-row;
+  justify-content: space-between;
+  margin: 30px auto 50px auto;
+  width: 210px;
+}
+.delete-confirm {
+  text-align: center;
+  &__name {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 40px 0 0 0
+  }
+  &__text {
+    font-size: 18px;
+  }
+}
+.warning-block {
+  @extend .flex-row;
+  margin: 0 0 10px 0;
+  &__icon {
+    color: $insertColor;
+    width: 18px;
+    height: 18px;
+    position: relative;
+    top: 3px
+  }
+  &__text {
+    font-size: 12px;
+    margin: 6px 0 0 3px;
+  }
+}
+.chain-block {
+  @extend .flex-row;
+  width: 60px;
+  height: 25px;
+  background-color: $insertColor;
+  border-radius: 5px;
+  color: $textColor;
+  &__count {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  &__text {
+    font-size: 12px;
+    margin: 3px 0 0 3px;
+  }
+}
+.detail {
+  margin: 65px 15px 30px 15px;
+  &__header {
     @extend .flex-row;
     justify-content: space-between;
-    background-color: #000000;
+    padding: 5px 0 5px 0;
+  }
+}
+.detail__header__title {
+  @extend .flex-row;
+  &__name {
+    font-size: 24px;
+    color: $textColor;
+    font-weight: bold;
+    margin: 0 5px 0 0
+  }
+}
+.detail__detail {
+  margin: 10px 0 5px 0;
+  &__label {
+    display: flex;
+    &__title {
+      padding: 0 0 0 5px;
+      color: $textColor;
+      font-size: 16px;
+    }
+  }
+  &__text {
+    font-size: 12px;
+    color: $textColor;
+    margin: 5px 20px 15px 20px;
+  }
+}
+.detail__record {
+  margin: 10px 0 10px 0;
+  &__label {
+    display: flex;
+    &__title {
+      padding: 0 0 0 5px;
+      color: $textColor;
+      font-size: 16px;
+    }
+  }
+}
+.calendar {
+  position: relative;
+  top: -15px;
+  &__paging {
+    @extend .flex-row;
+    &__date {
+      margin : 0 0 3.5px 0;
+      color: $textColor;
+    }
+  }
+  &__weekdays {
+    @extend .flex-row;
+    justify-content: space-between;
+    margin: 10px 19px 0 19px;
+    color: $textColor;
+    font-size: 10px;
+    &__day {
+      text-align: center;
+    }
+  }
+  &__table {
+    margin: 10px 0 0 0;
     width: 100%;
-    height: 35px;
-    border-radius: 5px 5px 0 0 / 5px 5px 0 0;
-    position: fixed;
-    bottom: 0;
-    &__text {
-      color: $subTextColor;
-      margin: 0 0 0 15px;
-      font-size: 12px;
+  }
+}
+.week-block {
+  @extend .flex-row;
+  justify-content: space-between;
+  height: 40px;
+  border-bottom: 1px solid #D8D8D8;
+  &__day {
+    @extend .flex-row;
+    width: 10vw;
+    height: 40px;
+    font-size: 12px;
+    position: relative;
+    &__chain {
+      @extend .flex-row;
+      border: 7px solid $insertColor;
+      width: 9vw;
+      height: 35px;
+      border-radius: 5px;
     }
-    &__timer {
-      color: $subTextColor;
-      margin: 0 15px 0 0;
-      font-size: 18px;
+    &__chain-leftbar {
+      width: 9vw;
+      height: 8px;
+      background-color: $insertColor;
+      position: absolute;
+      left: 7.4vw;
+      display: inline-block;
+      border-radius: 5px;
+      border: 1px solid #FFFFFF;
+      z-index: 10;
     }
+    // &__chain-rightbar {
+    //   width: 8vw;
+    //   height: 7px;
+    //   background-color: $insertColor;
+    //   position: absolute;
+    //   left: 7.5vw;
+    //   display: inline-block;
+    //   border-radius: 5px;
+    //   border: 1px solid #FFFFFF;
+    //   z-index: 10;
+    // }
   }
 }

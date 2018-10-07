@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
-import { withStyles } from '@material-ui/core/styles'
+import {withStyles} from '@material-ui/core/styles'
 import {openAndCloseModalAction} from '../actions'
 import store from '../store'
 

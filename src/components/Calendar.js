@@ -1,103 +1,11 @@
 import React from 'react'
-import { withStyles } from '@material-ui/core/styles'
-import ChevronLeft from '@material-ui/icons/ChevronLeft'
-import ChevronRight from '@material-ui/icons/ChevronRight'
+import '../App.css'
 import store from '../store'
-import {changeCalendarAction} from '../actions'
 import Weekday from './Weekday'
+import PageCalendar from './PageCalendar'
+import v4 from 'uuid/v4'
 
-const styles = {
-  root: {
-    position: 'relative',
-    top: '-15px'
-  },
-  dateChangeContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  prevIcon: {
-    color: '#B5B5B5',
-    cursor: 'pointer',
-    width: '30px',
-    height: '30px'
-  },
-  nextIcon: {
-    color: '#B5B5B5',
-    cursor: 'pointer',
-    width: '30px',
-    height: '30px'
-  },
-  yearAndMonth: {
-    margin : '6px 0 0 0',
-    color: '#444444',
-  },
-  dayContainer: {
-    margin: '10px 0 0 0',
-    width: '100%',
-  },
-  weekContainer: {
-    height: '40px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    borderBottom: '1px solid #D8D8D8'
-  },
-  dayStyle: {
-    width: '10vw',
-    height: '40px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontSize: '12px',
-    position: 'relative',
-  },
-  chainStyle: {
-    border: '7px solid #F9A638',
-    width: '9vw',
-    height: '35px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: '10%',
-  },
-  chainLeft: {
-    width: '9vw',
-    height: '8px',
-    backgroundColor: '#F9A638',
-    position: 'absolute',
-    left: '7.4vw',
-    display: 'inline-block',
-    borderRadius: '5px',
-    border: '1px solid #FFFFFF',
-    zIndex: '10',
-    textAlign: ' '
-  },
-  // chainRight: {
-  //   width: '8vw',
-  //   height: '7px',
-  //   backgroundColor: '#F9A638',
-  //   position: 'absolute',
-  //   right: '7.5vw',
-  //   display: 'inline-block',
-  //   borderRadius: '5px',
-  //   border: '1px solid #FFFFFF'
-  // }
-}
-
-const Calendar = ({classes, id}) => {
-  const
-    { root,
-      dateChangeContainer,
-      prevIcon,
-      nextIcon,
-      yearAndMonth,
-      dayContainer,
-      weekContainer,
-      dayStyle,
-      chainStyle,
-      chainLeft,
-      chainRight
-    } = classes
-
+export default ({id}) => {
   const {year, month, calendarData} = store.getState().calendar
   let recordDataOnlyDay = []
   store.getState().record.forEach(record => {
@@ -106,37 +14,22 @@ const Calendar = ({classes, id}) => {
     }
   })
   return (
-    <div className={root}>
-      <div className={dateChangeContainer}>
-        <div>
-          <ChevronLeft
-            className={prevIcon}
-            onClick={() => store.dispatch(changeCalendarAction('prev'))}
-          />
-        </div>
-        <div className={yearAndMonth}>
-          {year}/{month < 10 ? `0${month}` : month}</div>
-        <div>
-          <ChevronRight
-            className={nextIcon}
-            onClick={() => store.dispatch(changeCalendarAction('next'))}
-          />
-        </div>
-      </div>
+    <div className="calendar">
+      <PageCalendar />
       <Weekday />
-      <div className={dayContainer}>
+      <div className="calendar__table">
         {
           calendarData.map((calendar)  => {
             return (
-              <ul className={weekContainer}>
+              <ul key={v4()} className="week-block">
                 {
                   calendar.map((data) => {
                     return (
-                      <li className={dayStyle}>
+                      <li key={v4()} className="week-block__day">
                         <div className={
                           recordDataOnlyDay.indexOf(data.day) >= 0
-                            ? chainStyle
-                            : null
+                            ? "week-block__day__chain"
+                            : ""
                           }
                         >
                           {data.day}
@@ -144,13 +37,13 @@ const Calendar = ({classes, id}) => {
                         {
                           recordDataOnlyDay.indexOf(data.day) >= 0
                           && recordDataOnlyDay.indexOf(data.day + 1) >= 0
-                          ? <span className={chainLeft}></span>
+                          ? <span className="week-block__day__chain-leftbar" />
                           : null
                         }
                         {
                           recordDataOnlyDay.indexOf(data.day) >= 0
                           && recordDataOnlyDay.indexOf(data.day - 1) >= 0
-                          ? <span className={chainRight}></span>
+                          ? <span className="week-block__day__chain-rightbar" />
                           : null
                         }
                       </li>
@@ -165,5 +58,3 @@ const Calendar = ({classes, id}) => {
     </div>
   )
 }
-
-export default withStyles(styles)(Calendar)

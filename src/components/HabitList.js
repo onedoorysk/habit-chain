@@ -1,7 +1,9 @@
 import React from 'react'
+import '../App.css'
 import store from '../store'
 import Habit from './Habit'
 import AddHabit from './AddHabit'
+import AddHabitButton from './AddHabitButton'
 
 export default () => {
   const currentFilter = store.getState().filter
@@ -23,6 +25,7 @@ export default () => {
         {filterHabitList.map(habit => <Habit key={habit.id} habit={habit} />)}
       </ul>
       <AddHabit />
+      <AddHabitButton />
     </div>
   )
 }

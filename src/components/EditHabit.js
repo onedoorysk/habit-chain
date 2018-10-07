@@ -1,9 +1,11 @@
 import React from 'react'
+import '../App.css'
 import { withStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 import store from '../store'
 import {openAndCloseModalAction, editHabitAction, typeHabitDescriptionAction, checkDescriptionCharCountAction, resetFormAction} from '../actions'
-import Button from '@material-ui/core/Button'
+import CharCount from './CharCount'
 
 const styles = {
   root: {
@@ -78,25 +80,15 @@ const styles = {
 }
 
 const EditHabit = ({classes, habit}) => {
-  const {
-    root,
-    modalWindow,
-    modalTitle,
-    textStyle,
-    createButton,
-    cancelButton,
-    buttonContainer,
-    textContainer,
-    charCountStyle
-  } = classes
+  const {textStyle, createButton, cancelButton} = classes
   const isOpenModal = store.getState().modal
   const {id, description} = habit
   const formDescription = store.getState().form.description
-  const { descriptionCharCount} = store.getState().form
+  const descriptionCharCount = store.getState().form.descriptionCharCount
   return (
     <div>
       <div
-        className={root}
+        className="modal"
         style={{'display': isOpenModal === 'editModal' ? 'flex' : 'none'}}
         onClick={() => {
           store.dispatch(openAndCloseModalAction(''))
@@ -104,11 +96,11 @@ const EditHabit = ({classes, habit}) => {
         }}
       >
         <div
-          className={modalWindow}
+          className="modal__window"
           onClick={e => e.stopPropagation()}
         >
-          <div className={modalTitle}>EDIT HABIT</div>
-          <div className={textContainer}>
+          <div className="modal__window__title">EDIT HABIT</div>
+          <div className="textbox-block">
             <TextField
               className={textStyle}
               label="detail"
@@ -122,18 +114,13 @@ const EditHabit = ({classes, habit}) => {
                 store.dispatch(checkDescriptionCharCountAction)
               }}
             />
-            <div
-              className={charCountStyle}
-              style={
-                descriptionCharCount < 11
-                  ? (descriptionCharCount < 1 ? {color: '#E0245E'} : {color: '#FFAD1F'})
-                  : {}
-                }
-            >
-              {descriptionCharCount}
-            </div>
+            <CharCount
+              count={descriptionCharCount}
+              cautionCount={11}
+              warningCount={1}
+            />
           </div>
-          <div className={buttonContainer}>
+          <div className="button-block">
             <Button
               className={createButton}
               disabled={
