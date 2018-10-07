@@ -71,7 +71,7 @@ const AddHabit = ({classes}) => {
                 warningCount={1}
               />
             </div>
-            <div class="textbox-block">
+            <div className="textbox-block">
               <TextField
                 className="textbox-block__text"
                 label="detail"
