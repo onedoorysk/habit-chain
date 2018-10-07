@@ -8,49 +8,8 @@ import {openAndCloseModalAction, editHabitAction, typeHabitDescriptionAction, ch
 import CharCount from './CharCount'
 
 const styles = {
-  root: {
-    position: 'fixed',
-    top: '0',
-    left: '0',
-    zIndex: '999',
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    transition: 'display 1s ease-in-out',
-    display: 'none'
-  },
-  block: {
-    display: 'none'
-  },
-  modalWindow: {
-    backgroundColor: '#ffffff',
-    border: '3px solid #1C75BC',
-    borderRadius: '2%',
-    textAlign: 'center',
-    margin: 'auto',
-    width: '300px',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  modalTitle: {
-    color: '#444444',
-    fontWeight: 'bold',
-    fontSize: '20px',
-    padding: '25px 0 0 0'
-  },
-  textContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
   textStyle: {
     width: '223px'
-  },
-  buttonContainer: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    margin: '30px auto 50px auto',
-    width: '210px'
   },
   createButton: {
     width: '90px',
@@ -69,13 +28,6 @@ const styles = {
     '&:hover': {
       backgroundColor: '#F26963'
     }
-  },
-  charCountStyle: {
-    fontSize: '14px',
-    color: '#B5B5B5',
-    margin: '25px 0 0 10px',
-    textAlign: 'center',
-    width: '10px'
   }
 }
 
