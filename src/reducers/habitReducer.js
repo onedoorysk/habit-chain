@@ -24,6 +24,7 @@ export default (state = initialState, {type, payload}) => {
       const {habitName, description} = payload
       return [...state, {id: v4(), habitName, description, completed: false, chainCount: 0}]
     case TYPE.DELETE_HABIT:
+      console.log(state, payload.id)
       return state.filter(habit => habit.id !== payload.id)
     case TYPE.DONE_HABIT:
       return state.map(habit => {

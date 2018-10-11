@@ -1,21 +1,14 @@
 import React from 'react'
 import '../App.css'
-import store from '../store'
 import {filterListAction} from '../actions'
+import {connect} from 'react-redux'
 
-const currentFilterStyle = {
-  borderBottom: '2px solid #5CC0EF',
-  color: '#5CC0EF'
-}
-
-export default ({tabName, count}) => {
-  const currentFilter = store.getState().filter
+const FilterTab = ({tabName, count, filter, filterList}) => {
   return (
     <div
       className="filter__tab"
-      onClick={() => store.dispatch(filterListAction(tabName))}
-      style={currentFilter === tabName ? currentFilterStyle : {} }
-    >
+      onClick={() => filterList(tabName)}
+      style={filter === tabName ? {borderBottom: '2px solid #5CC0EF', color: '#5CC0EF'} : {}}>
       <div className="filter__name">
         {tabName.toUpperCase()}
         {count ? <span className="habit-count">{count}</span> : null}
@@ -23,3 +16,18 @@ export default ({tabName, count}) => {
     </div>
   )
 }
+
+const mapStateToProps = state => {
+  const {filter} = state
+  return {
+    filter: filter
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    filterList: tabName => dispatch(filterListAction(tabName))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FilterTab)

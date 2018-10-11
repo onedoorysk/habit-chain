@@ -1,15 +1,30 @@
 import React from 'react'
 import '../App.css'
 import FilterTab from './FilterTab'
-import store from '../store'
+import {connect} from 'react-redux'
 
-export default () => {
-  const habitListSize = store.getState().habit.filter(h => !h.completed).length
+const HabitFilter = ({habit}) => {
   return (
     <div className="filter">
-      <FilterTab tabName={'all'} />
-      <FilterTab tabName={'not yet'} count={habitListSize}/>
-      <FilterTab tabName={'done'} />
+      <FilterTab
+        tabName={'all'}
+      />
+      <FilterTab
+        tabName={'not yet'}
+        count={habit.filter(h => !h.completed).length}
+      />
+      <FilterTab
+        tabName={'done'}
+      />
     </div>
   )
 }
+
+const mapStateToProps = state => {
+  const {habit} = state
+  return {
+    habit: habit
+  }
+}
+
+export default connect(mapStateToProps, undefined)(HabitFilter)

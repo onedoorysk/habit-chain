@@ -40,7 +40,7 @@ export default (state = initialState, {type, payload}) => {
         id: payload.id,
         year: new Date().getFullYear(),
         month: new Date().getMonth() + 1,
-        day: new Date().getDay()
+        day: new Date().getDate()
       }]
     default:
       return state

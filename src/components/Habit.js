@@ -1,30 +1,15 @@
 import React from 'react'
 import '../App.css'
-import store from '../store'
 import {Link} from 'react-router-dom'
 import {doneHabitAction, registRecordAction} from '../actions'
 import Button from '@material-ui/core/Button'
-import { withStyles } from '@material-ui/core/styles'
+import {withStyles} from '@material-ui/core/styles'
+import {connect} from 'react-redux'
 
-const styles = {
-  doneButton: {
-    position: 'absolute',
-    bottom: '10px',
-    right: '15px',
-    width: '90px',
-    backgroundColor: '#1C75BC',
-    color: '#FFFFFF',
-    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
-    '&:hover': {
-      backgroundColor: '#4BA0E3'
-    }
-  }
-}
-
-const Habit = ({habit, classes}) => {
+const Habit = ({habit, classes, record, doneHabit, registRecord}) => {
   const {id, habitName, description, chainCount} = habit
   // Pop today's record data. If it exists, it changes done-button disable.
-  const recordList = store.getState().record.filter(record => {
+  const recordList = record.filter(record => {
     return (record.id === id
       && record.year === new Date().getFullYear()
       && record.month === new Date().getMonth() + 1)
@@ -46,8 +31,8 @@ const Habit = ({habit, classes}) => {
       <Button
         className={classes.doneButton}
         onClick={() => {
-          store.dispatch(doneHabitAction(id))
-          store.dispatch(registRecordAction(id))
+          doneHabit(id)
+          registRecord(id)
         }}
         disabled={recordList.length > 0 ? true : false}
       >
@@ -57,4 +42,33 @@ const Habit = ({habit, classes}) => {
   )
 }
 
-export default withStyles(styles)(Habit)
+const styles = {
+  doneButton: {
+    position: 'absolute',
+    bottom: '10px',
+    right: '15px',
+    width: '90px',
+    backgroundColor: '#1C75BC',
+    color: '#FFFFFF',
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
+    '&:hover': {
+      backgroundColor: '#4BA0E3'
+    }
+  }
+}
+
+const mapStateToProps = state => {
+  const {record} = state
+  return {
+    record: record
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    doneHabit: id => dispatch(doneHabitAction(id)),
+    registRecord: id => dispatch(registRecordAction(id))
+  }
+}
+
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Habit))

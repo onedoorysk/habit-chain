@@ -1,14 +1,14 @@
 import React from 'react'
 import '../App.css'
-import store from '../store'
 import Weekday from './Weekday'
 import PageCalendar from './PageCalendar'
 import v4 from 'uuid/v4'
+import {connect} from 'react-redux'
 
-export default ({id}) => {
-  const {year, month, calendarData} = store.getState().calendar
+const Calendar = ({id, calendar, record}) => {
+  const {year, month, calendarData} = calendar
   let recordDataOnlyDay = []
-  store.getState().record.forEach(record => {
+  record.forEach(record => {
     if (record.id === id && record.year === year && record.month === month) {
       recordDataOnlyDay.push(record.day)
     }
@@ -58,3 +58,13 @@ export default ({id}) => {
     </div>
   )
 }
+
+const mapStateToProps = state => {
+  const {calendar, record} = state
+  return {
+    calendar: calendar,
+    record: record
+  }
+}
+
+export default connect(mapStateToProps, undefined)(Calendar)

@@ -3,9 +3,101 @@ import '../App.css'
 import {withStyles} from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import store from '../store'
 import {openAndCloseModalAction, addHabitAction, typeHabitNameAction, typeHabitDescriptionAction, checkNameCharCountAction, checkDescriptionCharCountAction, resetFormAction} from '../actions'
 import CharCount from './CharCount'
+import {connect} from 'react-redux'
+
+const AddHabit = ({classes, modal, form, openAndCloseModal, resetForm, typeHabitName, typeHabitDescription, checkNameCharCount, checkDescriptionCharCount, addHabit}) => {
+  const {textStyle, createButton, cancelButton} = classes
+  const {habitName, description, nameCharCount, descriptionCharCount} = form
+  return (
+    <div>
+      <div
+        className="modal"
+        style={{display : modal === 'addHabit' ? 'flex' : 'none'}}
+        onClick={() => {
+          openAndCloseModal('')
+          resetForm()
+        }}
+      >
+        <div
+          className="modal__window"
+          onClick={e => e.stopPropagation()}
+        >
+          <div className="modal__window__title">NEW HABIT</div>
+          <div className="modal__window__contents">
+            <div className="textbox-block">
+              <TextField
+                className={textStyle}
+                label="name"
+                rows="1"
+                rowsMax="1"
+                margin="normal"
+                required
+                value={habitName}
+                onChange={e => {
+                  typeHabitName(e.currentTarget.value)
+                  checkNameCharCount()
+                }}
+              />
+              <CharCount
+                count={nameCharCount}
+                cautionCount={4}
+                warningCount={1}
+              />
+            </div>
+            <div className="textbox-block">
+              <TextField
+                className="textbox-block__text"
+                label="detail"
+                multiline
+                rows="1"
+                rowsMax="6"
+                margin="normal"
+                value={description}
+                onChange={e => {
+                  typeHabitDescription(e.currentTarget.value)
+                  checkDescriptionCharCount()
+                }}
+              />
+              <CharCount
+                count={descriptionCharCount}
+                cautionCount={11}
+                warningCount={1}
+              />
+            </div>
+          </div>
+          <div className="button-block">
+            <Button
+              className={createButton}
+              disabled={
+                habitName.length === 0 ||
+                habitName.length > 10 ||
+                description.length > 50 ? true : false
+              }
+              onClick={() => {
+                addHabit(habitName, description)
+                openAndCloseModal('')
+                resetForm()
+              }}
+            >
+              CREATE
+            </Button>
+            <Button
+              className={cancelButton}
+              onClick={() => {
+                openAndCloseModal('')
+                resetForm()
+              }}
+            >
+              CANCEL
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 const styles = {
   textStyle: {
@@ -31,97 +123,24 @@ const styles = {
   },
 }
 
-const AddHabit = ({classes}) => {
-  const {textStyle, createButton, cancelButton} = classes
-  const isOpenModal = store.getState().modal
-  const {habitName, description, nameCharCount, descriptionCharCount} = store.getState().form
-  return (
-    <div>
-      <div
-        className="modal"
-        style={{display : isOpenModal === 'addHabit' ? 'flex' : 'none'}}
-        onClick={() => {
-          store.dispatch(openAndCloseModalAction(''))
-          store.dispatch(resetFormAction)
-        }}
-      >
-        <div
-          className="modal__window"
-          onClick={e => e.stopPropagation()}
-        >
-          <div className="modal__window__title">NEW HABIT</div>
-          <div className="modal__window__contents">
-            <div className="textbox-block">
-              <TextField
-                className={textStyle}
-                label="name"
-                rows="1"
-                rowsMax="1"
-                margin="normal"
-                required
-                value={habitName}
-                onChange={e => {
-                  store.dispatch(typeHabitNameAction(e.currentTarget.value))
-                  store.dispatch(checkNameCharCountAction)
-                }}
-              />
-              <CharCount
-                count={nameCharCount}
-                cautionCount={4}
-                warningCount={1}
-              />
-            </div>
-            <div className="textbox-block">
-              <TextField
-                className="textbox-block__text"
-                label="detail"
-                multiline
-                rows="1"
-                rowsMax="6"
-                margin="normal"
-                value={description}
-                onChange={e => {
-                  store.dispatch(typeHabitDescriptionAction(e.currentTarget.value))
-                  store.dispatch(checkDescriptionCharCountAction)
-                }}
-              />
-              <CharCount
-                count={descriptionCharCount}
-                cautionCount={11}
-                warningCount={1}
-              />
-            </div>
-          </div>
-          <div className="button-block">
-            <Button
-              className={createButton}
-              disabled={
-                habitName.length === 0 ||
-                habitName.length > 10 ||
-                description.length > 50 ? true : false
-              }
-              onClick={() => {
-                store.dispatch(addHabitAction(habitName, description))
-                store.dispatch(openAndCloseModalAction(''))
-                store.dispatch(resetFormAction)
-              }}
-            >
-              CREATE
-            </Button>
-            <Button
-              className={cancelButton}
-              onClick={() => {
-                store.dispatch(openAndCloseModalAction(''))
-                store.dispatch(resetFormAction)
-              }}
-            >
-              CANCEL
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
+const mapStateToProps = state => {
+  const {modal, form} = state
+  return {
+    modal: modal,
+    form: form
+  }
 }
 
-export default withStyles(styles)(AddHabit)
+const mapDispatchToProps = dispatch => {
+  return {
+    openAndCloseModal: modalName => dispatch(openAndCloseModalAction(modalName)),
+    resetForm: () => dispatch(resetFormAction),
+    typeHabitName: value => dispatch(typeHabitNameAction(value)),
+    typeHabitDescription: value => dispatch(typeHabitDescriptionAction(value)),
+    checkNameCharCount: () => dispatch(checkNameCharCountAction),
+    checkDescriptionCharCount: () => dispatch(checkDescriptionCharCountAction),
+    addHabit: (habitName, description) => dispatch(addHabitAction(habitName, description))
+  }
+}
+
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(AddHabit))

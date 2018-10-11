@@ -1,31 +1,41 @@
 import React from 'react'
 import '../App.css'
-import store from '../store'
 import Habit from './Habit'
 import AddHabit from './AddHabit'
 import AddHabitButton from './AddHabitButton'
+import {connect} from 'react-redux'
 
-export default () => {
-  const currentFilter = store.getState().filter
-  const filterHabitList = store.getState().habit.filter(habit => {
-    switch (currentFilter) {
-      case 'not yet':
-        return !habit.completed
-      case 'done':
-        return habit.completed
-      case 'all':
-        return habit
-      default:
-        return habit
-    }
-  })
+const HabitList = ({filter, habit}) => {
   return (
     <div>
       <ul className="habit-list">
-        {filterHabitList.map(habit => <Habit key={habit.id} habit={habit} />)}
+        {
+          habit.filter(habit => {
+            switch (filter) {
+              case 'not yet':
+                return !habit.completed
+              case 'done':
+                return habit.completed
+              case 'all':
+                return habit
+              default:
+                return habit
+            }
+          }).map(habit => <Habit key={habit.id} habit={habit} />)
+        }
       </ul>
       <AddHabit />
       <AddHabitButton />
     </div>
   )
 }
+
+const mapStateToProps = state => {
+  const {filter, habit} = state
+  return {
+    filter: filter,
+    habit: habit
+  }
+}
+
+export default connect(mapStateToProps, undefined)(HabitList)

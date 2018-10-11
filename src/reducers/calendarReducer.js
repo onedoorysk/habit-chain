@@ -51,29 +51,33 @@ const initialState = {
 export default (state = initialState, {type, payload}) => {
   switch (type) {
     case TYPE.CHANGE_CALENDAR :
-      const {changeValue} = payload
-      switch (changeValue) {
-        case 'next' :
+      let year = ''
+      let month = ''
+      let calendarData = []
+      switch (payload.changeValue) {
+        case 'next':
           if (state.month === 12) {
-            state.year += 1
-            state.month = 1
+            year = state.year + 1
+            month = 1
           } else {
-            state.month += 1
+            month = state.month + 1
+            year = state.year
           }
           break
         case 'prev' :
           if (state.month === 1) {
-            state.year -= 1
-            state.month = 12
+            year = state.year - 1
+            month = 12
           } else {
-            state.month -= 1
+            month = state.month - 1
+            year = state.year
           }
           break
-        default :
+        default:
           break
       }
-      state.calendarData = getCalendarData(state.year, state.month)
-      return state
+      calendarData = getCalendarData(year, month)
+      return {year, month, calendarData}
     default :
       return state
   }

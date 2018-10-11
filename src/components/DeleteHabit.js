@@ -1,44 +1,22 @@
 import React from 'react'
 import '../App.css'
 import {withStyles} from '@material-ui/core/styles'
-import store from '../store'
 import {openAndCloseModalAction, deleteHabitAction} from '../actions'
 import Button from '@material-ui/core/Button'
 import Warning from '@material-ui/icons/Warning'
 import {withRouter} from 'react-router'
+import {connect} from 'react-redux'
 
-const styles = {
-  cancelButton: {
-    width: '90px',
-    backgroundColor: '#1C75BC',
-    color: '#FFFFFF',
-    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
-    '&:hover': {
-      backgroundColor: '#4BA0E3'
-    }
-  },
-  deleteButton: {
-    width: '90px',
-    backgroundColor: '#EB3029',
-    color: '#FFFFFF',
-    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
-    '&:hover': {
-      backgroundColor: '#F26963'
-    }
-  },
-}
-
-const DeleteHabit = ({classes, habit, history}) => {
+const DeleteHabit = ({classes, habit, history, modal, openAndCloseModal, deleteHabit}) => {
   const {deleteButton, cancelButton} = classes
-  const isOpenModal = store.getState().modal
   const {id, habitName, chainCount} = habit
   return (
     <div>
       <div
         className="modal"
-        style={{'display': isOpenModal === 'deleteHabit' ? 'flex' : 'none'}}
+        style={{'display': modal === 'deleteHabit' ? 'flex' : 'none'}}
         onClick={() => {
-          store.dispatch(openAndCloseModalAction(''))
+          openAndCloseModal('')
         }}
       >
         <div
@@ -71,8 +49,8 @@ const DeleteHabit = ({classes, habit, history}) => {
             <Button
               className={deleteButton}
               onClick={() => {
-                store.dispatch(deleteHabitAction(id))
-                store.dispatch(openAndCloseModalAction(''))
+                deleteHabit(id)
+                openAndCloseModal('')
                 history.push('/')
               }}
             >
@@ -81,7 +59,7 @@ const DeleteHabit = ({classes, habit, history}) => {
             <Button
               className={cancelButton}
               onClick={() => {
-                store.dispatch(openAndCloseModalAction(''))
+                openAndCloseModal('')
               }}
             >
               CANCEL
@@ -93,4 +71,39 @@ const DeleteHabit = ({classes, habit, history}) => {
   )
 }
 
-export default withRouter(withStyles(styles)(DeleteHabit))
+const styles = {
+  cancelButton: {
+    width: '90px',
+    backgroundColor: '#1C75BC',
+    color: '#FFFFFF',
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
+    '&:hover': {
+      backgroundColor: '#4BA0E3'
+    }
+  },
+  deleteButton: {
+    width: '90px',
+    backgroundColor: '#EB3029',
+    color: '#FFFFFF',
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
+    '&:hover': {
+      backgroundColor: '#F26963'
+    }
+  },
+}
+
+const mapStateToProps = state => {
+  const {modal} = state
+  return {
+    modal: modal
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    openAndCloseModal: modalName => dispatch(openAndCloseModalAction(modalName)),
+    deleteHabit: id => dispatch(deleteHabitAction(id))
+  }
+}
+
+export default withRouter(withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(DeleteHabit)))
