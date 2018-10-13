@@ -1,5 +1,6 @@
 import TYPE from './_actionType'
 
+export const readStorageDataAction = ({type: TYPE.READ_STORAGE_DATA})
 export const typeHabitNameAction = value => ({type: TYPE.TYPE_HABIT_NAME, payload: {value}})
 export const typeHabitDescriptionAction = value => ({type: TYPE.TYPE_HABIT_DESCRIPTION, payload: {value}})
 export const addHabitAction = (habitName, description) => ({type: TYPE.ADD_HABIT, payload: {habitName, description}})
@@ -12,7 +13,8 @@ export const openAndCloseModalAction = (modalName) => ({type: TYPE.OPEN_AND_CLOS
 export const changeCalendarAction = (changeValue) => ({type: TYPE.CHANGE_CALENDAR, payload: {changeValue}})
 export const countTimerAction = ({type: TYPE.COUNT_TIMER})
 export const settingTimerAction = (hour, minute) => ({type: TYPE.SET_TIMER, payload: {hour, minute}})
-export const registRecordAction = (id) => ({type: TYPE.REGIST_RECORD, payload: {id}})
+export const registRecordAction = id => ({type: TYPE.REGIST_RECORD, payload: {id}})
 export const checkNameCharCountAction = ({type: TYPE.CHECK_NAME_CHAR_COUNT})
 export const checkDescriptionCharCountAction = ({type: TYPE.CHECK_DESCRIPTION_CHAR_COUNT})
 export const resetFormAction = ({type: TYPE.RESET_FORM})
+export const deleteRecordAction = id => ({type: TYPE.DELETE_RECORD, payload: {id}})

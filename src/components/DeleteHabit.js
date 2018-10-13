@@ -1,13 +1,13 @@
 import React from 'react'
 import '../App.css'
 import {withStyles} from '@material-ui/core/styles'
-import {openAndCloseModalAction, deleteHabitAction} from '../actions'
+import {openAndCloseModalAction, deleteHabitAction, deleteRecordAction} from '../actions'
 import Button from '@material-ui/core/Button'
 import Warning from '@material-ui/icons/Warning'
 import {withRouter} from 'react-router'
 import {connect} from 'react-redux'
 
-const DeleteHabit = ({classes, habit, history, modal, openAndCloseModal, deleteHabit}) => {
+const DeleteHabit = ({classes, habit, history, modal, openAndCloseModal, deleteHabit, deleteRecord}) => {
   const {deleteButton, cancelButton} = classes
   const {id, habitName, chainCount} = habit
   return (
@@ -50,6 +50,7 @@ const DeleteHabit = ({classes, habit, history, modal, openAndCloseModal, deleteH
               className={deleteButton}
               onClick={() => {
                 deleteHabit(id)
+                deleteRecord(id)
                 openAndCloseModal('')
                 history.push('/')
               }}
@@ -102,7 +103,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     openAndCloseModal: modalName => dispatch(openAndCloseModalAction(modalName)),
-    deleteHabit: id => dispatch(deleteHabitAction(id))
+    deleteHabit: id => dispatch(deleteHabitAction(id)),
+    deleteRecord: id => dispatch(deleteRecordAction(id))
   }
 }
 

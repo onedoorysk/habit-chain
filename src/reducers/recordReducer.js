@@ -1,47 +1,25 @@
 import TYPE from '../actions/_actionType'
 
-const initialState = [
-  {
-    id: '001',
-    year: 2018,
-    month: 10,
-    day: 6
-  },
-  {
-    id: '001',
-    year: 2018,
-    month: 10,
-    day: 7
-  },
-  {
-    id: '001',
-    year: 2018,
-    month: 10,
-    day: 8
-  },
-  {
-    id: '001',
-    year: 2018,
-    month: 9,
-    day: 21
-  },
-  {
-    id: '001',
-    year: 2018,
-    month: 9,
-    day: 23
-  }
-]
-
-export default (state = initialState, {type, payload}) => {
+export default (state = [], {type, payload}) => {
+  let newState = []
   switch(type) {
     case TYPE.REGIST_RECORD:
-      return [...state, {
-        id: payload.id,
-        year: new Date().getFullYear(),
-        month: new Date().getMonth() + 1,
-        day: new Date().getDate()
-      }]
+      newState = [...state,
+        {
+          id: payload.id,
+          year: new Date().getFullYear(),
+          month: new Date().getMonth() + 1,
+          day: new Date().getDate()
+        }
+      ]
+      localStorage.setItem('record', JSON.stringify(newState))
+      return newState
+    case TYPE.READ_STORAGE_DATA:
+      return JSON.parse(localStorage.getItem('record')) || []
+    case TYPE.DELETE_RECORD:
+      newState = JSON.parse(localStorage.getItem('record')).filter(record => record.id !== payload.id)
+      localStorage.setItem('record', JSON.stringify(newState))
+      return newState
     default:
       return state
   }
