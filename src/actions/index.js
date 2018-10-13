@@ -16,5 +16,7 @@ export const settingTimerAction = (hour, minute) => ({type: TYPE.SET_TIMER, payl
 export const registRecordAction = id => ({type: TYPE.REGIST_RECORD, payload: {id}})
 export const checkNameCharCountAction = ({type: TYPE.CHECK_NAME_CHAR_COUNT})
 export const checkDescriptionCharCountAction = ({type: TYPE.CHECK_DESCRIPTION_CHAR_COUNT})
+export const hideNameCharCountAction = ({type: TYPE.HIDE_NAME_CHAR_COUNT})
+export const hideDescriptionCharCountAction = ({type: TYPE.HIDE_DESCRIPTION_CHAR_COUNT})
 export const resetFormAction = ({type: TYPE.RESET_FORM})
 export const deleteRecordAction = id => ({type: TYPE.DELETE_RECORD, payload: {id}})

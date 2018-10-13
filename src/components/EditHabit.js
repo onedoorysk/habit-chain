@@ -3,11 +3,11 @@ import '../App.css'
 import {withStyles} from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import {openAndCloseModalAction, editHabitAction, typeHabitDescriptionAction, checkDescriptionCharCountAction, resetFormAction} from '../actions'
+import {openAndCloseModalAction, editHabitAction, typeHabitDescriptionAction, checkDescriptionCharCountAction, resetFormAction, hideDescriptionCharCountAction} from '../actions'
 import CharCount from './CharCount'
 import {connect} from 'react-redux'
 
-const EditHabit = ({classes, habit, modal, form, openAndCloseModal, editHabit, typeHabitDescription, checkDescriptionCharCount, resetForm}) => {
+const EditHabit = ({classes, habit, modal, form, openAndCloseModal, editHabit, typeHabitDescription, checkDescriptionCharCount, hideDescriptionCharCount, resetForm}) => {
   const {textStyle, createButton, cancelButton} = classes
   const {id, description} = habit
   const formDescription = form.description
@@ -36,9 +36,15 @@ const EditHabit = ({classes, habit, modal, form, openAndCloseModal, editHabit, t
               rowsMax="6"
               margin="normal"
               defaultValue={description}
+              onFocus={() => {
+                checkDescriptionCharCount()
+              }}
               onChange={e => {
                 typeHabitDescription(e.currentTarget.value)
                 checkDescriptionCharCount()
+              }}
+              onBlur={() => {
+                hideDescriptionCharCount()
               }}
             />
             <CharCount
@@ -115,7 +121,8 @@ const mapDispatchToProps = dispatch => {
     editHabit: (id, value) => dispatch(editHabitAction(id, value)),
     typeHabitDescription: description => dispatch(typeHabitDescriptionAction(description)),
     checkDescriptionCharCount: () => dispatch(checkDescriptionCharCountAction),
-    resetForm: () => dispatch(resetFormAction)
+    resetForm: () => dispatch(resetFormAction),
+    hideDescriptionCharCount: () => dispatch(hideDescriptionCharCountAction)
   }
 }
 export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(EditHabit))

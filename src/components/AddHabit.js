@@ -3,11 +3,11 @@ import '../App.css'
 import {withStyles} from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import {openAndCloseModalAction, addHabitAction, typeHabitNameAction, typeHabitDescriptionAction, checkNameCharCountAction, checkDescriptionCharCountAction, resetFormAction} from '../actions'
+import {openAndCloseModalAction, addHabitAction, typeHabitNameAction, typeHabitDescriptionAction, checkNameCharCountAction, checkDescriptionCharCountAction, resetFormAction, showNameCharCountAction, showDescriptionCharCountAction, hideNameCharCountAction, hideDescriptionCharCountAction} from '../actions'
 import CharCount from './CharCount'
 import {connect} from 'react-redux'
 
-const AddHabit = ({classes, modal, form, openAndCloseModal, resetForm, typeHabitName, typeHabitDescription, checkNameCharCount, checkDescriptionCharCount, addHabit}) => {
+const AddHabit = ({classes, modal, form, openAndCloseModal, resetForm, typeHabitName, typeHabitDescription, checkNameCharCount, checkDescriptionCharCount, hideNameCharCount, hideDescriptionCharCount, addHabit}) => {
   const {textStyle, createButton, cancelButton} = classes
   const {habitName, description, nameCharCount, descriptionCharCount} = form
   return (
@@ -35,9 +35,15 @@ const AddHabit = ({classes, modal, form, openAndCloseModal, resetForm, typeHabit
                 margin="normal"
                 required
                 value={habitName}
+                onFocus={() => {
+                  checkNameCharCount()
+                }}
                 onChange={e => {
                   typeHabitName(e.currentTarget.value)
                   checkNameCharCount()
+                }}
+                onBlur={() => {
+                  hideNameCharCount()
                 }}
               />
               <CharCount
@@ -55,9 +61,15 @@ const AddHabit = ({classes, modal, form, openAndCloseModal, resetForm, typeHabit
                 rowsMax="6"
                 margin="normal"
                 value={description}
+                onFocus={() => {
+                  checkDescriptionCharCount()
+                }}
                 onChange={e => {
                   typeHabitDescription(e.currentTarget.value)
                   checkDescriptionCharCount()
+                }}
+                onBlur={() => {
+                  hideDescriptionCharCount()
                 }}
               />
               <CharCount
@@ -139,6 +151,8 @@ const mapDispatchToProps = dispatch => {
     typeHabitDescription: value => dispatch(typeHabitDescriptionAction(value)),
     checkNameCharCount: () => dispatch(checkNameCharCountAction),
     checkDescriptionCharCount: () => dispatch(checkDescriptionCharCountAction),
+    hideNameCharCount: () => dispatch(hideNameCharCountAction),
+    hideDescriptionCharCount: () => dispatch(hideDescriptionCharCountAction),
     addHabit: (habitName, description) => dispatch(addHabitAction(habitName, description))
   }
 }

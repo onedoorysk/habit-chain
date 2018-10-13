@@ -13,10 +13,18 @@ export default (state = initialState, {type, payload}) => {
       return {...state, habitName: payload.value}
     case TYPE.TYPE_HABIT_DESCRIPTION:
       return {...state, description: payload.value}
+    case TYPE.SHOW_NAME_CHAR_COUNT:
+      return {...state, nameCharCount: 10 - state.habitName.length}
+    case TYPE.SHOW_DESCRIPTION_CHAR_COUNT:
+      return {...state, descriptionCharCount: 50}
     case TYPE.CHECK_NAME_CHAR_COUNT:
       return {...state, nameCharCount: 10 - state.habitName.length}
     case TYPE.CHECK_DESCRIPTION_CHAR_COUNT:
       return {...state, descriptionCharCount: 50 - state.description.length}
+    case TYPE.HIDE_NAME_CHAR_COUNT:
+      return {...state, nameCharCount: ''}
+    case TYPE.HIDE_DESCRIPTION_CHAR_COUNT:
+      return {...state, descriptionCharCount: ''}
     case TYPE.RESET_FORM:
       return {
         ...state,
