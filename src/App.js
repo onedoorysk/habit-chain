@@ -9,7 +9,9 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 const App = () => (
   <div>
-    <p className="pc">Change your window size to less than 768px.</p>
+    <div className="pc">
+      <div>Change your window size to less than 768px.</div>
+    </div>
     <div className="sp">
       <Router>
         <div>
