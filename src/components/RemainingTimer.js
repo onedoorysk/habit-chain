@@ -11,46 +11,9 @@ export default class Timer extends Component {
   }
 
   settingTimer() {
-    // let countHH = '', countMM = '', countSS = ''
     const countHH = 23 - new Date().getHours()
     const countMM = 59 - new Date().getMinutes()
     const countSS = 59 - new Date().getSeconds()
-    // ex) input: 20:20:XX
-    //   current: 21:30:XX
-    //    expect: 22:49:XX
-  //   if (timeLagHH < 1 && timeLagMM <= 0) {
-  //     countHH = timeLagHH + 23
-  //     countMM = timeLagMM + 59
-  //   }
-  //   // ex) input: 21:40:XX
-  //   //   current: 21:30:XX
-  //   //    expect: 00:09:XX
-  //   if (timeLagHH === 0 && timeLagMM > 0) {
-  //     countHH = timeLagHH
-  //     countMM = timeLagMM - 1
-  //   }
-  //   // ex) input: 20:40:XX
-  //   //   current: 21:30:XX
-  //   //    expect: 23:09:XX
-  //   if (timeLagHH < 0 && timeLagMM > 0) {
-  //     countHH = timeLagHH + 24
-  //     countMM = timeLagMM - 1
-  //   }
-  //   // ex) input: 22:40:XX
-  //   //   current: 21:30:XX
-  //   //    expect: 01:09:XX
-  //   if (timeLagHH > 0 && timeLagMM > 0) {
-  //     countHH = timeLagHH
-  //     countMM = timeLagMM - 1
-  //   }
-  //   // ex) input: 22:20:XX
-  //   //   current: 21:30:XX
-  //   //    expect: 00:59:XX
-  // if (timeLagHH > 0 && timeLagMM <= 0) {
-  //   countHH = timeLagHH - 1
-  //   countMM = timeLagMM + 59
-  // }
-  //   countSS = timeLagSS
     this.setState({countHH, countMM, countSS})
   }
 
