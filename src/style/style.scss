@@ -24,7 +24,7 @@ a {
     color: #FFFFFF;
     font-size: 35px;
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -114,6 +114,14 @@ $shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
   top: -8px;
   right: -16px;
   font-size: 14px;
+}
+.add-message {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #b2b2b2;
+  font-size: 24px;
 }
 .habit-list {
   @include flex-column();

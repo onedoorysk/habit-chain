@@ -32,6 +32,11 @@ class HabitList extends Component {
             }).map(habit => <Habit key={habit.id} habit={habit} />)
           }
         </ul>
+        {
+          habitList.length < 1
+          ? <div className="add-message">ADD NEW HABIT!</div>
+          : null
+        }
         <AddHabit />
         <AddHabitButton />
       </div>

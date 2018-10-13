@@ -17,9 +17,13 @@ export default (state = [], {type, payload}) => {
     case TYPE.READ_STORAGE_DATA:
       return JSON.parse(localStorage.getItem('record')) || []
     case TYPE.DELETE_RECORD:
-      newState = JSON.parse(localStorage.getItem('record')).filter(record => record.id !== payload.id)
-      localStorage.setItem('record', JSON.stringify(newState))
-      return newState
+      const recordData = JSON.parse(localStorage.getItem('record'))
+      if (recordData) {
+        newState = recordData.filter(record => record.id !== payload.id)
+        localStorage.setItem('record', JSON.stringify(newState))
+        return newState
+      }
+      return state
     default:
       return state
   }
