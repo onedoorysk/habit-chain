@@ -12,7 +12,8 @@ const Habit = ({habit, classes, record, doneHabit, registRecord}) => {
   const recordList = record.filter(record => {
     return (record.id === id
       && record.year === new Date().getFullYear()
-      && record.month === new Date().getMonth() + 1)
+      && record.month === new Date().getMonth() + 1
+      && record.day === new Date().getDate())
   })
   return (
     <li className="habit-card">

@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import '../App.css'
+import {finishedDayAction} from '../actions'
+import {connect} from 'react-redux'
 
-export default class Timer extends Component {
+class Timer extends Component {
 
   constructor(props) {
     super(props)
@@ -33,6 +35,7 @@ export default class Timer extends Component {
         // If today has finished, count-time will be reset
         if (isFinishedToday) {
           this.settingTimer()
+          this.props.finishedDay()
           return
         }
         // When 1 hours have passed, count-timer will be calculated
@@ -74,3 +77,11 @@ export default class Timer extends Component {
     )
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    finishedDay: () => dispatch(finishedDayAction)
+  }
+}
+
+export default connect(undefined, mapDispatchToProps)(Timer)
