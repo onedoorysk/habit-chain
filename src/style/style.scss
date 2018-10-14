@@ -117,11 +117,13 @@ $shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
 }
 .add-message {
   position: absolute;
-  top: 45%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: #b2b2b2;
   font-size: 24px;
+  width: 200px;
+  text-align: center;
 }
 .habit-list {
   @include flex-column();
