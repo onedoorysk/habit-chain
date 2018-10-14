@@ -3,7 +3,7 @@ import '../App.css'
 import {withStyles} from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import {openAndCloseModalAction, addHabitAction, typeHabitNameAction, typeHabitDescriptionAction, checkNameCharCountAction, checkDescriptionCharCountAction, resetFormAction, showNameCharCountAction, showDescriptionCharCountAction, hideNameCharCountAction, hideDescriptionCharCountAction} from '../actions'
+import {openAndCloseModalAction, addHabitAction, typeHabitNameAction, typeHabitDescriptionAction, checkNameCharCountAction, checkDescriptionCharCountAction, resetFormAction, hideNameCharCountAction, hideDescriptionCharCountAction} from '../actions'
 import CharCount from './CharCount'
 import {connect} from 'react-redux'
 
