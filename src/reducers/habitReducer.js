@@ -16,6 +16,16 @@ export default (state = [], {type, payload}) => {
     case TYPE.DONE_HABIT:
       newState = state.map(habit => {
         if (habit.id !== payload.id) return {...habit}
+        recordList = JSON.parse(localStorage.getItem('record'))
+        if (!recordList) return {...habit}
+        let resetChainCountFlag = recordList.some(record => {
+          if (record.id === habit.id &&
+            record.year === new Date().getFullYear() &&
+            record.month === new Date().getMonth() + 1 &&
+            record.day === new Date().getDate() - 1) return false
+          return true
+        })
+        if (resetChainCountFlag) return {...habit, completed: true, chainCount: 1}
         return {...habit, completed: true, chainCount: habit.chainCount + 1}
       })
       localStorage.setItem('habit', JSON.stringify(newState))
@@ -40,8 +50,8 @@ export default (state = [], {type, payload}) => {
           return true
         })
         console.log(changeToNotYetFlag)
-        if (changeToNotYetFlag) return {...habit}
-        return {...habit, completed: false}
+        if (changeToNotYetFlag) return {...habit, completed: false}
+        return {...habit}
       })
       localStorage.setItem('habit', JSON.stringify(newState))
       return newState
