@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import '../App.css'
-import {readStorageDataAction} from '../actions'
+import {firstProcessAction} from '../actions'
 import Habit from './Habit'
 import AddHabit from './AddHabit'
 import AddHabitButton from './AddHabitButton'
@@ -9,7 +9,7 @@ import {connect} from 'react-redux'
 class HabitList extends Component {
 
   componentWillMount() {
-    this.props.readStorageData()
+    this.props.firstProcess()
   }
 
   render() {
@@ -54,7 +54,7 @@ const mapStateToProps = state => {
 
 const mapDisptchToProps = dispatch => {
   return {
-    readStorageData: () => dispatch(readStorageDataAction)
+    firstProcess: () => dispatch(firstProcessAction)
   }
 }
 

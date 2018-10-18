@@ -14,7 +14,7 @@ export default (state = [], {type, payload}) => {
       ]
       localStorage.setItem('record', JSON.stringify(newState))
       return newState
-    case TYPE.READ_STORAGE_DATA:
+    case TYPE.FIRST_PROCESS:
       return JSON.parse(localStorage.getItem('record')) || []
     case TYPE.DELETE_RECORD:
       const recordData = JSON.parse(localStorage.getItem('record'))

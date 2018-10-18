@@ -2,7 +2,7 @@ import TYPE from '../actions/_actionType'
 import v4 from 'uuid/v4'
 
 export default (state = [], {type, payload}) => {
-  let newState = []
+  let [newState, recordList, habitList] = [[], [], []]
   switch(type) {
     case TYPE.ADD_HABIT:
       const {habitName, description} = payload
@@ -27,28 +27,39 @@ export default (state = [], {type, payload}) => {
       })
       localStorage.setItem('habit', JSON.stringify(newState))
       return newState
-    case TYPE.READ_STORAGE_DATA:
-      return JSON.parse(localStorage.getItem('habit')) || []
+    case TYPE.FIRST_PROCESS:
+      habitList = JSON.parse(localStorage.getItem('habit')) || []
+      recordList = JSON.parse(localStorage.getItem('record'))
+      newState = habitList.map(habit => {
+        if (!recordList) return {...habit}
+        let changeToNotYetFlag = recordList.some(record => {
+          if (record.id === habit.id &&
+            record.year === new Date().getFullYear() &&
+            record.month === new Date().getMonth() + 1 &&
+            record.day === new Date().getDate()) return false
+          return true
+        })
+        console.log(changeToNotYetFlag)
+        if (changeToNotYetFlag) return {...habit}
+        return {...habit, completed: false}
+      })
+      localStorage.setItem('habit', JSON.stringify(newState))
+      return newState
     case TYPE.FINISHED_DAY:
-      let chainCount = ''
-      const recordList = JSON.parse(localStorage.getItem('record'))
+      recordList = JSON.parse(localStorage.getItem('record'))
       // change all habit completed to false
       newState = state.map(habit => {
-        let initializeChainCountFlag = false
-        if (recordList) {
-          initializeChainCountFlag = recordList.some(record => {
-            if (record.id !== habit.id) return false
-            if (record.year !== new Date().getFullYear()) return false
-            if (record.month !== new Date().getMonth() + 1) return false
-            if (record.day !== new Date().getDate()) return false
-            return true
-          })
-        }
+        if (!recordList) return {...habit, completed: false}
+        let initializeChainCountFlag = recordList.some(record => {
+            if (record.id === habit.id &&
+            record.year === new Date().getFullYear() &&
+            record.month === new Date().getMonth() + 1 &&
+            record.day === new Date().getDate()) return true
+          return false
+        })
         // If today's recordData doesn't exsist, change chainCount to 0
-        console.log(initializeChainCountFlag)
-        if (!initializeChainCountFlag) chainCount = 0
-        else chainCount = habit.chainCount
-        return ({...habit, completed: false, chainCount})
+        if (initializeChainCountFlag) return {...habit, completed: false, chainCount: 0}
+        return {...habit, completed: false}
       })
       localStorage.setItem('habit', JSON.stringify(newState))
       return newState

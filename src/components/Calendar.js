@@ -13,6 +13,7 @@ const Calendar = ({id, calendar, record}) => {
       recordDataOnlyDay.push(record.day)
     }
   })
+  console.log(record)
   return (
     <div className="calendar">
       <PageCalendar />

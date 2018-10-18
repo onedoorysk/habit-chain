@@ -1,6 +1,6 @@
 import TYPE from './_actionType'
 
-export const readStorageDataAction = ({type: TYPE.READ_STORAGE_DATA})
+export const firstProcessAction = ({type: TYPE.FIRST_PROCESS})
 export const typeHabitNameAction = value => ({type: TYPE.TYPE_HABIT_NAME, payload: {value}})
 export const typeHabitDescriptionAction = value => ({type: TYPE.TYPE_HABIT_DESCRIPTION, payload: {value}})
 export const addHabitAction = (habitName, description) => ({type: TYPE.ADD_HABIT, payload: {habitName, description}})
