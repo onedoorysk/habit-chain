@@ -11,21 +11,12 @@ class Timer extends Component {
       countHH: '', countMM: '', countSS: ''
     }
   }
-
-  settingTimer() {
+  // Every 1 seconds, count timer
+  componentDidMount() {
     const countHH = 23 - new Date().getHours()
     const countMM = 59 - new Date().getMinutes()
     const countSS = 59 - new Date().getSeconds()
     this.setState({countHH, countMM, countSS})
-  }
-
-  // Before DOM tree is added, set count timer
-  componentWillMount() {
-    this.settingTimer()
-  }
-
-  // Every 1 seconds, count timer
-  componentDidMount() {
     setInterval(
       () => {
         const isFinishedToday = this.state.countHH === 0 && this.state.countMM === 0 && this.state.countSS === 0

@@ -8,7 +8,7 @@ import {connect} from 'react-redux'
 
 class HabitList extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.firstProcess()
   }
 
