@@ -127,7 +127,7 @@ $shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
 }
 .habit-list {
   @include flex-column();
-  margin: 113px auto 0 auto;
+  margin: 113px auto 100px auto;
   width: 100%;
 }
 .habit-card {
