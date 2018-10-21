@@ -23,5 +23,11 @@
     "eject": "react-scripts eject",
     "sass": "node-sass ./src/style/style.scss ./src/App.css -w --output-style compressed",
     "server": "json-server --watch db.json --port 3001"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

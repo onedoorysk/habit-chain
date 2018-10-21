@@ -1,6 +1,6 @@
 import React from 'react'
-import '../App.css'
-import {filterListAction} from '../actions'
+import '../../App.css'
+import {filterListAction} from '../../actions'
 import {connect} from 'react-redux'
 
 const FilterTab = ({tabName, count, filter, filterList}) => {

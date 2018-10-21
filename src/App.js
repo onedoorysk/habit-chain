@@ -1,9 +1,9 @@
 import React from 'react'
 import './App.css'
-import HabitList from './components/HabitList'
-import HabitDetail from './components/HabitDetail'
+import HabitList from './components/Habit/HabitList'
+import HabitDetail from './components/Habit/HabitDetail'
 import Header from './components/Header'
-import HabitFilter from './components/HabitFilter'
+import HabitFilter from './components/Filter/HabitFilter'
 import RemainingTimer from './components/RemainingTimer'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import '../App.css'
-import {firstProcessAction} from '../actions'
+import '../../App.css'
+import {firstProcessAction} from '../../actions'
 import Habit from './Habit'
 import AddHabit from './AddHabit'
 import AddHabitButton from './AddHabitButton'

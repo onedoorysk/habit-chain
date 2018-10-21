@@ -1,5 +1,5 @@
 import React from 'react'
-import '../App.css'
+import '../../App.css'
 import FilterTab from './FilterTab'
 import {connect} from 'react-redux'
 

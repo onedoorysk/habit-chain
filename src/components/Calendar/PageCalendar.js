@@ -1,9 +1,9 @@
 import React from 'react'
-import '../App.css'
+import '../../App.css'
 import {withStyles} from '@material-ui/core/styles'
 import ChevronLeft from '@material-ui/icons/ChevronLeft'
 import ChevronRight from '@material-ui/icons/ChevronRight'
-import {changeCalendarAction} from '../actions'
+import {changeCalendarAction} from '../../actions'
 import {connect} from 'react-redux'
 
 const PageCalendar = ({classes, calendar, changeCalendar}) => {

@@ -1,9 +1,9 @@
 import React from 'react'
-import '../App.css'
+import '../../App.css'
 import {withStyles} from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import {openAndCloseModalAction, editHabitAction, typeHabitDescriptionAction, checkDescriptionCharCountAction, resetFormAction, hideDescriptionCharCountAction} from '../actions'
+import {openAndCloseModalAction, editHabitAction, typeHabitDescriptionAction, checkDescriptionCharCountAction, resetFormAction, hideDescriptionCharCountAction} from '../../actions'
 import CharCount from './CharCount'
 import {connect} from 'react-redux'
 
