@@ -2,7 +2,6 @@ import { connect } from 'react-redux'
 import Calendar from '../components/Calendar/Calendar'
 import { changeCalendarAction } from '../actions'
 
-//
 const filterRecordByDisplayedCalendar = (calendar, recordList, id) => {
   let recordDataOnlyDay = []
   recordList.forEach(record => {
