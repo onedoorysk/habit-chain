@@ -6,7 +6,7 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft'
 import Edit from '@material-ui/icons/Edit'
 import Album from '@material-ui/icons/Album'
-import Calendar from '../Calendar/Calendar'
+import DisplayCalendar from '../../containers/DisplayCalendar'
 import DeleteHabit from './DeleteHabit'
 import EditHabit from './EditHabit'
 import {connect} from 'react-redux'
@@ -67,7 +67,7 @@ const HabitDetail = ({match, classes, habit, openAndCloseModal}) => {
           </div>
         </div>
       </div>
-      <Calendar id={id} />
+      <DisplayCalendar id={id} />
       <DeleteHabit habit={targetHabit} />
       <EditHabit habit={targetHabit} />
     </div>
