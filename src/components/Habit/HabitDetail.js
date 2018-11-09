@@ -7,7 +7,7 @@ import FormatAlignLeft from '@material-ui/icons/FormatAlignLeft'
 import Edit from '@material-ui/icons/Edit'
 import Album from '@material-ui/icons/Album'
 import DisplayCalendar from '../../containers/DisplayCalendar'
-import DeleteHabit from './DeleteHabit'
+import DeleteHabit from '../../containers/DeleteHabit'
 import EditHabit from './EditHabit'
 import {connect} from 'react-redux'
 

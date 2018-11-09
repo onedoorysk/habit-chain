@@ -29,10 +29,8 @@ const styles = {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    openAndCloseModal: modalName => dispatch(openAndCloseModalAction(modalName))
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  openAndCloseModal: modalName => dispatch(openAndCloseModalAction(modalName))
+})
 
 export default withStyles(styles)(connect(undefined, mapDispatchToProps)(AddHabitButton))
