@@ -8,7 +8,7 @@ const FilterTab = ({tabName, count, filter, onClick}) => (
     style={filter === tabName ? {borderBottom: '2px solid #5CC0EF', color: '#5CC0EF'} : {}}>
     <div className="filter__name">
       {tabName.toUpperCase()}
-      {count && <span className="habit-count">{count}</span>}
+      {count > 0 && <span className="habit-count">{count}</span>}
     </div>
   </div>
 )

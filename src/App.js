@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import HabitList from './components/Habit/HabitList'
+import VisibleHabits from './containers/VisibleHabits'
 import HabitDetail from './components/Habit/HabitDetail'
 import Header from './components/Header'
 import FilterHabit from './containers/FilterHabit'
@@ -17,7 +17,7 @@ const App = () => (
         <div>
           <Route exact component={Header} />
           <Route exact path="/" component={FilterHabit} />
-          <Route exact path="/" component={HabitList} />
+          <Route exact path="/" component={VisibleHabits} />
           <Route path="/detail/:id" component={HabitDetail} />
         </div>
       </Router>

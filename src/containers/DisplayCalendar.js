@@ -12,18 +12,13 @@ const filterRecordByDisplayedCalendar = (calendar, recordList, id) => {
   return recordDataOnlyDay
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const {calendar, record} = state
-  return {
-    calendar: calendar,
-    recordsOfDisplayedCalendar: filterRecordByDisplayedCalendar(calendar, record, ownProps.id)
-  }
-}
+const mapStateToProps = (state, ownProps) => ({
+  calendar: state.calendar,
+  recordsOfDisplayedCalendar: filterRecordByDisplayedCalendar(state.calendar, state.record, ownProps.id)
+})
 
-const mapDispatchToProps = dispatch => {
-  return {
-    changeCalendar: changeType => dispatch(changeCalendarAction(changeType))
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  changeCalendar: changeType => dispatch(changeCalendarAction(changeType))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Calendar)
