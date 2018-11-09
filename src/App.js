@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
 import VisibleHabits from './containers/VisibleHabits'
-import HabitDetail from './components/Habit/HabitDetail'
+import DisplayHabitDetail from './containers/DisplayHabitDetail'
 import Header from './components/Header'
 import FilterHabit from './containers/FilterHabit'
 import RemainingTimer from './components/RemainingTimer'
@@ -18,7 +18,7 @@ const App = () => (
           <Route exact component={Header} />
           <Route exact path="/" component={FilterHabit} />
           <Route exact path="/" component={VisibleHabits} />
-          <Route path="/detail/:id" component={HabitDetail} />
+          <Route path="/detail/:id" component={DisplayHabitDetail} />
         </div>
       </Router>
       <RemainingTimer />
