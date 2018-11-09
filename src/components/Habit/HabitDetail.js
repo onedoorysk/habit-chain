@@ -7,7 +7,7 @@ import Edit from '@material-ui/icons/Edit'
 import Album from '@material-ui/icons/Album'
 import DisplayCalendar from '../../containers/DisplayCalendar'
 import DeleteHabit from '../../containers/DeleteHabit'
-import EditHabit from './EditHabit'
+import EditHabit from '../../containers/EditHabit'
 
 const HabitDetail = ({classes, habit, openAndCloseModal}) => (
   <div className="detail">
