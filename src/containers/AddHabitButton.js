@@ -2,21 +2,19 @@ import React from 'react'
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 import {withStyles} from '@material-ui/core/styles'
-import {openAndCloseModalAction} from '../../actions'
+import {openAndCloseModalAction} from '../actions'
 import {connect} from 'react-redux'
 
-const AddHabitButton = ({classes, openAndCloseModal}) => {
-  return (
-    <Button
-      variant="fab"
-      aria-label="Add"
-      className={classes.button}
-      onClick={() => openAndCloseModal('addHabit')}
-    >
-      <AddIcon />
-    </Button>
-  )
-}
+const AddHabitButton = ({classes, openAndCloseModal}) => (
+  <Button
+    variant="fab"
+    aria-label="Add"
+    className={classes.button}
+    onClick={() => openAndCloseModal('addHabit')}
+  >
+    <AddIcon />
+  </Button>
+)
 
 const styles = {
   button: {

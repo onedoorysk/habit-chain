@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import '../../App.css'
 import Habit from './Habit'
-import AddHabit from './AddHabit'
-import AddHabitButton from './AddHabitButton'
+import AddHabit from '../../containers/AddHabit'
+import AddHabitButton from '../../containers/AddHabitButton'
 
 class HabitList extends Component {
 
