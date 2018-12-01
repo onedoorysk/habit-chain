@@ -1,6 +1,6 @@
 import React from 'react'
 import DisplayHabitDetail from '../../../containers/DisplayHabitDetail'
 
-const HabitDetail = () => <DisplayHabitDetail/>
+const HabitDetailPage = () => <DisplayHabitDetail/>
 
-export default HabitDetail
+export default HabitDetailPage

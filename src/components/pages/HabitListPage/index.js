@@ -4,7 +4,7 @@ import { firstProcessAction } from '../../../actions'
 import store from '../../../store'
 import HabitListTemplate from '../../templates/HabitListTemplate'
 
-class HabitList extends Component {
+class HabitListPage extends Component {
 
   componentDidMount() {
     store.dispatch(firstProcessAction)
@@ -17,4 +17,4 @@ class HabitList extends Component {
   }
 }
 
-export default HabitList
+export default HabitListPage
