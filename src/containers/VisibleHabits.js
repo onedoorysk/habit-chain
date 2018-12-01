@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import HabitList from '../components/organisms/HabitList'
 import {firstProcessAction, doneHabitAction, registRecordAction} from '../actions'
 import { FILTER_TYPE } from '../actions/_actionType'
+import {withStyles} from '@material-ui/core/styles'
 
 const filterHabit = (filter, habitList) => {
   return habitList.filter(habit => {
@@ -40,4 +41,20 @@ const mapDisptchToProps = dispatch => ({
   registRecord: id => dispatch(registRecordAction(id))
 })
 
-export default connect(mapStateToProps, mapDisptchToProps)(HabitList)
+const styles = {
+  doneButton: {
+    position: 'absolute',
+    bottom: '10px',
+    right: '15px',
+    width: '90px',
+    backgroundColor: '#1C75BC',
+    color: '#FFFFFF',
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
+    '&:hover': {
+      backgroundColor: '#1C75BC'
+    },
+    transition: 'none'
+  }
+}
+
+export default connect(mapStateToProps, mapDisptchToProps)(withStyles(styles)(HabitList))

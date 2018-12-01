@@ -3,7 +3,7 @@ import '../../App.css'
 import {withStyles} from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import CharCount from './CharCount'
+import CharCount from '../../components/molecules/CountInputValue'
 
 const EditHabit = ({classes, habit, modal, form, openAndCloseModal, editHabit, typeHabitDescription, checkDescriptionCharCount, hideDescriptionCharCount, resetForm}) => (
   <>

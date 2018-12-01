@@ -1,9 +1,7 @@
 import React from 'react'
-import '../../App.css'
-import {withStyles} from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import CharCount from './CharCount'
+import CountInputValue from '../../molecules/CountInputValue'
 
 const AddHabit = ({classes, modal, form, openAndCloseModal, resetForm, typeHabitName, typeHabitDescription, checkNameCharCount, checkDescriptionCharCount, hideNameCharCount, hideDescriptionCharCount, addHabit}) => (
   <>
@@ -41,7 +39,7 @@ const AddHabit = ({classes, modal, form, openAndCloseModal, resetForm, typeHabit
                 hideNameCharCount()
               }}
             />
-            <CharCount
+            <CountInputValue
               count={form.nameCharCount}
               cautionCount={4}
               warningCount={1}
@@ -67,7 +65,7 @@ const AddHabit = ({classes, modal, form, openAndCloseModal, resetForm, typeHabit
                 hideDescriptionCharCount()
               }}
             />
-            <CharCount
+            <CountInputValue
               count={form.descriptionCharCount}
               cautionCount={11}
               warningCount={1}
@@ -105,28 +103,4 @@ const AddHabit = ({classes, modal, form, openAndCloseModal, resetForm, typeHabit
   </>
 )
 
-const styles = {
-  textStyle: {
-    width: '223px'
-  },
-  createButton: {
-    width: '90px',
-    backgroundColor: '#1C75BC',
-    color: '#FFFFFF',
-    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
-    '&:hover': {
-      backgroundColor: '#4BA0E3'
-    }
-  },
-  cancelButton: {
-    width: '90px',
-    backgroundColor: '#EB3029',
-    color: '#FFFFFF',
-    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
-    '&:hover': {
-      backgroundColor: '#F26963'
-    }
-  },
-}
-
-export default withStyles(styles)(AddHabit)
+export default AddHabit
