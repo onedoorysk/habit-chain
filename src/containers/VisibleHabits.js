@@ -1,21 +1,23 @@
 import { connect } from 'react-redux'
-import HabitList from '../components/Habit/HabitList'
+import HabitList from '../components/organisms/HabitList'
 import {firstProcessAction, doneHabitAction, registRecordAction} from '../actions'
+import { FILTER_TYPE } from '../actions/_actionType'
 
 const filterHabit = (filter, habitList) => {
   return habitList.filter(habit => {
     switch (filter) {
-      case 'not yet':
+      case FILTER_TYPE.NOT_YET:
         return !habit.completed
-      case 'done':
+      case FILTER_TYPE.DONE:
         return habit.completed
-      case 'all':
+      case FILTER_TYPE.ALL:
         return habit
       default:
         return habit
     }
   })
 }
+
 // Pop today's record data. If it exists, it changes done-button disable.
 const filterRecordOfHabit = (record, id) => {
   return record.filter(record => {
@@ -27,7 +29,8 @@ const filterRecordOfHabit = (record, id) => {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  habitList: filterHabit(state.filter, state.habit),
+  allHabitList: state.habit,
+  filterHabitList: filterHabit(state.filter, state.habit),
   recordOfHabit: filterRecordOfHabit(state.record, ownProps.id)
 })
 

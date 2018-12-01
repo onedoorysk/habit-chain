@@ -1,6 +1,6 @@
-import TYPE from '../actions/_actionType'
+import TYPE, { FILTER_TYPE } from '../actions/_actionType'
 
-export default (state = 'all', {type, payload}) => {
+export default (state = FILTER_TYPE.ALL, {type, payload}) => {
   switch (type) {
     case TYPE.FILTER_LIST:
       return state = payload.filterType

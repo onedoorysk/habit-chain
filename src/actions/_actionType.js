@@ -20,3 +20,9 @@ export default {
   DELETE_RECORD: 'DELETE_RECORD',
   FINISHED_DAY: 'FINISHED_DAY'
 }
+
+export const FILTER_TYPE = {
+  ALL: 'all',
+  NOT_YET: 'not yet',
+  DONE: 'done'
+}

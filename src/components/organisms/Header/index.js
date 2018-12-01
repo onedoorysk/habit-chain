@@ -1,8 +1,7 @@
 import React from 'react'
-import '../App.css'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-export default () => {
+const Header = () => {
   return (
     <header className="header">
       <Link to={'/'} className="header__link">
@@ -11,3 +10,5 @@ export default () => {
     </header>
   )
 }
+
+export default Header

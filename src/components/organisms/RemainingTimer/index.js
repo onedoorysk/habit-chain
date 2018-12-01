@@ -1,9 +1,6 @@
 import React, {Component} from 'react'
-import '../App.css'
-import {finishedDayAction} from '../actions'
-import {connect} from 'react-redux'
 
-class Timer extends Component {
+class RemainingTimer extends Component {
 
   constructor(props) {
     super(props)
@@ -69,10 +66,4 @@ class Timer extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    finishedDay: () => dispatch(finishedDayAction)
-  }
-}
-
-export default connect(undefined, mapDispatchToProps)(Timer)
+export default RemainingTimer

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import HabitFilter from '../components/Filter/HabitFilter'
+import Filter from '../components/organisms/Filter'
 import { filterListAction } from '../actions'
 
 const mapStateToProps = state => ({
@@ -11,4 +11,4 @@ const mapDispatchToProps = dispatch => ({
   filterList: tabName => dispatch(filterListAction(tabName))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(HabitFilter)
+export default connect(mapStateToProps, mapDispatchToProps)(Filter)
