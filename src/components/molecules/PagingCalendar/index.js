@@ -1,13 +1,12 @@
 import React from 'react'
-import {withStyles} from '@material-ui/core/styles'
 import ChevronLeft from '@material-ui/icons/ChevronLeft'
 import ChevronRight from '@material-ui/icons/ChevronRight'
 
-const PageCalendar = ({year, month, onClick, classes}) => (
+const PageCalendar = ({year, month, onClick, prevIcon, nextIcon}) => (
   <div className="calendar__paging">
     <div>
       <ChevronLeft
-        className={classes.prevIcon}
+        className={prevIcon}
         onClick={() => onClick('prev')}
       />
     </div>
@@ -15,26 +14,11 @@ const PageCalendar = ({year, month, onClick, classes}) => (
       {year}/{month < 10 ? `0${month}` : month}</div>
     <div>
       <ChevronRight
-        className={classes.nextIcon}
+        className={nextIcon}
         onClick={() => onClick('next')}
       />
     </div>
   </div>
 )
 
-const styles = {
-  prevIcon: {
-    color: '#B5B5B5',
-    cursor: 'pointer',
-    width: '30px',
-    height: '30px'
-  },
-  nextIcon: {
-    color: '#B5B5B5',
-    cursor: 'pointer',
-    width: '30px',
-    height: '30px'
-  }
-}
-
-export default withStyles(styles)(PageCalendar)
+export default PageCalendar

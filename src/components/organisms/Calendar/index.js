@@ -7,15 +7,19 @@ const Calendar = ({
   calendar,
   recordsOfDisplayedCalendar,
   dayOfWeekList,
-  changeCalendar
+  changeCalendar,
+  classes
 }) => (
   <div className="calendar">
     <PageCalendar
       onClick={changeType => changeCalendar(changeType)}
       {...calendar}
+      {...classes}
     />
     <div className="calendar__weekdays">
-      {dayOfWeekList.map(day => <DayOfWeek styles="calendar__weekdays__day">{day}</DayOfWeek>)}
+      {dayOfWeekList.map((day, index) => (
+        <DayOfWeek key={index} styles="calendar__weekdays__day">{day}</DayOfWeek>
+      ))}
     </div>
     <div className="calendar__table">
       {calendar.calendarData.map(calendar => (

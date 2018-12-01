@@ -1,8 +1,7 @@
 import React from 'react'
-import {withStyles} from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import CharCount from '../../molecules/CountInputValue'
+import CountInputValue from '../../molecules/CountInputValue'
 
 const EditHabit = ({classes, habit, modal, form, openAndCloseModal, editHabit, typeHabitDescription, checkDescriptionCharCount, hideDescriptionCharCount, resetForm}) => (
   <>
@@ -39,7 +38,7 @@ const EditHabit = ({classes, habit, modal, form, openAndCloseModal, editHabit, t
               hideDescriptionCharCount()
             }}
           />
-          <CharCount
+          <CountInputValue
             count={form.descriptionCharCount}
             cautionCount={11}
             warningCount={1}
@@ -74,28 +73,4 @@ const EditHabit = ({classes, habit, modal, form, openAndCloseModal, editHabit, t
   </>
 )
 
-const styles = {
-  textStyle: {
-    width: '223px'
-  },
-  createButton: {
-    width: '90px',
-    backgroundColor: '#1C75BC',
-    color: '#FFFFFF',
-    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
-    '&:hover': {
-      backgroundColor: '#4BA0E3'
-    }
-  },
-  cancelButton: {
-    width: '90px',
-    backgroundColor: '#EB3029',
-    color: '#FFFFFF',
-    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)',
-    '&:hover': {
-      backgroundColor: '#F26963'
-    }
-  }
-}
-
-export default withStyles(styles)(EditHabit)
+export default EditHabit

@@ -1,8 +1,8 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 
-const Habit = ({id, habitName, description, chainCount, classes, recordList, onClick, doneButton}) => (
+const Habit = ({id, habitName, description, chainCount, recordList, onClick, doneButton}) => (
   <li className="habit-card">
     <Link to={`/detail/${id}`} className="habit-card__link">
       <div className="habit-card__name">
