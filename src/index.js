@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import HabitList from './components/pages/HabitListPage'
-import HabitDetail from './components/pages/HabitDetailPage'
+import HabitListPage from './components/pages/HabitListPage'
+import HabitDetailPage from './components/pages/HabitDetailPage'
 import registerServiceWorker from './registerServiceWorker'
 import store from './store'
 import {Provider} from 'react-redux'
@@ -11,8 +11,8 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <>
-      <Route exact path="/" component={HabitList}/>
-      <Route exact path="/detail/:id" component={HabitDetail}/>
+      <Route exact path="/" component={HabitListPage}/>
+      <Route exact path="/detail/:id" component={HabitDetailPage}/>
       </>
     </Router>
   </Provider>

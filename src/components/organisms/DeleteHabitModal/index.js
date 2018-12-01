@@ -1,9 +1,8 @@
 import React from 'react'
-import '../../App.css'
 import {withStyles} from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import Warning from '@material-ui/icons/Warning'
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 const DeleteHabit = ({classes, habit, history, modal, openAndCloseModal, deleteHabit, deleteRecord}) => (
   <>

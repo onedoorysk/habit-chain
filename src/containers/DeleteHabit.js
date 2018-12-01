@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import {openAndCloseModalAction, deleteHabitAction, deleteRecordAction} from '../actions'
-import DeleteHabit from '../components/Habit/DeleteHabit'
+import DeleteHabitModal from '../components/organisms/DeleteHabitModal'
 
 const mapStateToProps = state => ({
   modal: state.modal
@@ -12,4 +12,4 @@ const mapDispatchToProps = dispatch => ({
   deleteRecord: id => dispatch(deleteRecordAction(id))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeleteHabit)
+export default connect(mapStateToProps, mapDispatchToProps)(DeleteHabitModal)

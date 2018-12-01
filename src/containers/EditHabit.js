@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import {openAndCloseModalAction, editHabitAction, typeHabitDescriptionAction, checkDescriptionCharCountAction, resetFormAction, hideDescriptionCharCountAction} from '../actions'
-import EditHabit from '../components/Habit/EditHabit'
+import EditHabitModal from '../components/organisms/EditHabitModal'
 
 const mapStateToProps = state => ({
   modal: state.modal,
@@ -16,4 +16,4 @@ const mapDispatchToProps = dispatch => ({
   hideDescriptionCharCount: () => dispatch(hideDescriptionCharCountAction)
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditHabit)
+export default connect(mapStateToProps, mapDispatchToProps)(EditHabitModal)

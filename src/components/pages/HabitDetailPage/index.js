@@ -1,6 +1,6 @@
 import React from 'react'
-import DisplayHabitDetail from '../../../containers/DisplayHabitDetail'
+import HabitDetailTemplate from '../../templates/HabitDetailTemplate'
 
-const HabitDetailPage = () => <DisplayHabitDetail/>
+const HabitDetailPage = (props) => <HabitDetailTemplate {...props}/>
 
 export default HabitDetailPage

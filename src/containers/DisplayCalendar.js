@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import Calendar from '../components/Calendar/Calendar'
+import Calendar from '../components/organisms/Calendar'
 import { changeCalendarAction } from '../actions'
 
 const filterRecordByDisplayedCalendar = (calendar, recordList, id) => {
@@ -14,7 +14,8 @@ const filterRecordByDisplayedCalendar = (calendar, recordList, id) => {
 
 const mapStateToProps = (state, ownProps) => ({
   calendar: state.calendar,
-  recordsOfDisplayedCalendar: filterRecordByDisplayedCalendar(state.calendar, state.record, ownProps.id)
+  recordsOfDisplayedCalendar: filterRecordByDisplayedCalendar(state.calendar, state.record, ownProps.id),
+  dayOfWeekList: ['S', 'M', 'T', 'W', 'T', 'F', 'S']
 })
 
 const mapDispatchToProps = dispatch => ({
