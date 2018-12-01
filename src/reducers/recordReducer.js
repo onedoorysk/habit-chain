@@ -3,6 +3,8 @@ import TYPE from '../actions/_actionType'
 export default (state = [], {type, payload}) => {
   let newState = []
   switch(type) {
+    case TYPE.FIRST_PROCESS:
+      return JSON.parse(localStorage.getItem('record')) || []
     case TYPE.REGIST_RECORD:
       newState = [...state,
         {
@@ -14,8 +16,6 @@ export default (state = [], {type, payload}) => {
       ]
       localStorage.setItem('record', JSON.stringify(newState))
       return newState
-    case TYPE.FIRST_PROCESS:
-      return JSON.parse(localStorage.getItem('record')) || []
     case TYPE.DELETE_RECORD:
       const recordData = JSON.parse(localStorage.getItem('record'))
       if (recordData) {
