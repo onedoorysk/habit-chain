@@ -51,7 +51,7 @@ class RemainingTimer extends Component {
     return (
       <div className="timer-block">
         <div className="timer-block__text">
-          <span>Today's remaining time</span>
+          <span>Today&#39;s remaining time</span>
         </div>
         <div className="timer-block__timer">
           {countHH < 10 ?
